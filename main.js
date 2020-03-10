@@ -1,3 +1,4 @@
+
 var main = d3.select('#main');
 
 // Select all the album tabs
@@ -93,4 +94,11 @@ d3.csv("dataset.csv").then((data) => {
     }
 });
 
+
+
+var members = ["RM", "Jin", "Suga", "J-Hope", "Jimin", "V", "Jungkook"];
+
+d3.csv("dataset.csv").then((data) => {
+    console.log(data[0]);
+});
 
