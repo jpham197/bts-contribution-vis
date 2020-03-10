@@ -20,49 +20,49 @@ function renderBars(data) {
     var select = d3.selectAll('.got-survival')
     .data(data);
 
-    // Append divs for each character, class them to reference later
+    // Append divs for each song, class them to reference later
     var enter = select.enter().append('div')
-    .attr('class','got-survival');
+    .attr('class','got-song');
 
-    // Append a <p> element to the newly appended div.got-survival
+    // Append a <p> element to the newly appended div.got-song
     var pEnter = enter.append('p')
-    .attr('class', 'got-person-name');
+    .attr('class', 'got-song-name');
 
-    // Append <div><div></div></div> to create the progress-bar structure
+    // Append <div><div></div></div> to create the contributionv-bar structure
     var fillEnter = enter.append('div')
-    .attr('class', 'got-progress-bar')
+    .attr('class', 'got-contribution-bar')
     .append('div')
-    .attr('class', 'got-progress-bar-fill');
+    .attr('class', 'got-contribution-bar-fill');
 
-    // Append a <p> element to display the survival value
+    // Append a <p> element to display the contribution value
     var valEnter = fillEnter.append('p')
-    .attr('class', 'got-progress-bar-value');
+    .attr('class', 'got-contribution-bar-value');
 
     // Now this is where we update both the newly created elements on screen and the ones already present
 
     // Merge the .got-person-name elements on screen elements with the newly created ones, and update name
-    select.select('.got-person-name').merge(pEnter)
+    select.select('.got-song-name').merge(pEnter)
         .text(function(d){
         return d['name'];
     });
 
-    // Merge the .got-progress-bar-fill on screen elements with the newly created ones, and update width
-    select.select('.got-progress-bar-fill').merge(fillEnter)
+    // Merge the .got-contribution-bar-fill on screen elements with the newly created ones, and update width
+    select.select('.got-contribution-bar-fill').merge(fillEnter)
         .style('width', function(d){
-        return 'calc(' + d['probability_of_survival'] + '% - 3px)';
+        return 'calc(' + d['percentage_of_contribution'] + '% - 3px)';
     });
 
     // Merge the .got-progress-bar-value on screen elements with the newly created ones, and update text,
     // positioning, and color
-    select.select('.got-progress-bar-value').merge(valEnter)
+    select.select('.got-contribution-bar-value').merge(valEnter)
         .text(function(d){
-        return d['probability_of_survival'] + '%';
+        return d['percentage_of_contribution'] + '%';
     })
         .style('padding-left',function(d){
-        return d['probability_of_survival'] > 5 ? 0 : '30px';
+        return d['percentage_of_contribution'] > 5 ? 0 : '30px';
     })
         .style('color',function(d){
-        return d['probability_of_survival'] > 5 ? '#222' : '#fff';
+        return d['percentage_of_contribution'] > 5 ? '#222' : '#fff';
     });
 
     // Remove all elements that no longer have data bound to them
@@ -74,23 +74,18 @@ function renderBars(data) {
 // You should use the characters' house property to filter. Remember the filter() function creates a new array.
 // However, you will need to come up with an exception for the top case where you filter by power_ranking greater than 0 instead.
 
-d3.csv("dataset.csv").then((data) => {
+//d3.csv("dataset.csv").then((data) => {
+//});
 
-        function updateBars(member) {
-        // Edit this function to filter the characters based on house
-        // You will need a special case for the top characters 'top'
+function updateBars(member) {
+    // Edit this function to filter the characters based on house
+    // You will need a special case for the top characters 'top'
 
-        data1 = characters.filter( function(value)  {
-            return (value.house === house);
-        });
+    data = member.filter( function(value)  {
+        return (value.member === member);
+    });
 
-
-        data = data1.sort(function (a, b) {
-            return b.probability_of_survival - a.probability_of_survival;
-        })
-
-        renderBars(data);
-    }
-});
+    renderBars(data);
+}
 
 
