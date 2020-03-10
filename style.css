@@ -12,3 +12,36 @@ body {
 #main {
     margin: 20px;
 }
+
+img {
+    width: 50px;
+}
+
+#bts-header {
+    height: 100px;
+    width: 100%;
+    overflow-y: hidden;
+    display: block;
+    text-align: center;
+    /* background-color: #3C3C3C; */
+}
+
+.bts-tab {
+    width: 10em;
+    display: inline-block;
+    vertical-align: top;
+    opacity: 0.6;
+}
+
+.bts-tab:hover {
+    transition: 0.2s;
+    opacity: 1;
+}
+
+img:hover {
+    width: 60px;
+    transition: 0.2s;
+    opacity: 1;
+    cursor: pointer;
+}
+
