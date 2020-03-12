@@ -1,4 +1,4 @@
-﻿[
+﻿bts_object = [
     {
         "Artist": "BTS",
         "Album": "2 Cool 4 Skool",
