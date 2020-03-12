@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: "Open Sans";
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
 
@@ -14,16 +14,22 @@ body {
 }
 
 img {
-    width: 50px;
+    width: 70px;
+    border-radius: 50%;
+}
+
+p {
+    margin-top: 10px;
 }
 
 #bts-header {
-    height: 100px;
+    height: 110px;
     width: 100%;
     overflow-y: hidden;
     display: block;
     text-align: center;
-    /* background-color: #3C3C3C; */
+    background-color: #fdfaf7;
+    /* opacity: 0.5; */
 }
 
 .bts-tab {
@@ -39,9 +45,63 @@ img {
 }
 
 img:hover {
-    width: 60px;
+    /* width: 60px; */
     transition: 0.2s;
     opacity: 1;
     cursor: pointer;
 }
 
+@media screen and (min-width: 10px) {
+    .got-survival {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .got-survival {
+        width: 30%;
+        margin: 10px 15px 16px 15px;
+    }
+}
+
+.got-person-name {
+    margin: 2px 6px;
+    font-size: 12px;
+}
+
+.got-survival {
+    font-family: "Open Sans";
+    display: inline-block;
+}
+
+.got-progress-bar {
+    display: block;
+    position: relative;
+    background-color: #c8dfff;
+    height: 20px;
+    border-radius: 15px;
+    margin-top: 8px;
+}
+
+.got-progress-bar-fill {
+    display: block;
+    position: absolute;
+    height: 14px;
+    top: 3px;
+    left: 3px;
+    width: 50%;
+    border-radius: 8px;
+    background-color: rgb(224, 193, 224);
+    transition: all 0.2s ease-in 0s;
+}
+
+.got-progress-bar-value {
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+}
