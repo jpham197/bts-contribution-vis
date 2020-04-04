@@ -50,12 +50,69 @@ p {
     z-index: 99;
 }
 
+/* This code pushes the pic to the back and creates a circular window for the pics to show through*/
 .bts-tab {
     width: 10em;
     display: inline-block;
     vertical-align: top;
     opacity: 0.6;
+    background-color    : #000;
+    background-repeat   : no-repeat;
+    background-position : 50% 50%;
+    background-size     : 100% auto;
+    background-size     : contain;
+    width               : 70px;
+    height              : 70px;
+    border-radius       : 100%;
+    margin-left: 25px;
+    margin-right: 25px;
+    position: relative;
 }
+
+/* Aligns the name tags under the images*/
+.bts-tab p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 80px;
+}
+
+
+/* This code adds pics and creates the border around the image*/
+#rm-tab {
+    background-image    : url(./img/member-rm.jpg);
+    border: 3px solid red;
+}
+#jin-tab {
+    background-image    : url(./img/member-jin.jpg);
+    border: 3px solid orange;
+}
+#suga-tab {
+    background-image    : url(./img/member-suga.jpg);
+    border: 3px solid yellow;
+}
+#j-hope-tab {
+    background-image    : url(./img/member-j-hope.jpg);
+    border: 3px solid green;
+}
+#jimin-tab {
+    background-image    : url(./img/member-jimin.jpg);
+    border: 3px solid pink;
+}
+#v-tab {
+    background-image    : url(./img/member-v.jpg);
+    border: 3px solid purple;
+}
+#jungkook-tab {
+    background-image    : url(./img/member-jungkook.jpg);
+    border: 3px solid blue;
+}
+#group-tab {
+    background-image    : url(./img/group-photo.png);
+    border: 3px solid;
+}
+
 
 .bts-tab:hover {
     transition: 0.2s;
@@ -72,6 +129,7 @@ img:hover {
     opacity: 1;
     cursor: pointer;
 }
+
 
 @media screen and (min-width: 10px) {
     .bts-contribution {
