@@ -1,58 +1,52 @@
 var main = d3.select('#main');
 
-// Select all the album tabs
 d3.selectAll('.bts-tab')
     .on('click', function(){
-    // On click, activate the selected tab (this), and de-select the previously active
     var clickedTab = d3.select(this);
 
     d3.select('.bts-tab.active').classed('active',false);
     clickedTab.classed('active',true);
 
-    // Get which album was selected, call updateBars
     var member = clickedTab.attr('data-member');
     updateBars(member);
+    document.getElementById('hide-me').style.display = "none";
 });
 
 
 function renderBars(data) {
-    // Sorting the data
     data = data.sort((element, nextElement) => {
         return nextElement.probability_of_survival - element.probability_of_survival;
     });
 
-    // Create a selection for character survival bars
-    var select = d3.selectAll('.got-survival')
+    var select = d3.selectAll('.bts-contribution')
         .data(data);
 
-    // Append divs for each character, class them to reference later
     var enter = select.enter().append('div')
-        .attr('class','got-survival');
+        .attr('class','bts-contribution');
 
-    // Append a <p> element to the newly appended div.got-survival
     var pEnter = enter.append('p')
-        .attr('class', 'got-person-name');
+        .attr('class', 'song-name')
+        .attr('class', function(d, i) {
+            if (i == 0) {
+                return "first";
+            }
+        });
 
-    // Append <div><div></div></div> to create the progress-bar structure
     var fillEnter = enter.append('div')
-        .attr('class', 'got-progress-bar')
+        .attr('class', 'contribution-bar')
         .append('div')
-        .attr('class', 'got-progress-bar-fill');
+        .attr('class', 'contribution-bar-fill');
 
-    // Append a <p> element to display the survival value
     var valEnter = fillEnter.append('p')
-        .attr('class', 'got-progress-bar-value');
+        .attr('class', 'contribution-bar-value');
 
-    // Now this is where we update both the newly created elements on screen and the ones already present
-
-    // Merge the .got-person-name elements on screen elements with the newly created ones, and update name
-    select.select('.got-person-name').merge(pEnter)
+    select.select('.song-name').merge(pEnter)
         .text(function(d){
             return d['song'];
         });
 
-    // Merge the .got-progress-bar-fill on screen elements with the newly created ones, and update width
-    select.select('.got-progress-bar-fill').merge(fillEnter)
+    
+    select.select('.contribution-bar-fill').merge(fillEnter)
         .style('width', function(d){
             return 'calc(' + d['contribution'] + '% - 6px)';
         });
@@ -60,10 +54,7 @@ function renderBars(data) {
 
 
         
-
-    // Merge the .got-progress-bar-value on screen elements with the newly created ones, and update text,
-    // positioning, and color
-    select.select('.got-progress-bar-value').merge(valEnter)
+    select.select('.contribution-bar-value').merge(valEnter)
         .text(function(d){
             return d['contribution'] + '%';
         })
@@ -74,36 +65,30 @@ function renderBars(data) {
             return d['contribution'] > 5 ? '#222' : '#fff';
         });
 
-    // Remove all elements that no longer have data bound to them
     select.exit().remove();
 }
 
-// **** Your JavaScript code goes here ****
-// Your task is to filter the global characters array to only display the selected house.
-// You should use the characters' house property to filter. Remember the filter() function creates a new array.
-// However, you will need to come up with an exception for the top case where you filter by power_ranking greater than 0 instead.
 
-//d3.csv("dataset.csv").then((data) => {
-//});
 
 function updateBars(member) {
 
     let data = [];
 
-    bts_object.forEach(element => {
+    new_bts_object.forEach(element => {
+        console.log(element);
         let song = element.Song;
         let album = element.album;
 
         member_contribution = calculateContribution(member, element);
         denominator = calculateMax(element);
         // console.log(`Denominator: ${denominator}, Song: ${song}`);
-        console.log(member_contribution / denominator);
+        // console.log(member_contribution / denominator);
         data.push(
             {
                 "member": member,
                 "song": song,
-                // "contribution": (member_contribution / 4) * 100
-                "contribution": Math.trunc((member_contribution / denominator) * 100)
+                "contribution": (member_contribution / 4) * 100
+                // "contribution": Math.trunc((member_contribution / denominator) * 100)
             }
         )
     });

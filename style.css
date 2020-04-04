@@ -10,7 +10,19 @@ body {
 }
 
 #main {
-    margin: 20px;
+    /* margin: 20px; */
+}
+
+span {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-right: -6.5em;
+    font-size: 30px;
+}
+
+.span-hide {
+    display: none;
 }
 
 img {
@@ -22,14 +34,20 @@ p {
     margin-top: 10px;
 }
 
+.first {
+    margin-top: 130px;
+}
+
 #bts-header {
+    padding-top: 10px;
     height: 110px;
     width: 100%;
     overflow-y: hidden;
     display: block;
     text-align: center;
     background-color: #fdfaf7;
-    /* opacity: 0.5; */
+    position: fixed;
+    z-index: 99;
 }
 
 .bts-tab {
@@ -52,29 +70,29 @@ img:hover {
 }
 
 @media screen and (min-width: 10px) {
-    .got-survival {
+    .bts-contribution {
         width: 80%;
     }
 }
 
 @media screen and (min-width: 720px) {
-    .got-survival {
+    .bts-contribution {
         width: 30%;
         margin: 10px 15px 16px 15px;
     }
 }
 
-.got-person-name {
+.song-name {
     margin: 2px 6px;
     font-size: 12px;
 }
 
-.got-survival {
+.bts-contribution {
     font-family: "Open Sans";
     display: inline-block;
 }
 
-.got-progress-bar {
+.contribution-bar {
     display: block;
     position: relative;
     background-color: #c8dfff;
@@ -83,7 +101,7 @@ img:hover {
     margin-top: 8px;
 }
 
-.got-progress-bar-fill {
+.contribution-bar-fill {
     display: block;
     position: absolute;
     height: 14px;
@@ -95,7 +113,7 @@ img:hover {
     transition: all 0.2s ease-in 0s;
 }
 
-.got-progress-bar-value {
+.contribution-bar-value {
     display: block;
     position: absolute;
     left: 50%;
