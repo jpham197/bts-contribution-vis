@@ -1,69 +1,55 @@
 var main = d3.select('#main');
 
-// Select all the album tabs
 d3.selectAll('.bts-tab')
     .on('click', function(){
-    // On click, activate the selected tab (this), and de-select the previously active
     var clickedTab = d3.select(this);
 
     d3.select('.bts-tab.active').classed('active',false);
     clickedTab.classed('active',true);
 
-    // Get which album was selected, call updateBars
     var member = clickedTab.attr('data-member');
     updateBars(member);
+    document.getElementById('hide-me').style.display = "none";
 });
 
 
 function renderBars(data) {
-    // Sorting the data
-    data = data.sort((element, nextElement) => {
-        return nextElement.probability_of_survival - element.probability_of_survival;
-    });
 
-    // Create a selection for character survival bars
-    var select = d3.selectAll('.got-survival')
+    var select = d3.selectAll('.bts-contribution')
         .data(data);
 
-    // Append divs for each character, class them to reference later
     var enter = select.enter().append('div')
-        .attr('class','got-survival');
+        .attr('class','bts-contribution');
 
-    // Append a <p> element to the newly appended div.got-survival
     var pEnter = enter.append('p')
-        .attr('class', 'got-person-name');
+        .attr('class', 'song-name')
+        .attr('class', function(d, i) {
+            if (i == 0) {
+                return "first";
+            }
+        });
 
-    // Append <div><div></div></div> to create the progress-bar structure
     var fillEnter = enter.append('div')
-        .attr('class', 'got-progress-bar')
+        .attr('class', 'contribution-bar')
         .append('div')
-        .attr('class', 'got-progress-bar-fill');
+        .attr('class', 'contribution-bar-fill');
 
-    // Append a <p> element to display the survival value
     var valEnter = fillEnter.append('p')
-        .attr('class', 'got-progress-bar-value');
+        .attr('class', 'contribution-bar-value');
 
-    // Now this is where we update both the newly created elements on screen and the ones already present
-
-    // Merge the .got-person-name elements on screen elements with the newly created ones, and update name
-    select.select('.got-person-name').merge(pEnter)
+    select.select('.song-name').merge(pEnter)
         .text(function(d){
             return d['song'];
         });
 
-    // Merge the .got-progress-bar-fill on screen elements with the newly created ones, and update width
-    select.select('.got-progress-bar-fill').merge(fillEnter)
+    
+    select.select('.contribution-bar-fill').merge(fillEnter)
         .style('width', function(d){
             return 'calc(' + d['contribution'] + '% - 6px)';
         });
 
-
-
         
-
-    // Merge the .got-progress-bar-value on screen elements with the newly created ones, and update text,
-    // positioning, and color
-    select.select('.got-progress-bar-value').merge(valEnter)
+    select.select('.contribution-bar-value').merge(valEnter)
         .text(function(d){
             return d['contribution'] + '%';
         })
@@ -74,84 +60,54 @@ function renderBars(data) {
             return d['contribution'] > 5 ? '#222' : '#fff';
         });
 
-    // Remove all elements that no longer have data bound to them
     select.exit().remove();
 }
 
-// **** Your JavaScript code goes here ****
-// Your task is to filter the global characters array to only display the selected house.
-// You should use the characters' house property to filter. Remember the filter() function creates a new array.
-// However, you will need to come up with an exception for the top case where you filter by power_ranking greater than 0 instead.
 
-//d3.csv("dataset.csv").then((data) => {
-//});
-
+/** Iterates over all BTS songs and calculates contribution of member for a given song and stores it into a JavaScript object.
+ * 
+ *  Logic of function: Loops through each item in the new_bts_object. Each item in this object is a row within the excel spreadsheet.
+ *  Each property is a column. It extracts the song name and uses the calculateContriubtion().
+ * 
+ * @param {*} member BTS member passed into to calculate contribution for
+ */
 function updateBars(member) {
-
+    //array to hold 
     let data = [];
 
-    bts_object.forEach(element => {
-        let song = element.Song;
-        let album = element.album;
+    /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.album;
 
-        member_contribution = calculateContribution(member, element);
-        denominator = calculateMax(element);
-        // console.log(`Denominator: ${denominator}, Song: ${song}`);
-        console.log(member_contribution / denominator);
-        data.push(
-            {
-                "member": member,
-                "song": song,
-                // "contribution": (member_contribution / 4) * 100
-                "contribution": Math.trunc((member_contribution / denominator) * 100)
-            }
-        )
+        member_contribution = calculateContribution(member, dataRow);
+        // denominator = calculateMax(dataRow);
+        if (member_contribution > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": (member_contribution / 4) * 100 //Contribution relative to self
+                    // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                }
+            )
+        }
     });
-
-    // let RM_contribution = [];
-    // let JIN_contribution = [];
-    // let SUGA_contribution = [];
-    // let J_HOPE_contribution = [];
-    // let JIMIN_contribution = [];
-    // let V_contribution = [];
-    // let JK_contribution = [];
-
-    // filtered = data.forEach(element => {
-    //     RM =  calculateContribution("RM", element);
-    //     JIN = calculateContribution("Jin", element);
-    //     SUGA = calculateContribution("SUGA", element);
-    //     J_HOPE = calculateContribution("J_Hope", element);
-    //     JIMIN = calculateContribution("Jimin", element);
-    //     V = calculateContribution("V", element);
-    //     JK = calculateContribution("Jungkook", element);
-        
-    //     RM_contribution.push({"contribution": RM, "title": element["Song"]});
-    //     JIN_contribution.push({"contribution": JIN, "title": element["Song"]});
-    //     SUGA_contribution.push({"contribution": SUGA, "title": element["Song"]});
-    //     J_HOPE_contribution.push({"contribution": J_HOPE, "title": element["Song"]});
-    //     JIMIN_contribution.push({"contribution": JIMIN, "title": element["Song"]});
-    //     V_contribution.push({"contribution": V, "title": element["Song"]});
-    //     JK_contribution.push({"contribution": JK, "title": element["Song"]});
-    // });
-
-    // let contribution = {
-    //     "RM": RM_contribution,
-    //     "JIN": JIN_contribution,
-    //     "SUGA": SUGA_contribution,
-    //     "J_HOPE": J_HOPE_contribution,
-    //     "JIMIN": JIMIN_contribution,
-    //     "V": V_contribution,
-    //     "JK": JK_contribution
-    // };
 
     renderBars(data);
 }
 
 /**
- * Calculates contribution of a member in a song
+ * Calculates contribution of a member in a song.
+ * 
+ *  Ex: voice: 1, write: 0, compose: 0, produce: 0, will return 1.
+ * 
  * @param {*} member 
  * @param {*} song 
- * @returns {Integer} total value of member contribution to song
+ * @returns {Integer} total value of member contribution to song, maximum is 4.
  */
 function calculateContribution(member, song) {
     let contribution = 0.0;
@@ -165,6 +121,8 @@ function calculateContribution(member, song) {
 }
 
 /**
+ * CURRENTLY UNUSED
+ * 
  * Contribution max, total member contribution of a song
  * @param {*} song
  * @returns {Integer} total possible contribution to song
@@ -205,40 +163,6 @@ function calculateMax(song) {
     if (possibleContribution <= 0) {
         possibleContribution = 1;
     }
-
-    // if (song.Song == "Scenery") {
-    //     console.log(song["RM_Voice"]);
-    //     console.log(song["RM_Write"]);
-    //     console.log(song["RM_Compose"]);
-    //     console.log(song["RM_Produce"]);
-    //     console.log(song["SUGA_Voice"]);
-    //     console.log(song["SUGA_Write"]);
-    //     console.log(song["SUGA_Compose"]);
-    //     console.log(song["SUGA_Produce"]);
-    //     console.log(song["J-Hope_Voice"]);
-    //     console.log(song["J-Hope_Write"]);
-    //     console.log(song["J-Hope_Compose"]);
-    //     console.log(song["J-Hope_Produce"]);
-    //     console.log(song["Jimin_Voice"]);
-    //     console.log(song["Jimin_Write"]);
-    //     console.log(song["Jimin_Compose"]);
-    //     console.log(song["Jimin_Produce"]);
-    //     console.log(song["V_Voice"]);
-    //     console.log(song["V_Write"]);
-    //     console.log(song["V_Compose"]);
-    //     console.log(song["V_Produce"]);
-    //     console.log(song["Jin_Voice"]);
-    //     console.log(song["Jin_Write"]);
-    //     console.log(song["Jin_Compose"]);
-    //     console.log(song["Jin_Produce"]);
-    //     console.log(song["Jungkook_Voice"]);
-    //     console.log(song["Jungkook_Write"]);
-    //     console.log(song["Jungkook_Compose"]);
-    //     console.log(song["Jungkook_Produce"]);
-
-    // }
-
-    // console.log(`possibleContribution: ${possibleContribution}, song name: ${song.Song}`);
 
     return possibleContribution;
 }
