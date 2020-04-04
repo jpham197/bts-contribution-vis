@@ -119,6 +119,10 @@ p {
     opacity: 1;
 }
 
+.active {
+    opacity: 1;
+}
+
 img:hover {
     /* width: 60px; */
     transition: 0.2s;

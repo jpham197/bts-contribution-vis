@@ -14,9 +14,6 @@ d3.selectAll('.bts-tab')
 
 
 function renderBars(data) {
-    data = data.sort((element, nextElement) => {
-        return nextElement.probability_of_survival - element.probability_of_survival;
-    });
 
     var select = d3.selectAll('.bts-contribution')
         .data(data);
@@ -51,8 +48,6 @@ function renderBars(data) {
             return 'calc(' + d['contribution'] + '% - 6px)';
         });
 
-
-
         
     select.select('.contribution-bar-value').merge(valEnter)
         .text(function(d){
@@ -69,74 +64,50 @@ function renderBars(data) {
 }
 
 
-
+/** Iterates over all BTS songs and calculates contribution of member for a given song and stores it into a JavaScript object.
+ * 
+ *  Logic of function: Loops through each item in the new_bts_object. Each item in this object is a row within the excel spreadsheet.
+ *  Each property is a column. It extracts the song name and uses the calculateContriubtion().
+ * 
+ * @param {*} member BTS member passed into to calculate contribution for
+ */
 function updateBars(member) {
-
+    //array to hold 
     let data = [];
 
-    new_bts_object.forEach(element => {
-        console.log(element);
-        let song = element.Song;
-        let album = element.album;
+    /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.album;
 
-        member_contribution = calculateContribution(member, element);
-        denominator = calculateMax(element);
-        // console.log(`Denominator: ${denominator}, Song: ${song}`);
-        // console.log(member_contribution / denominator);
-        data.push(
-            {
-                "member": member,
-                "song": song,
-                "contribution": (member_contribution / 4) * 100
-                // "contribution": Math.trunc((member_contribution / denominator) * 100)
-            }
-        )
+        member_contribution = calculateContribution(member, dataRow);
+        // denominator = calculateMax(dataRow);
+        if (member_contribution > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": (member_contribution / 4) * 100 //Contribution relative to self
+                    // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                }
+            )
+        }
     });
-
-    // let RM_contribution = [];
-    // let JIN_contribution = [];
-    // let SUGA_contribution = [];
-    // let J_HOPE_contribution = [];
-    // let JIMIN_contribution = [];
-    // let V_contribution = [];
-    // let JK_contribution = [];
-
-    // filtered = data.forEach(element => {
-    //     RM =  calculateContribution("RM", element);
-    //     JIN = calculateContribution("Jin", element);
-    //     SUGA = calculateContribution("SUGA", element);
-    //     J_HOPE = calculateContribution("J_Hope", element);
-    //     JIMIN = calculateContribution("Jimin", element);
-    //     V = calculateContribution("V", element);
-    //     JK = calculateContribution("Jungkook", element);
-        
-    //     RM_contribution.push({"contribution": RM, "title": element["Song"]});
-    //     JIN_contribution.push({"contribution": JIN, "title": element["Song"]});
-    //     SUGA_contribution.push({"contribution": SUGA, "title": element["Song"]});
-    //     J_HOPE_contribution.push({"contribution": J_HOPE, "title": element["Song"]});
-    //     JIMIN_contribution.push({"contribution": JIMIN, "title": element["Song"]});
-    //     V_contribution.push({"contribution": V, "title": element["Song"]});
-    //     JK_contribution.push({"contribution": JK, "title": element["Song"]});
-    // });
-
-    // let contribution = {
-    //     "RM": RM_contribution,
-    //     "JIN": JIN_contribution,
-    //     "SUGA": SUGA_contribution,
-    //     "J_HOPE": J_HOPE_contribution,
-    //     "JIMIN": JIMIN_contribution,
-    //     "V": V_contribution,
-    //     "JK": JK_contribution
-    // };
 
     renderBars(data);
 }
 
 /**
- * Calculates contribution of a member in a song
+ * Calculates contribution of a member in a song.
+ * 
+ *  Ex: voice: 1, write: 0, compose: 0, produce: 0, will return 1.
+ * 
  * @param {*} member 
  * @param {*} song 
- * @returns {Integer} total value of member contribution to song
+ * @returns {Integer} total value of member contribution to song, maximum is 4.
  */
 function calculateContribution(member, song) {
     let contribution = 0.0;
@@ -150,6 +121,8 @@ function calculateContribution(member, song) {
 }
 
 /**
+ * CURRENTLY UNUSED
+ * 
  * Contribution max, total member contribution of a song
  * @param {*} song
  * @returns {Integer} total possible contribution to song
@@ -190,40 +163,6 @@ function calculateMax(song) {
     if (possibleContribution <= 0) {
         possibleContribution = 1;
     }
-
-    // if (song.Song == "Scenery") {
-    //     console.log(song["RM_Voice"]);
-    //     console.log(song["RM_Write"]);
-    //     console.log(song["RM_Compose"]);
-    //     console.log(song["RM_Produce"]);
-    //     console.log(song["SUGA_Voice"]);
-    //     console.log(song["SUGA_Write"]);
-    //     console.log(song["SUGA_Compose"]);
-    //     console.log(song["SUGA_Produce"]);
-    //     console.log(song["J-Hope_Voice"]);
-    //     console.log(song["J-Hope_Write"]);
-    //     console.log(song["J-Hope_Compose"]);
-    //     console.log(song["J-Hope_Produce"]);
-    //     console.log(song["Jimin_Voice"]);
-    //     console.log(song["Jimin_Write"]);
-    //     console.log(song["Jimin_Compose"]);
-    //     console.log(song["Jimin_Produce"]);
-    //     console.log(song["V_Voice"]);
-    //     console.log(song["V_Write"]);
-    //     console.log(song["V_Compose"]);
-    //     console.log(song["V_Produce"]);
-    //     console.log(song["Jin_Voice"]);
-    //     console.log(song["Jin_Write"]);
-    //     console.log(song["Jin_Compose"]);
-    //     console.log(song["Jin_Produce"]);
-    //     console.log(song["Jungkook_Voice"]);
-    //     console.log(song["Jungkook_Write"]);
-    //     console.log(song["Jungkook_Compose"]);
-    //     console.log(song["Jungkook_Produce"]);
-
-    // }
-
-    // console.log(`possibleContribution: ${possibleContribution}, song name: ${song.Song}`);
 
     return possibleContribution;
 }
