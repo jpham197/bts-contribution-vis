@@ -1,6 +1,8 @@
 # BTS Contribution Visualization
 A visualization of each member's contribution to the group's work.
 
+[Viewable by clicking here](https://sandraalsayar.github.io/bts-contribution-vis/)
+
 ## Data
 Data was gathered by team lead Sandra. Production credits came from the KOMCA online database.
 
