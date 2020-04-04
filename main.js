@@ -85,14 +85,16 @@ function updateBars(member) {
 
         member_contribution = calculateContribution(member, dataRow);
         // denominator = calculateMax(dataRow);
-        data.push(
-            {
-                "member": member,
-                "song": song,
-                "contribution": (member_contribution / 4) * 100 //Contribution relative to self
-                // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
-            }
-        )
+        if (member_contribution > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": (member_contribution / 4) * 100 //Contribution relative to self
+                    // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                }
+            )
+        }
     });
 
     renderBars(data);
