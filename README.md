@@ -1,5 +1,5 @@
 # BTS Contribution Visualization
-A visualization of each member's contribution to the group's work. This data does not include skits.
+A visualization of each member's contribution to the group's work.
 
 ## Data
 Data was gathered by team lead Sandra. Production credits came from the KOMCA online database.
