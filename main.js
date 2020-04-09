@@ -25,7 +25,6 @@ function renderBars(data, member) {
     var enter = select.enter().append('div')
         .attr('class','bts-contribution');
 
-    
     // Append p for each song name, class them to reference later
     var pEnter = enter.append('p')
         .attr('class', 'song-name')
@@ -48,6 +47,7 @@ function renderBars(data, member) {
     // Merge the .song-name on screen elements with the newly created ones, and update song name
     select.select('.song-name').merge(pEnter)
         .text(function(d){
+            console.log(d);
             return d['song'];
         });
 
@@ -97,7 +97,7 @@ function updateBars(member) {
     //If BTS icon is clicked, show all songs, else check against the selected member
     if (member === 'BTS') {
         new_bts_object.forEach(dataRow => {
-            let song = dataRow.song;
+            let song = dataRow.Song;
             let album = dataRow.album;
 
             data.push(
