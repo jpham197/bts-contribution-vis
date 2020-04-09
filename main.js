@@ -6,21 +6,27 @@ d3.selectAll('.bts-tab')
 
     d3.select('.bts-tab.active').classed('active',false);
     clickedTab.classed('active',true);
-
+    
     var member = clickedTab.attr('data-member');
     updateBars(member);
     document.getElementById('hide-me').style.display = "none";
 });
 
 
-function renderBars(data) {
+/*
+   Function to create the contribution bars
+*/
+function renderBars(data, member) {
 
     var select = d3.selectAll('.bts-contribution')
         .data(data);
 
+    // Append divs for each song, class them to reference later
     var enter = select.enter().append('div')
         .attr('class','bts-contribution');
 
+    
+    // Append p for each song name, class them to reference later
     var pEnter = enter.append('p')
         .attr('class', 'song-name')
         .attr('class', function(d, i) {
@@ -29,36 +35,51 @@ function renderBars(data) {
             }
         });
 
+    // Append <div><div></div></div> to create the contribution-bar structure
     var fillEnter = enter.append('div')
         .attr('class', 'contribution-bar')
         .append('div')
         .attr('class', 'contribution-bar-fill');
 
+    // Append a <p> element to display the contribution bar values
     var valEnter = fillEnter.append('p')
         .attr('class', 'contribution-bar-value');
 
+    // Merge the .song-name on screen elements with the newly created ones, and update song name
     select.select('.song-name').merge(pEnter)
         .text(function(d){
             return d['song'];
         });
 
-    
+    // Merge the .contribution-bar-fill on screen elements with the newly created ones, and update width
     select.select('.contribution-bar-fill').merge(fillEnter)
         .style('width', function(d){
-            return 'calc(' + d['contribution'] + '% - 6px)';
+            return 'calc(' + d['contribution'] + '% - 10px)';
+        })
+        .style('background-image', function(d){ if (member == 'RM') {return 'linear-gradient(to right, #B40404, #FE2E2E)';}
+                            else if (member == 'Jin') {return 'linear-gradient(to right, #B43104, #FE642E)';}
+                            else if (member == 'SUGA') {return 'linear-gradient(to right, #868A08, #F7D358)';}
+                            else if (member == 'J-Hope') {return 'linear-gradient(to right, #088A08, #00FF00)';}
+                            else if (member == 'Jimin') {return 'linear-gradient(to right, #B4045F, #FE2E9A)';}
+                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
+                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
+                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
         });
+    
+      
+    
 
-        
-    select.select('.contribution-bar-value').merge(valEnter)
-        .text(function(d){
-            return d['contribution'] + '%';
-        })
-        .style('padding-left',function(d){
-            return d['contribution'] > 5 ? 0 : '30px';
-        })
-        .style('color',function(d){
-            return d['contribution'] > 5 ? '#222' : '#fff';
-        });
+// This code shows the percentage. Currently this displays it inside of block, needs to be moved to the end of the block
+//    select.select('.contribution-bar-value').merge(valEnter)
+//        .text(function(d){
+//            return d['contribution'] + '%';
+//        })
+//        .style('padding-left',function(d){
+//            return d['contribution'] > 5 ? 0 : '30px';
+//        })
+//        .style('color',function(d){
+//            return d['contribution'] > 5 ? '#222' : '#fff';
+//        });
 
     select.exit().remove();
 }
@@ -97,7 +118,7 @@ function updateBars(member) {
         }
     });
 
-    renderBars(data);
+    renderBars(data, member);
 }
 
 /**
