@@ -1,6 +1,8 @@
 # BTS Contribution Visualization
 A visualization of each member's contribution to the group's work.
 
+[Viewable by clicking here](https://sandraalsayar.github.io/bts-contribution-vis/)
+
 ## Data
 Data was gathered by team lead Sandra. Production credits came from the KOMCA online database.
 
@@ -16,5 +18,5 @@ Contribution within this visualization is classified into four categories:
 The type of contribution considered is relative to how much a member himself can contribute. If a member contributes to a song only by voice, that member has 25% contribution. This makes it possible for multiple members to have 100% contribution on a song, as well as the combined contributions of all members on a song to exceed 100%.
 
 ### TODO:
-Describe design of program
-How to run code
+* Describe design of program
+* How to run code

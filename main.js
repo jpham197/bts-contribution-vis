@@ -1,4 +1,4 @@
-var main = d3.select('#main');
+// var main = d3.select('#main');
 
 d3.selectAll('.bts-tab')
     .on('click', function(){
@@ -14,7 +14,7 @@ d3.selectAll('.bts-tab')
 
 
 /*
-   Function to create the contribution bars
+    Function to create the contribution bars
 */
 function renderBars(data, member) {
 
@@ -25,7 +25,6 @@ function renderBars(data, member) {
     var enter = select.enter().append('div')
         .attr('class','bts-contribution');
 
-    
     // Append p for each song name, class them to reference later
     var pEnter = enter.append('p')
         .attr('class', 'song-name')
@@ -48,6 +47,7 @@ function renderBars(data, member) {
     // Merge the .song-name on screen elements with the newly created ones, and update song name
     select.select('.song-name').merge(pEnter)
         .text(function(d){
+            console.log(d);
             return d['song'];
         });
 
@@ -65,9 +65,6 @@ function renderBars(data, member) {
                             else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
                             else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
         });
-    
-      
-    
 
 // This code shows the percentage. Currently this displays it inside of block, needs to be moved to the end of the block
 //    select.select('.contribution-bar-value').merge(valEnter)
@@ -95,28 +92,47 @@ function renderBars(data, member) {
 function updateBars(member) {
     //array to hold 
     let data = [];
+    console.log(member);
 
-    /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.album;
+    //If BTS icon is clicked, show all songs, else check against the selected member
+    if (member === 'BTS') {
+        new_bts_object.forEach(dataRow => {
+            let song = dataRow.Song;
+            let album = dataRow.album;
 
-        member_contribution = calculateContribution(member, dataRow);
-        // denominator = calculateMax(dataRow);
-        if (member_contribution > 0) {
             data.push(
                 {
-                    "member": member,
+                    "member": "BTS",
                     "song": song,
-                    "contribution": (member_contribution / 4) * 100 //Contribution relative to self
-                    // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                    "contribution": 100
                 }
-            )
-        }
-    });
+            );
+        });
+    } else {
+        /*
+        new_bts_object is from new_data.js, which is the revised data set
+        dataRow is each actual row from the excel spreadsheet
+        */
+        new_bts_object.forEach(dataRow => {
+            let song = dataRow.Song;
+            let album = dataRow.album;
+
+            member_contribution = calculateContribution(member, dataRow);
+            // denominator = calculateMax(dataRow);
+            if (member_contribution > 0) {
+                data.push(
+                    {
+                        "member": member,
+                        "song": song,
+                        "contribution": (member_contribution / 4) * 100 //Contribution relative to self
+                        // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                    }
+                )
+            }
+        });
+    }
+
+    
 
     renderBars(data, member);
 }
