@@ -108,10 +108,12 @@ p {
     background-image    : url(./img/member-jungkook.jpg);
     border: 3px solid blue;
 }
+/*
 #group-tab {
-    background-image    : url(./img/group-photo.png);
-    border: 3px solid;
+background-image    : url(./img/group-photo.png);
+border: 3px solid;
 }
+*/
 
 
 .bts-tab:hover {
@@ -157,7 +159,7 @@ img:hover {
 .contribution-bar {
     display: block;
     position: relative;
-    background-color: #c8dfff;
+/*    background-color: #c8dfff;*/
     height: 70px;
     border-radius: 15px;
     margin-top: 8px;
@@ -177,18 +179,50 @@ img:hover {
     background-color: black;
 }
 
+.vocal{
+    border: 2px solid;
+    width: 25%;
+    height: 60px;
+    left: 0px;
+    top: 0px;
+}
+.write{
+    border: 2px solid;
+    width: 25%;
+    height: 60px;
+    left: 25%;
+    top: 0px;
+}
+.compose{
+    border: 2px solid;
+    width: 25%;
+    height: 60px;
+    left: 50%;
+    top: 0px;
+}
+.produce{
+    border: 2px solid;
+    width: 25%;
+    height: 60px;
+    left: 75%;
+    top: 0px;
+}
 
+.box_text {
+    margin-left: 60px;
+    margin-top: 15px;
+}
 
 /* The styling of the percentages*/
 /*
 .contribution-bar-value {
-    display: block;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    font-weight: 600;
-    color: #222;
-    margin: 0;
+display: block;
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+font-size: 10px;
+font-weight: 600;
+color: #222;
+margin: 0;
 }
 */
