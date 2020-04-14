@@ -37,16 +37,20 @@ function renderBars(data, member) {
             }
         });
 
+    // let testPicture = enter.append('div')
+    //     .text('test')
+    //     .style('position', 'relative')
+    //     .style('left', '0px');
+
     // Append a div to create the contribution-bar structure
     var fillEnter = enter.append('div')
         .attr('class', 'contribution-bar');
-    //    .append('div')
-    //    .attr('class', 'contribution-bar-fill');
-
-    // Append a <p> element to display the contribution bar values
-//    var valEnter = fillEnter.append('p')
-//        .attr('class', 'contribution-bar-value');
-
+    
+    let album_box = fillEnter.append('img')
+        .attr('src', function(d) {
+            return `${d.albumPath}`;
+        })
+        .attr('class', 'picture');
     // ***************Create the 4 rectangles
     // Vocal box
     let vocal_box = fillEnter.append('span')
@@ -287,27 +291,79 @@ function updateBars(member) {
     */
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
-        let album = dataRow.album;
+        let album = dataRow.Album;
         
-        member_contribution = calculateContribution(member, dataRow);
-        
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        if (!albumPath) {
+            console.log(dataRow);
+        }
         let sum = 0;
         for (let contribution of member_contribution) {
             sum += contribution;
         }
+
         if (sum > 0) {
             data.push(
                 {
                     "member": member,
                     "song": song,
-                    "contribution": member_contribution //Contribution relative to self
-                    // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                    "contribution": member_contribution,
+                    "albumPath": albumPath
                 }
             )
         }
     });
 
     renderBars(data, member);
+}
+
+/**
+ * Function to connect album path
+ * 
+ * @param {String} album the album name
+ * 
+ * @returns {String} the path to the album image
+ */
+function connectAlbumPath(album) {
+    switch(album) {
+        case "2 Cool 4 Skool":
+            return 'img/album pics/2Cool4Skool_albumcover.jpg';
+        case "Agust D":
+            return 'img/album pics/AgustD_albumcover.jpg';
+        case "Dark & Wild":
+            return 'img/album pics/DarkAndWild_albumcover.jpg';
+        case "O!RUL8,2?":
+            return 'img/album pics/orul82_albumcover.jpg';
+        case "LOVE YOURSELF 結 'Answer'":
+            return 'img/album pics/LYAnswer_albumcover.jpg';
+        case "LOVE YOURSELF 轉 'Tear'":
+            return 'img/album pics/LYTear_albumcover.jpg';
+        case "LOVE YOURSELF 承 'Her'":
+            return 'img/album pics/LYHer_albumcover.jpg';
+        case "Skool Luv Affair":
+            return 'img/album pics/SkoolLuvAffair_albumcover.jpg';
+        case "Skool Luv Affair (Special Edition)":
+            return 'img/album pics/SkoolLuvAffairSpecialEdition_albumcover.jpg';
+        case "The Most Beautiful Moment in Life Pt.1":
+            return 'img/album pics/TheMostBeautifulMomentinLifePart1_albumcover.jpg';
+        case "The Most Beautiful Moment in Life Pt.2":
+            return 'img/album pics/TheMostBeautifulMomentinLifePart2_albumcover.jpg';
+        case "The Most Beautiful Moment in Life: Young Forever":
+            return 'img/album pics/TheMostBeautifulMomentinLifeYoungForever_albumcover.jpg';
+        case "Wings":
+            return 'img/album pics/Wings_albumcover.jpg';
+        case "You Never Walk Alone":
+            return 'img/album pics/YouNeverWalkAlone_albumcover.jpg';
+        case "MAP OF THE SOUL: PERSONA":
+            return 'img/album pics/MapoftheSoulPersona_albumcover.jpg';
+        case "RM":
+            return 'img/album pics/RM_albumcover.jpg';
+        case "mono.":
+            return 'img/album pics/mono_albumcover.jpg';
+        case "Hope World":
+            return 'img/album pics/HopeWorld_albumcover.jpg';
+    }
 }
 
 /**
