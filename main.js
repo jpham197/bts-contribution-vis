@@ -457,3 +457,12 @@ function calculateMax(song) {
 
     return possibleContribution;
 }
+
+/**
+ * Function to append the filter items onto the HTML
+ * 
+ * It will be used don't delete
+ */
+function appendFilterAndSort() {
+    
+}
