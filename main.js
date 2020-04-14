@@ -439,3 +439,7 @@ function calculateMax(song) {
 
     return possibleContribution;
 }
+
+function filter(value) {
+    console.log(value);
+}
