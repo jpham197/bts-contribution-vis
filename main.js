@@ -449,3 +449,13 @@ function calculateMax(song) {
 function filter(value) {
     console.log(value);
 }
+
+/**
+ * Function that handles the sorting.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked 
+ */
+function sort(value) {
+    console.log(value);
+}
