@@ -228,7 +228,7 @@ img:hover {
     display: none;
     position: absolute;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
@@ -240,7 +240,11 @@ img:hover {
     display: block;
 }
 
-.filter-hidden > button, .sort-hidden > button {
+.album-container > button,
+.genre-container > button,
+.year-container > button,
+.contribution-container > button,
+.sort-hidden > button {
     display: block;
     min-width: 160px;
     background-color: #fff;
@@ -248,29 +252,81 @@ img:hover {
     padding: 6px 0;
 }
 
+.album-hidden {
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 0px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.genre-hidden {
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 29px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.year-hidden{
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 58px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.contribution-hidden {
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 87px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+#album-button:hover,
+#genre-button:hover,
+#year-button:hover,
+#contribution-button:hover {
+    color: red;
+}
+
+.album-container:hover
+.album-hidden,
+.genre-container:hover
+.genre-hidden,
+.year-container:hover .year-hidden,
+.contribution-container:hover .contribution-hidden {
+    display: block;
+    z-index: 2;
+}
+
+.album,
+.genre,
+.year,
+.contribution {
+    min-width: 160px;
+    background-color: #fff;
+    border: none;
+    padding: 6px 0;
+    
+}
+
+.album:hover,
+.genre:hover,
+.year:hover,
+.contribution:hover {
+    min-width: 160px;
+    color:red;
+}
+
 .search > input {
     min-width: 160px;
     height: 18px;
 }
 
-.album-hidden, .genre-hidden, .year-hidden, .contribution-hidden {
-    position: absolute;
-    left: 160px;
-    top: 0px;
+.sort-hidden > button:hover {
+    color: red;
 }
 
 /* DETAIL BAR STUFF END */
-
-/* The styling of the percentages*/
-/*
-.contribution-bar-value {
-display: block;
-position: absolute;
-left: 50%;
-transform: translateX(-50%);
-font-size: 10px;
-font-weight: 600;
-color: #222;
-margin: 0;
-}
-*/
