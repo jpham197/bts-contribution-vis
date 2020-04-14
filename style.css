@@ -146,6 +146,7 @@ img:hover {
     }
 }
 
+
 .song-name {
     margin: 2px 6px;
     font-size: 12px;
@@ -206,12 +207,13 @@ img:hover {
     height: 60px;
     left: 75%;
     top: 0px;
+    
+}
+.box_text {
+   text-align: center;
 }
 
-.box_text {
-    margin-left: 60px;
-    margin-top: 15px;
-}
+
 
 /* The styling of the percentages*/
 /*
