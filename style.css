@@ -9,11 +9,7 @@ body {
     margin: 0;
 }
 
-#main {
-    /* margin: 20px; */
-}
-
-span {
+.vocal, .write, .compose, .produce {
     position: absolute;
     top: 50%;
     right: 50%;
@@ -34,10 +30,6 @@ p {
     margin-top: 10px;
 }
 
-.first {
-    margin-top: 130px;
-}
-
 #bts-header {
     padding-top: 10px;
     height: 110px;
@@ -46,7 +38,7 @@ p {
     display: block;
     text-align: center;
     background-color: #fdfaf7;
-    position: fixed;
+    position: relative;
     z-index: 99;
 }
 
@@ -210,10 +202,64 @@ img:hover {
     
 }
 .box_text {
-   text-align: center;
+    text-align: center;
 }
 
+/* DETAIL BAR STUFF START */
 
+.detail-bar {
+    width: 55em;
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.detail-bar > span > button {
+    background-color: #fff;
+    color: black;
+    /* padding: 8px; */
+    min-width: 160px;
+    font-size: 16px;
+    border: 2px solid #000;
+}
+
+.filter-hidden, .sort-hidden {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.filter:hover .filter-hidden {
+    display: block;
+}
+
+.sort:hover .sort-hidden {
+    display: block;
+}
+
+.filter-hidden > button, .sort-hidden > button {
+    display: block;
+    min-width: 160px;
+    background-color: #fff;
+    border: none;
+    padding: 6px 0;
+}
+
+.search > input {
+    min-width: 160px;
+    height: 18px;
+}
+
+.album-hidden, .genre-hidden, .year-hidden, .contribution-hidden {
+    position: absolute;
+    left: 160px;
+    top: 0px;
+}
+
+/* DETAIL BAR STUFF END */
 
 /* The styling of the percentages*/
 /*

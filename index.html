@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div id="bts-header">
         <div id="rm-tab" class="bts-tab" data-member="RM">
             <p>RM</p>
@@ -36,10 +35,65 @@
         </div>
 -->
     </div>
-    <div id="main">
+    <div class="detail-bar">
+        <span class="filter">
+            <button id="filter-button">Select Filter</button>
+            <div class="filter-hidden">
+                <button>Album</button>
+                <div class="album-hidden">
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                    <button class="album">Temporary</button>
+                </div>
+                
+                <button>Genre</button>
+                <div class="genre-hidden">
+
+                </div>
+                
+                <button>Year of Release</button>
+                <div class="year-hidden">
+
+                </div>
+                
+                <button>Contribution</button>
+                <div class="contribution-hidden">
+
+                </div>
+            </div>
+        </span>
+        <span class="sort">
+            <button id="sort-button">Select Sort</button>
+            <div class="sort-hidden">
+                <button>▲ Alphabetically</button>
+                <button>▲ Year of Release</button>
+                <button>▲ Contribution %</button>
+                <button>▼ Alphabetically</button>
+                <button>▼ Year of Release</button>
+                <button>▼ Contribution %</button>
+            </div>
+        </span>
+        <span class="search">
+            <input type="text" id="search" placeholder="Search">
+        </span>
     </div>
 
-    <span id="hide-me">Choose a member to begin!</span>
+    <!-- <span id="hide-me">Choose a member to begin!</span> -->
 
 </body>
     <script src="./data.js"></script>

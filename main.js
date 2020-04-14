@@ -1,5 +1,3 @@
-// var main = d3.select('#main');
-
 d3.selectAll('.bts-tab')
     .on('click', function(){
     var clickedTab = d3.select(this);
@@ -40,8 +38,8 @@ function renderBars(data, member) {
     // Append a div to create the contribution-bar structure
     var fillEnter = enter.append('div')
         .attr('class', 'contribution-bar');
-//        .append('div')
-//        .attr('class', 'contribution-bar-fill');
+    //    .append('div')
+    //    .attr('class', 'contribution-bar-fill');
 
     // Append a <p> element to display the contribution bar values
 //    var valEnter = fillEnter.append('p')
@@ -79,7 +77,7 @@ function renderBars(data, member) {
                     .style('font-size', '15px')
                     .style('white-space', 'nowrap')
                     .style('vertical-align', 'top')
-                    .text(member + " didn't contributed in writing this song");
+                    .text(member + " didn't contribute in writing this song");
             }
         })
         .on('mouseout', function(d){
@@ -356,14 +354,14 @@ function calculateContribution(member, song) {
 */
 function colorBox(member, flag) {
 //    var colorsArray = ['red', 'orange', 'yellow', 'green', 'pink', 'purple', 'blue', 'grey'];
-    
+
     var colorsArray = [["#B40404", "#DF0101", "#FF0000", "#FE2E2E"],
-                       ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81"],
-                       ["#DBA901", "#FFBF00", "#FACC2E", "#F7D358"],
-                       ["#088A08", "#04B404", "#01DF01", "#00FF00"],
-                       ["#B4045F", "#DF0174", "#FF0080", "#FE2E9A"],
-                       ["#6A0888", "#8904B1", "#A901DB", "#BF00FF"],
-                       ["#08298A", "#0431B4", "#013ADF", "#0040FF"]];
+                        ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81"],
+                        ["#DBA901", "#FFBF00", "#FACC2E", "#F7D358"],
+                        ["#088A08", "#04B404", "#01DF01", "#00FF00"],
+                        ["#B4045F", "#DF0174", "#FF0080", "#FE2E9A"],
+                        ["#6A0888", "#8904B1", "#A901DB", "#BF00FF"],
+                        ["#08298A", "#0431B4", "#013ADF", "#0040FF"]];
     var colorChosen;
 
     if (member == 'RM') {
@@ -414,6 +412,7 @@ function colorBox(member, flag) {
 }
 
 
+
 /**
  * CURRENTLY UNUSED
  * 
@@ -452,11 +451,18 @@ function calculateMax(song) {
         + parseInt(song["Jungkook_Compose"])
         + parseInt(song["Jungkook_Produce"]);
 
-    
-
     if (possibleContribution <= 0) {
         possibleContribution = 1;
     }
 
     return possibleContribution;
+}
+
+/**
+ * Function to append the filter items onto the HTML
+ * 
+ * It will be used don't delete
+ */
+function appendFilterAndSort() {
+    
 }
