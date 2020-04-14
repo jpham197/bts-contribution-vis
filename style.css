@@ -1,3 +1,16 @@
+.picture {
+    position: absolute;
+    left: -5.5em;
+    z-index: 2;
+    border: 2px solid black;
+}
+
+.picture:hover {
+    transform: scale(2);
+    border-radius: 0%;
+    left: -3em;
+}
+
 .axis-label {
     text-anchor: middle;
     font-size: 12px;
@@ -147,6 +160,7 @@ img:hover {
 .bts-contribution {
     font-family: "Open Sans";
     display: inline-block;
+    margin-left: 100px;
 }
 
 .contribution-bar {
@@ -229,7 +243,7 @@ img:hover {
     position: absolute;
     min-width: 160px;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 3;
 }
 
 .filter:hover .filter-hidden {
