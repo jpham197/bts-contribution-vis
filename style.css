@@ -228,7 +228,7 @@ img:hover {
     display: none;
     position: absolute;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
@@ -252,16 +252,12 @@ img:hover {
     padding: 6px 0;
 }
 
-.search > input {
-    min-width: 160px;
-    height: 18px;
-}
-
 .album-hidden {
     display: none;
     position: absolute;
     left: 160px;
     top: 0px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
 }
 
 .genre-hidden {
@@ -269,6 +265,7 @@ img:hover {
     position: absolute;
     left: 160px;
     top: 29px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
 }
 
 .year-hidden{
@@ -276,6 +273,7 @@ img:hover {
     position: absolute;
     left: 160px;
     top: 58px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
 }
 
 .contribution-hidden {
@@ -283,6 +281,7 @@ img:hover {
     position: absolute;
     left: 160px;
     top: 87px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
 }
 
 #album-button:hover,
@@ -302,8 +301,32 @@ img:hover {
     z-index: 2;
 }
 
-.album, .genre, .year, .contribution {
+.album,
+.genre,
+.year,
+.contribution {
     min-width: 160px;
+    background-color: #fff;
+    border: none;
+    padding: 6px 0;
+    
+}
+
+.album:hover,
+.genre:hover,
+.year:hover,
+.contribution:hover {
+    min-width: 160px;
+    color:red;
+}
+
+.search > input {
+    min-width: 160px;
+    height: 18px;
+}
+
+.sort-hidden > button:hover {
+    color: red;
 }
 
 /* DETAIL BAR STUFF END */
