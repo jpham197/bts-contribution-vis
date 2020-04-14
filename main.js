@@ -440,6 +440,12 @@ function calculateMax(song) {
     return possibleContribution;
 }
 
+/**
+ * Function that handles the filtering.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked
+ */
 function filter(value) {
     console.log(value);
 }
