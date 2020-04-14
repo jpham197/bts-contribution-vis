@@ -141,7 +141,7 @@ img:hover {
 
 @media screen and (min-width: 720px) {
     .bts-contribution {
-        width: 40%; /* Two blocks on one row */
+        width: 30%; /* width of blocks */
         margin: 10px 15px 16px 15px;
     }
 }
@@ -209,6 +209,7 @@ img:hover {
     top: 0px;
     
 }
+
 .box_text {
    text-align: center;
 }
