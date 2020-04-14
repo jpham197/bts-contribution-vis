@@ -7,7 +7,9 @@ d3.selectAll('.bts-tab')
     
     var member = clickedTab.attr('data-member');
     updateBars(member);
-    document.getElementById('hide-me').style.display = "none";
+    if (document.getElementById('hide-me')) {
+        document.getElementById('hide-me').style.display = "none";
+    }
 });
 
 
@@ -232,7 +234,6 @@ function renderBars(data, member) {
     // Merge the .song-name on screen elements with the newly created ones, and update song name
     select.select('.song-name').merge(pEnter)
         .text(function(d){
-            console.log(d);
             return d['song'];
         });
 
@@ -280,50 +281,31 @@ function updateBars(member) {
     //array to hold 
     let data = [];
 
-    //If BTS icon is clicked, show all songs, else check against the selected member
-//    if (member === 'BTS') {
-//        new_bts_object.forEach(dataRow => {
-//            let song = dataRow.Song;
-//            let album = dataRow.album;
-//
-//            data.push(
-//                {
-//                    "member": "BTS",
-//                    "song": song,
-//                    "contribution": [1, 1, 1, 1]
-//                }
-//            );
-//        });
-//    } else {
-        /*
-        new_bts_object is from new_data.js, which is the revised data set
-        dataRow is each actual row from the excel spreadsheet
-        */
-        new_bts_object.forEach(dataRow => {
-            let song = dataRow.Song;
-            let album = dataRow.album;
-            
-            member_contribution = calculateContribution(member, dataRow);
-            
-            let sum = 0;
-            for (let contribution of member_contribution) {
-                sum += contribution;
-            }
-            if (sum > 0) {
-                data.push(
-                    {
-                        "member": member,
-                        "song": song,
-                        "contribution": member_contribution //Contribution relative to self
-                        // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
-                    }
-                )
-            }
-        });
-
-    
-    
-    //    }
+    /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.album;
+        
+        member_contribution = calculateContribution(member, dataRow);
+        
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+        if (sum > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution //Contribution relative to self
+                    // "contribution": Math.trunc((member_contribution / denominator) * 100) //Contribution relative to other members
+                }
+            )
+        }
+    });
 
     renderBars(data, member);
 }
@@ -355,7 +337,7 @@ function calculateContribution(member, song) {
 function colorBox(member, flag) {
 //    var colorsArray = ['red', 'orange', 'yellow', 'green', 'pink', 'purple', 'blue', 'grey'];
 
-    var colorsArray = [["#B40404", "#DF0101", "#FF0000", "#FE2E2E"],
+    var colorsArray =  [["#B40404", "#DF0101", "#FF0000", "#FE2E2E"],
                         ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81"],
                         ["#DBA901", "#FFBF00", "#FACC2E", "#F7D358"],
                         ["#088A08", "#04B404", "#01DF01", "#00FF00"],
@@ -456,13 +438,4 @@ function calculateMax(song) {
     }
 
     return possibleContribution;
-}
-
-/**
- * Function to append the filter items onto the HTML
- * 
- * It will be used don't delete
- */
-function appendFilterAndSort() {
-    
 }
