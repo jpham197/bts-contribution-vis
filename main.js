@@ -46,11 +46,32 @@ function renderBars(data, member) {
     var fillEnter = enter.append('div')
         .attr('class', 'contribution-bar');
     
-    let album_box = fillEnter.append('img')
-        .attr('src', function(d) {
-            return `${d.albumPath}`;
+    let album_box = fillEnter.append('div')
+        .style('background-image', function(d) {
+            return `url('${d.albumPath}')`;
         })
-        .attr('class', 'picture');
+        .attr('class', 'picture')
+        .on('mouseover', function(d){
+            var hovered = d3.select(this);
+            hovered.classed('text', true);
+            hovered.append('text')
+                .attr('class', 'detail-text')
+                .text(`Album: ${d.album}`);
+            hovered.append('text')
+                .attr('class', 'detail-text')
+                .text(`Genre: ${d.genre}`);
+            hovered.append('text')
+                .attr('class', 'detail-text')
+                .text(`Year: ${d.year}`);
+        })
+        .on('mouseout', function(d){
+            var hovered = d3.select(this);
+            hovered.classed('text', false);
+            hovered.select('text').remove();
+            hovered.select('text').remove();
+            hovered.select('text').remove();
+        });
+
     // ***************Create the 4 rectangles
     // Vocal box
     let vocal_box = fillEnter.append('span')
@@ -129,7 +150,7 @@ function renderBars(data, member) {
                     .style('font-size', '15px')
                     .style('white-space', 'nowrap')
                     .style('vertical-align', 'top')
-                    .text(member + " didn't contributed in writing this song");
+                    .text(member + " didn't contribute in writing this song");
             }
         })
         .on('mouseout', function(d){
@@ -175,7 +196,7 @@ function renderBars(data, member) {
                     .style('font-size', '15px')
                     .style('white-space', 'nowrap')
                     .style('vertical-align', 'top')
-                    .text(member + " didn't contributed in composing this song");
+                    .text(member + " didn't contribute in composing this song");
             }
         })
         .on('mouseout', function(d){
@@ -221,7 +242,7 @@ function renderBars(data, member) {
                     .style('font-size', '15px')
                     .style('white-space', 'nowrap')
                     .style('vertical-align', 'top')
-                    .text(member + " didn't contributed in producing this song");
+                    .text(member + " didn't contribute in producing this song");
             }
         })
         .on('mouseout', function(d){
@@ -292,6 +313,8 @@ function updateBars(member) {
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
         let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre = dataRow.Genre1;
         
         let member_contribution = calculateContribution(member, dataRow);
         let albumPath = connectAlbumPath(album);
@@ -309,7 +332,10 @@ function updateBars(member) {
                     "member": member,
                     "song": song,
                     "contribution": member_contribution,
-                    "albumPath": albumPath
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre": genre,
+                    "album": album
                 }
             )
         }

@@ -1,14 +1,24 @@
 .picture {
-    position: absolute;
+    /* position: absolute;
     left: -5.5em;
     z-index: 2;
+    border: 2px solid black; */
+
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: -6.5em;
+    top: -0.5em;
+    background-size: cover;
     border: 2px solid black;
 }
 
-.picture:hover {
-    transform: scale(2);
-    border-radius: 0%;
-    left: -3em;
+.detail-text {
+    display: block;
+    color:black;
+    white-space: nowrap;
+    position: relative;
+    top: -60px;
 }
 
 .axis-label {
@@ -41,6 +51,7 @@ img {
 
 p {
     margin-top: 10px;
+    text-align: center;
 }
 
 #bts-header {
@@ -170,6 +181,8 @@ img:hover {
     height: 70px;
     border-radius: 15px;
     margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 16px;
 }
 
 .contribution-bar-fill {
