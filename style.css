@@ -19,8 +19,8 @@
     white-space: nowrap;
     position: relative;
     top: -65px;
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
     font-size: 13px;
 /*    font: 12px sans-serif;	*/
 }
@@ -71,8 +71,8 @@ img {
 p {
     margin-top: 10px;
     text-align: center;
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
 }
 
 #bts-header {
@@ -252,8 +252,8 @@ img:hover {
     
 }
 .box_text {
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
     text-align: center;
 }
 
@@ -274,8 +274,8 @@ img:hover {
     min-width: 160px;
     font-size: 14px;
     border: 2px solid #000;
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
 }
 
 .filter-hidden, .sort-hidden {
@@ -304,8 +304,8 @@ img:hover {
     background-color: #fff;
     border: none;
     padding: 6px 0;
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
 }
 
 .album-hidden {
@@ -345,8 +345,8 @@ img:hover {
 #year-button:hover,
 #contribution-button:hover {
     color: red;
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
 }
 
 .album-container:hover
@@ -388,8 +388,8 @@ img:hover {
 }
 
 .box-hover-text {
-    font: "Comic Sans MS";
-    font-family: cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+/*    font-family: cursive;*/
     font-size: 13px;
     white-space: nowrap;
     vertical-align: top;
