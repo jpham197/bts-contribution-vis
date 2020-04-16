@@ -18,8 +18,21 @@
     color:black;
     white-space: nowrap;
     position: relative;
-    top: -60px;
+    top: -65px;
+    font-family: cursive;
+    font-size: 13px;
+/*    font: 12px sans-serif;	*/
 }
+
+/*
+.group-text {
+    height: 28px;					
+    padding: 2px;				
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;	
+}
+*/
 
 .axis-label {
     text-anchor: middle;
@@ -28,7 +41,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+/*    font-family: Arial, Helvetica, sans-serif;*/
     margin: 0;
 }
 
@@ -38,6 +51,11 @@ body {
     right: 50%;
     margin-right: -6.5em;
     font-size: 30px;
+/*
+    transition-duration: 500ms;
+transition-property: margin-right;
+*/
+
 }
 
 .span-hide {
@@ -52,6 +70,7 @@ img {
 p {
     margin-top: 10px;
     text-align: center;
+    font-family: cursive;
 }
 
 #bts-header {
@@ -83,6 +102,7 @@ p {
     margin-left: 25px;
     margin-right: 25px;
     position: relative;
+/*    font: 30 sans-serif;*/
 }
 
 /* Aligns the name tags under the images*/
@@ -169,9 +189,10 @@ img:hover {
 }
 
 .bts-contribution {
-    font-family: "Open Sans";
+/*    font-family: "Open Sans";*/
     display: inline-block;
     margin-left: 100px;
+/*    font: 12px sans-serif;*/
 }
 
 .contribution-bar {
@@ -247,8 +268,9 @@ img:hover {
     color: black;
     /* padding: 8px; */
     min-width: 160px;
-    font-size: 16px;
+    font-size: 14px;
     border: 2px solid #000;
+    font-family: cursive;
 }
 
 .filter-hidden, .sort-hidden {
@@ -277,6 +299,7 @@ img:hover {
     background-color: #fff;
     border: none;
     padding: 6px 0;
+    font-family: cursive;
 }
 
 .album-hidden {
@@ -316,6 +339,7 @@ img:hover {
 #year-button:hover,
 #contribution-button:hover {
     color: red;
+    font-family: cursive;
 }
 
 .album-container:hover

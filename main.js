@@ -74,6 +74,8 @@ function renderBars(data, member) {
 
     // ***************Create the 4 rectangles
     // Vocal box
+    // how to make color animates only
+    //.transition().duration(1000)
     let vocal_box = fillEnter.append('span')
         .attr('class', 'vocal')
         .style('background-color', function(d) {
@@ -421,7 +423,6 @@ function calculateContribution(member, song) {
  * @returns {String} color name
 */
 function colorBox(member, flag) {
-//    var colorsArray = ['red', 'orange', 'yellow', 'green', 'pink', 'purple', 'blue', 'grey'];
 
     var colorsArray =  [["#B40404", "#DF0101", "#FF0000", "#FE2E2E"],
                         ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81"],
@@ -437,43 +438,36 @@ function colorBox(member, flag) {
         else if (flag == 'write') { colorChosen = colorsArray[0][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[0][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[0][3] }
-//        colorChosen = colorsArray[0];
     } else if (member == 'Jin') {
         if (flag == 'vocal') { colorChosen = colorsArray[1][0] }
         else if (flag == 'write') { colorChosen = colorsArray[1][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[1][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[1][3] }
-//        colorChosen = colorsArray[1];
     } else if (member == 'SUGA') {
         if (flag == 'vocal') { colorChosen = colorsArray[2][0] }
         else if (flag == 'write') { colorChosen = colorsArray[2][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[2][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[2][3] }
-//        colorChosen = colorsArray[2];
     } else if (member == 'J-Hope') {
         if (flag == 'vocal') { colorChosen = colorsArray[3][0] }
         else if (flag == 'write') { colorChosen = colorsArray[3][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[3][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[3][3] }
-//        colorChosen = colorsArray[3];
     } else if (member == 'Jimin') {
         if (flag == 'vocal') { colorChosen = colorsArray[4][0] }
         else if (flag == 'write') { colorChosen = colorsArray[4][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[4][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[4][3] }
-//        colorChosen = colorsArray[4];
     } else if (member == 'V') {
         if (flag == 'vocal') { colorChosen = colorsArray[5][0] }
         else if (flag == 'write') { colorChosen = colorsArray[5][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[5][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[5][3] }
-//        colorChosen = colorsArray[5];
     } else if (member == 'Jungkook') {
         if (flag == 'vocal') { colorChosen = colorsArray[6][0] }
         else if (flag == 'write') { colorChosen = colorsArray[6][1] }
         else if (flag == 'compose') { colorChosen = colorsArray[6][2] }
         else if (flag == 'produce') { colorChosen = colorsArray[6][3] }
-//        colorChosen = colorsArray[6];
     }
 
     return colorChosen;
