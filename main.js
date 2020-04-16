@@ -1,3 +1,5 @@
+var member = "";
+
 d3.selectAll('.bts-tab')
     .on('click', function(){
     var clickedTab = d3.select(this);
@@ -5,7 +7,7 @@ d3.selectAll('.bts-tab')
     d3.select('.bts-tab.active').classed('active',false);
     clickedTab.classed('active',true);
     
-    var member = clickedTab.attr('data-member');
+    member = clickedTab.attr('data-member');
     updateBars(member);
     if (document.getElementById('hide-me')) {
         document.getElementById('hide-me').style.display = "none";
@@ -262,22 +264,21 @@ function renderBars(data, member) {
             return d['song'];
         });
 
-
     
     // Merge the .contribution-bar-fill on screen elements with the newly created ones, and update width
-//    select.select('.contribution-bar-fill').merge(fillEnter)
-//        .style('width', function(d){
-//            return 'calc(' + d['contribution'] + '% - 10px)';
-//        })
-//        .style('background-image', function(d){ if (member == 'RM') {return 'linear-gradient(to right, #B40404, #FE2E2E)';}
-//                            else if (member == 'Jin') {return 'linear-gradient(to right, #B43104, #FE642E)';}
-//                            else if (member == 'SUGA') {return 'linear-gradient(to right, #868A08, #F7D358)';}
-//                            else if (member == 'J-Hope') {return 'linear-gradient(to right, #088A08, #00FF00)';}
-//                            else if (member == 'Jimin') {return 'linear-gradient(to right, #B4045F, #FE2E9A)';}
-//                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
-//                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
-//                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
-//        });
+    select.select('.contribution-bar-fill').merge(fillEnter)
+        .style('width', function(d){
+            return 'calc(' + d['contribution'] + '% - 10px)';
+        })
+        .style('background-image', function(d){ if (member == 'RM') {return 'linear-gradient(to right, #B40404, #FE2E2E)';}
+                            else if (member == 'Jin') {return 'linear-gradient(to right, #EC6B3B, #FE642E)';}
+                            else if (member == 'SUGA') {return 'linear-gradient(to right, #E9f750, #F7D358)';}
+                            else if (member == 'J-Hope') {return 'linear-gradient(to right, #088A08, #00FF00)';}
+                            else if (member == 'Jimin') {return 'linear-gradient(to right, #B4045F, #FE2E9A)';}
+                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
+                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
+                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
+        });
 
 // This code shows the percentage. Currently this displays it inside of block, needs to be moved to the end of the block
 //    select.select('.contribution-bar-value').merge(valEnter)
@@ -293,6 +294,14 @@ function renderBars(data, member) {
 
     select.exit().remove();
 }
+
+
+
+    //Search Functionality
+    search(member);
+    d3.select('#search-Input').on('input', function() {
+        search(member);
+    });
 
 
 /** Iterates over all BTS songs and calculates contribution of member for a given song and stores it into a JavaScript object.
@@ -540,4 +549,54 @@ function filter(value) {
  */
 function sort(value) {
     console.log(value);
+}
+
+
+/**
+ * Function for Searching through the UI.
+ * 
+ * @param {String} value the text in the input that was typed by the user
+ */
+function search(member) {
+    let data = [];
+     
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+//        let year = dataRow.Year_of_Release;
+//        let genre = dataRow.Genre1;
+        
+        let member_contribution = calculateContribution(member, dataRow);
+
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+
+        if (sum > 0) {
+            data.push(
+                {
+                    "song": song,
+                    "album": album
+//                  "year": year,
+//                  "genre": genre,
+                }
+            )
+        }
+        console.log(data);
+    });
+    
+    var filterText = d3.select('#search-Input').property('value');
+    console.log(filterText);
+    if (filterText !== "") {
+         var filteredData = data.filter(function(d){
+             return(d.song.includes(filterText) || d.album.includes(filterText));
+         });
+        console.log(member);
+    }
+    console.log(filteredData);
+//    d3.select('search-hidden').html(filteredData.map(function(d){
+//        return d.song;
+//    }).join("<br/>"));
+    
 }

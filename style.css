@@ -347,10 +347,36 @@ img:hover {
     color:red;
 }
 
-.search > input {
+#search-Input {
     min-width: 160px;
     height: 18px;
+    background-color: #fff;
+    color: black;
+    min-width: 160px;
+    font-size: 16px;
+    border: 2px solid #000;
 }
+
+.search-hidden {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    z-index: 3;
+}
+
+.search:focus .search-hidden {
+    display: block;
+}
+
+/*
+.search-input:focus {
+    min-width: 160px;
+    background-color: slateblue;
+    border: none;
+    padding: 6px 0;
+}
+*/
 
 .sort-hidden > button:hover {
     color: red;
