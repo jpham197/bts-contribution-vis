@@ -78,14 +78,7 @@ function renderBars(data, member) {
     //.transition().duration(1000)
     let vocal_box = fillEnter.append('span')
         .attr('class', 'vocal')
-        .style('background-color', function(d) {
-            if (d.contribution[0] == 1) {
-                let vocal_flag = 'vocal';
-                return colorBox(member, vocal_flag);
-            } else {
-                return 'white' //none
-            }
-        })
+        .style('background-color', 'none')  // set background-color to none as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('text', true);
@@ -114,6 +107,17 @@ function renderBars(data, member) {
             hovered.classed('text', false);
             hovered.select('text').remove();
         });
+        
+    // transition animation for box fill
+    vocal_box.transition().duration(1000).style('background-color', function(d) {
+        if (d.contribution[0] == 1) {
+            let vocal_flag = 'vocal';
+            return colorBox(member, vocal_flag);
+        } else {
+            return 'white' //none
+        }
+    })
+        
     
     // The V text
     vocal_box.append('p')
@@ -123,14 +127,7 @@ function renderBars(data, member) {
     // Write box
     let write_box = fillEnter.append('span')
         .attr('class', 'write')
-        .style('background-color', function(d) {
-            if (d.contribution[1] == 1) {
-                let write_flag = 'write';
-                return colorBox(member, write_flag);
-            } else {
-                return 'white'
-            }
-        })
+        .style('background-color', 'none')  // set background-color to none as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -161,6 +158,16 @@ function renderBars(data, member) {
             hovered.select('text').remove();
         });
     
+    // transition animation for box fill
+    write_box.transition().duration(1000).style('background-color', function(d) {
+            if (d.contribution[1] == 1) {
+                let write_flag = 'write';
+                return colorBox(member, write_flag);
+            } else {
+                return 'white'
+            }
+        });
+    
     // The W text
     write_box.append('p')
         .text('W')
@@ -169,14 +176,7 @@ function renderBars(data, member) {
     // Compose box
     let compose_box = fillEnter.append('span')
         .attr('class', 'compose')
-        .style('background-color', function(d) {
-            if (d.contribution[2] == 1) {
-                let compose_flag = 'compose';
-                return colorBox(member, compose_flag);
-            } else {
-                return 'white'
-            }
-        })
+        .style('background-color', 'none')  // set background-color to none as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -207,6 +207,16 @@ function renderBars(data, member) {
             hovered.select('text').remove();
         });
     
+    // transition animation for box fill
+    compose_box.transition().duration(1000).style('background-color', function(d) {
+            if (d.contribution[2] == 1) {
+                let compose_flag = 'compose';
+                return colorBox(member, compose_flag);
+            } else {
+                return 'white'
+            }
+        });
+    
     // The C text
     compose_box.append('p')
         .text('C')
@@ -215,14 +225,7 @@ function renderBars(data, member) {
     // Produce box
     let produce_box = fillEnter.append('span')
         .attr('class', 'produce')
-        .style('background-color', function(d) {
-            if (d.contribution[3] == 1) {
-                let produce_flag = 'produce';
-                return colorBox(member, produce_flag);
-            } else {
-                return 'white';
-            }
-        })
+        .style('background-color', 'none')  // set background-color to none as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -252,6 +255,16 @@ function renderBars(data, member) {
             hovered.classed('hovered', false);
             hovered.select('text').remove();
         });
+    
+    // transition animation for box fill
+    produce_box.transition().duration(1000).style('background-color', function(d) {
+        if (d.contribution[3] == 1) {
+            let produce_flag = 'produce';
+            return colorBox(member, produce_flag);
+        } else {
+            return 'white';
+        }
+    });
     
     // The P text
     produce_box.append('p')
