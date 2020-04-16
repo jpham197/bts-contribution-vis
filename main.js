@@ -85,20 +85,13 @@ function renderBars(data, member) {
             if (d.contribution[0] == 1) {
                 let vocal_flag = 'vocal';
                 hovered.append('text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, vocal_flag))
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " contributed Vocally to the song");
             }else{
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " didn't contribute in writing this song");
             }
         })
@@ -134,21 +127,13 @@ function renderBars(data, member) {
             if (d.contribution[1] == 1) {
                 let write_flag = 'write';
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, write_flag))
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " contributed in writing this song");
             }else{
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " didn't contribute in writing this song");
             }
         })
@@ -183,21 +168,13 @@ function renderBars(data, member) {
             if (d.contribution[2] == 1) {
                 let compose_flag = 'compose';
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, compose_flag))
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " contributed in composing this song");
             }else{
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " didn't contribute in composing this song");
             }
         })
@@ -232,21 +209,13 @@ function renderBars(data, member) {
             if (d.contribution[3] == 1) {
                 let produce_flag = 'produce';
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, produce_flag))
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " contributed in producing this song");
             }else{
                 hovered.append('text')
-                    .attr('class', 'text')
-                    .attr('class', 'text')
+                    .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .style('font-size', '15px')
-                    .style('white-space', 'nowrap')
-                    .style('vertical-align', 'top')
                     .text(member + " didn't contribute in producing this song");
             }
         })
