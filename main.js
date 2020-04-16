@@ -14,7 +14,7 @@ d3.selectAll('.bts-tab')
 
 
 /*
-    Function to create the contribution bars
+    Create the contribution bars
 */
 function renderBars(data, member) {
 
@@ -59,10 +59,10 @@ function renderBars(data, member) {
                 .text(`Album: ${d.album}`);
             hovered.append('text')
                 .attr('class', 'detail-text')
-                .text(`Genre: ${d.genre}`);
+                .text(`Genre(s): ${d.genre1} ${d.genre2} ${d.genre3}`);
             hovered.append('text')
                 .attr('class', 'detail-text')
-                .text(`Year: ${d.year}`);
+                .text(`Year Released: ${d.year}`);
         })
         .on('mouseout', function(d){
             var hovered = d3.select(this);
@@ -314,7 +314,9 @@ function updateBars(member) {
         let song = dataRow.Song;
         let album = dataRow.Album;
         let year = dataRow.Year_of_Release;
-        let genre = dataRow.Genre1;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
         
         let member_contribution = calculateContribution(member, dataRow);
         let albumPath = connectAlbumPath(album);
@@ -334,7 +336,9 @@ function updateBars(member) {
                     "contribution": member_contribution,
                     "albumPath": albumPath,
                     "year": year,
-                    "genre": genre,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
                     "album": album
                 }
             )
