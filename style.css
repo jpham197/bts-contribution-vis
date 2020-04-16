@@ -157,7 +157,7 @@ img:hover {
 
 @media screen and (min-width: 720px) {
     .bts-contribution {
-        width: 40%; /* Two blocks on one row */
+        width: 35%; /* Two blocks on one row */
         margin: 10px 15px 16px 15px;
     }
 }
