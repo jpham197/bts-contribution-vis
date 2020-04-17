@@ -1,17 +1,19 @@
+var selectedMember = '';
+
 d3.selectAll('.bts-tab')
     .on('click', function(){
-    var clickedTab = d3.select(this);
+    let clickedTab = d3.select(this);
 
     d3.select('.bts-tab.active').classed('active',false);
     clickedTab.classed('active',true);
     
-    var member = clickedTab.attr('data-member');
+    let member = clickedTab.attr('data-member');
+    selectedMember = member;
     updateBars(member);
     if (document.getElementById('hide-me')) {
         document.getElementById('hide-me').style.display = "none";
     }
 });
-
 
 /*
     Create the contribution bars
@@ -304,9 +306,6 @@ function updateBars(member) {
         
         let member_contribution = calculateContribution(member, dataRow);
         let albumPath = connectAlbumPath(album);
-        if (!albumPath) {
-            console.log(dataRow);
-        }
         let sum = 0;
         for (let contribution of member_contribution) {
             sum += contribution;
@@ -516,8 +515,79 @@ function filter(value) {
  * Function that handles the sorting.
  * This is the function that is called when the element is clicked in the UI
  * 
- * @param {String} value the text in the button that was clicked 
+ * @param {String} value the type of sort to perform
  */
-function sort(value) {
-    console.log(value);
+function btssort(value) {
+    let sortAscending = value[0] == '▲' ? true : false;
+    let sortType = value.substring(2, value.length);
+
+    //array to hold 
+    let data = [];
+    member = selectedMember;
+    /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+        
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+
+        if (sum > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                }
+            )
+        }
+    });
+
+    let finalData = [];
+    console.log(sortType);
+    if (sortType == 'Alphabetically') {
+        finalData = data.sort(function(a, b) {
+            a = a.song.toString().toUpperCase();
+            b = b.song.toString().toUpperCase();
+    
+            let comparison = a > b ? 1 : -1;
+            return sortAscending ? comparison : -comparison;
+        });
+    } else if (sortType == 'Year of Release') {
+        finalData = data.sort(function(a, b) {    
+            let comparison = a.year - b.year;
+            return sortAscending ? comparison : -comparison;
+        });
+    } else if (sortType == 'Contribution %') {
+        finalData = data.sort(function(a, b) {
+            let aScore = 0;
+            let bScore = 0;
+            for (let i = 0; i < 4; i++) {
+                aScore += a.contribution[i];
+                bScore += b.contribution[i];
+            }
+            let comparison = aScore - bScore;
+            return sortAscending ? comparison : -comparison;
+        });
+    }
+
+    renderBars(finalData, member);
 }
