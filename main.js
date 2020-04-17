@@ -56,22 +56,27 @@ function renderBars(data, member) {
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('text', true);
-            hovered.append('text')
+            
+            var group = hovered.append('div')
+            .attr('class', 'popup');
+
+            group.append('text')
                 .attr('class', 'detail-text')
                 .text(`Album: ${d.album}`);
-            hovered.append('text')
+            group.append('text')
                 .attr('class', 'detail-text')
                 .text(`Genre(s): ${d.genre1} ${d.genre2} ${d.genre3}`);
-            hovered.append('text')
+            group.append('text')
                 .attr('class', 'detail-text')
                 .text(`Year Released: ${d.year}`);
         })
         .on('mouseout', function(d){
             var hovered = d3.select(this);
             hovered.classed('text', false);
-            hovered.select('text').remove();
-            hovered.select('text').remove();
-            hovered.select('text').remove();
+            hovered.select('.popup').remove();
+//            hovered.select('text').remove();
+//            hovered.select('text').remove();
+//            hovered.select('text').remove();
         });
 
     // ***************Create the 4 rectangles
