@@ -603,71 +603,7 @@ function filter(value) {
     dataRow is each actual row from the excel spreadsheet
     */
 
-    if (filter_Type == "Alternative R&B"){
-        new_bts_object.forEach(dataRow => {
-            let song = dataRow.Song;
-            let album = dataRow.Album;
-            let year = dataRow.Year_of_Release;
-            let genre1 = dataRow.Genre1;
-            let genre2 = dataRow.Genre2;
-            let genre3 = dataRow.Genre3;
-                
-            let member_contribution = calculateContribution(member, dataRow);
-            let albumPath = connectAlbumPath(album);
-            let sum = 0;
-            for (let contribution of member_contribution) {
-                sum += contribution;
-            }
-        
-            if (sum > 0 && genre1 == filter_Type) {
-                filter_data.push(
-                    {
-                        "member": member,
-                        "song": song,
-                        "contribution": member_contribution,
-                        "albumPath": albumPath,
-                        "year": year,
-                        "genre1": genre1,
-                        "genre2": genre2,
-                        "genre3": genre3,
-                        "album": album
-                        }
-                    )
-                }
-            })
-        }else if (filter_Type == 'Alternative Rock'){
-            new_bts_object.forEach(dataRow => {
-            let song = dataRow.Song;
-            let album = dataRow.Album;
-            let year = dataRow.Year_of_Release;
-            let genre1 = dataRow.Genre1;
-            let genre2 = dataRow.Genre2;
-            let genre3 = dataRow.Genre3;
-                
-            let member_contribution = calculateContribution(member, dataRow);
-            let albumPath = connectAlbumPath(album);
-            let sum = 0;
-            for (let contribution of member_contribution) {
-                sum += contribution;
-            }
-        
-            if (sum > 0 && genre1 == filter_Type) {
-                filter_data.push(
-                    {
-                        "member": member,
-                        "song": song,
-                        "contribution": member_contribution,
-                        "albumPath": albumPath,
-                        "year": year,
-                        "genre1": genre1,
-                        "genre2": genre2,
-                        "genre3": genre3,
-                        "album": album
-                        }
-                    )
-                }
-            })
-        }else if (filter_Type == 'Ballad'){
+    if (filter_Type == 'Ambient'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -699,7 +635,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Big beat'){
+        }else if (filter_Type == 'Ballad'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -763,7 +699,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Dances'){
+        }else if (filter_Type == 'Dance'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -859,7 +795,103 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Funk Pop'){
+        }else if (filter_Type == 'Emo Hip-Hop'){
+            new_bts_object.forEach(dataRow => {
+                let song = dataRow.Song;
+                let album = dataRow.Album;
+                let year = dataRow.Year_of_Release;
+                let genre1 = dataRow.Genre1;
+                let genre2 = dataRow.Genre2;
+                let genre3 = dataRow.Genre3;
+                    
+                let member_contribution = calculateContribution(member, dataRow);
+                let albumPath = connectAlbumPath(album);
+                let sum = 0;
+                for (let contribution of member_contribution) {
+                    sum += contribution;
+                }
+            
+                if (sum > 0 && genre1 == filter_Type) {
+                    filter_data.push(
+                        {
+                            "member": member,
+                            "song": song,
+                            "contribution": member_contribution,
+                            "albumPath": albumPath,
+                            "year": year,
+                            "genre1": genre1,
+                            "genre2": genre2,
+                            "genre3": genre3,
+                            "album": album
+                            }
+                        )
+                    }
+                })
+        }else if (filter_Type == 'Funk'){
+            new_bts_object.forEach(dataRow => {
+                let song = dataRow.Song;
+                let album = dataRow.Album;
+                let year = dataRow.Year_of_Release;
+                let genre1 = dataRow.Genre1;
+                let genre2 = dataRow.Genre2;
+                let genre3 = dataRow.Genre3;
+                    
+                let member_contribution = calculateContribution(member, dataRow);
+                let albumPath = connectAlbumPath(album);
+                let sum = 0;
+                for (let contribution of member_contribution) {
+                    sum += contribution;
+                }
+            
+                if (sum > 0 && genre1 == filter_Type) {
+                    filter_data.push(
+                        {
+                            "member": member,
+                            "song": song,
+                            "contribution": member_contribution,
+                            "albumPath": albumPath,
+                            "year": year,
+                            "genre1": genre1,
+                            "genre2": genre2,
+                            "genre3": genre3,
+                            "album": album
+                            }
+                        )
+                    }
+                })
+        }else if (filter_Type == 'Future-Bass'){
+            new_bts_object.forEach(dataRow => {
+                let song = dataRow.Song;
+                let album = dataRow.Album;
+                let year = dataRow.Year_of_Release;
+                let genre1 = dataRow.Genre1;
+                let genre2 = dataRow.Genre2;
+                let genre3 = dataRow.Genre3;
+                    
+                let member_contribution = calculateContribution(member, dataRow);
+                let albumPath = connectAlbumPath(album);
+                let sum = 0;
+                for (let contribution of member_contribution) {
+                    sum += contribution;
+                }
+            
+                if (sum > 0 && genre1 == filter_Type) {
+                    filter_data.push(
+                        {
+                            "member": member,
+                            "song": song,
+                            "contribution": member_contribution,
+                            "albumPath": albumPath,
+                            "year": year,
+                            "genre1": genre1,
+                            "genre2": genre2,
+                            "genre3": genre3,
+                            "album": album
+                            }
+                        )
+                    }
+                })
+        }else if (filter_Type == 'G-Funk'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -923,7 +955,39 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Indie-Rock'){
+        }else if (filter_Type == 'House'){
+            new_bts_object.forEach(dataRow => {
+                let song = dataRow.Song;
+                let album = dataRow.Album;
+                let year = dataRow.Year_of_Release;
+                let genre1 = dataRow.Genre1;
+                let genre2 = dataRow.Genre2;
+                let genre3 = dataRow.Genre3;
+                    
+                let member_contribution = calculateContribution(member, dataRow);
+                let albumPath = connectAlbumPath(album);
+                let sum = 0;
+                for (let contribution of member_contribution) {
+                    sum += contribution;
+                }
+            
+                if (sum > 0 && genre1 == filter_Type) {
+                    filter_data.push(
+                        {
+                            "member": member,
+                            "song": song,
+                            "contribution": member_contribution,
+                            "albumPath": albumPath,
+                            "year": year,
+                            "genre1": genre1,
+                            "genre2": genre2,
+                            "genre3": genre3,
+                            "album": album
+                            }
+                        )
+                    }
+                })
+        }else if (filter_Type == 'Indie'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -987,7 +1051,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Latin Pop'){
+        }else if (filter_Type == 'Latin-Pop'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1019,39 +1083,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Moonbahton'){
-            new_bts_object.forEach(dataRow => {
-                let song = dataRow.Song;
-                let album = dataRow.Album;
-                let year = dataRow.Year_of_Release;
-                let genre1 = dataRow.Genre1;
-                let genre2 = dataRow.Genre2;
-                let genre3 = dataRow.Genre3;
-                    
-                let member_contribution = calculateContribution(member, dataRow);
-                let albumPath = connectAlbumPath(album);
-                let sum = 0;
-                for (let contribution of member_contribution) {
-                    sum += contribution;
-                }
-            
-                if (sum > 0 && genre1 == filter_Type) {
-                    filter_data.push(
-                        {
-                            "member": member,
-                            "song": song,
-                            "contribution": member_contribution,
-                            "albumPath": albumPath,
-                            "year": year,
-                            "genre1": genre1,
-                            "genre2": genre2,
-                            "genre3": genre3,
-                            "album": album
-                            }
-                        )
-                    }
-                })
-        }else if (filter_Type == 'Neo-Soul'){
+        }else if (filter_Type == 'Moombahton'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1115,6 +1147,70 @@ function filter(value) {
                         )
                     }
                 })
+        }else if (filter_Type == 'Neo-Soul'){
+            new_bts_object.forEach(dataRow => {
+                let song = dataRow.Song;
+                let album = dataRow.Album;
+                let year = dataRow.Year_of_Release;
+                let genre1 = dataRow.Genre1;
+                let genre2 = dataRow.Genre2;
+                let genre3 = dataRow.Genre3;
+                    
+                let member_contribution = calculateContribution(member, dataRow);
+                let albumPath = connectAlbumPath(album);
+                let sum = 0;
+                for (let contribution of member_contribution) {
+                    sum += contribution;
+                }
+            
+                if (sum > 0 && genre1 == filter_Type) {
+                    filter_data.push(
+                        {
+                            "member": member,
+                            "song": song,
+                            "contribution": member_contribution,
+                            "albumPath": albumPath,
+                            "year": year,
+                            "genre1": genre1,
+                            "genre2": genre2,
+                            "genre3": genre3,
+                            "album": album
+                            }
+                        )
+                    }
+                })
+        }else if (filter_Type == 'Nu-disco'){
+            new_bts_object.forEach(dataRow => {
+                let song = dataRow.Song;
+                let album = dataRow.Album;
+                let year = dataRow.Year_of_Release;
+                let genre1 = dataRow.Genre1;
+                let genre2 = dataRow.Genre2;
+                let genre3 = dataRow.Genre3;
+                    
+                let member_contribution = calculateContribution(member, dataRow);
+                let albumPath = connectAlbumPath(album);
+                let sum = 0;
+                for (let contribution of member_contribution) {
+                    sum += contribution;
+                }
+            
+                if (sum > 0 && genre1 == filter_Type) {
+                    filter_data.push(
+                        {
+                            "member": member,
+                            "song": song,
+                            "contribution": member_contribution,
+                            "albumPath": albumPath,
+                            "year": year,
+                            "genre1": genre1,
+                            "genre2": genre2,
+                            "genre3": genre3,
+                            "album": album
+                            }
+                        )
+                    }
+                })
         }else if (filter_Type == 'Pop'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
@@ -1147,7 +1243,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Punk Rock'){
+        }else if (filter_Type == 'Punk-Rock'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1211,7 +1307,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Rap Rock'){
+        }else if (filter_Type == 'Reggaeton'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1275,7 +1371,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Rock-Dance'){
+        }else if (filter_Type == 'Samul-nori'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1307,7 +1403,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Samul nori'){
+        }else if (filter_Type == 'Trap'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1339,7 +1435,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Synth-Pop'){
+        }else if (filter_Type == 'Tropical-House'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1371,7 +1467,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Turntablism Hip-Hop'){
+        }else if (filter_Type == 'Turntablism'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
