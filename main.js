@@ -1,18 +1,22 @@
 var selectedMember = '';
 
+//Hides detail bar at beginning
+let detailBar = d3.select('.hide-detail-bar');
+detailBar.style('display', 'none');
+
+//Handles highlighting selected Member and showing detail bar
 d3.selectAll('.bts-tab')
     .on('click', function(){
     let clickedTab = d3.select(this);
 
     d3.select('.bts-tab.active').classed('active',false);
-    clickedTab.classed('active',true);
+    clickedTab.classed('active', true);
     
     let member = clickedTab.attr('data-member');
     selectedMember = member;
     updateBars(member);
-    if (document.getElementById('hide-me')) {
-        document.getElementById('hide-me').style.display = "none";
-    }
+
+    detailBar.style('display', 'block');
 });
 
 /*
@@ -544,16 +548,12 @@ function search(member) {
         } 
     });
     
-    console.log(data);
     var filterText = d3.select('#search-Input').property('value');
-    console.log(filterText);
     if (filterText !== "") {
         filteredData = data.filter(function(d){
-             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
-         });
-        console.log(member);
+            return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
+        });
     }
-    console.log(filteredData);
     d3.select('.search-hidden').html(filteredData.map(function(a){
         return a.song + "," + a.album;
     }).join("<br/>"));
@@ -561,7 +561,7 @@ function search(member) {
 }
 
 
-/**
+/** USED 'btssort' AS NAME BECAUSE sort() IS A NATIVE JS FUNCTION
  * Function that handles the sorting.
  * This is the function that is called when the element is clicked in the UI
  * 
