@@ -102,29 +102,29 @@
         <div class="hide-detail-bar">
             <div class="detail-bar">
                 <span class="filter">
-                    <button id="filter-button">Select a Filter</button>
+                    <button id = "filter-button">Select a Filter</button>
                     <div class="filter-hidden">
                         <div class="album-container">
                             <button id="album-button">Album</button>
                             <div class="album-hidden">
-                                <button class="album" onclick="filter(this.innerHTML)">2 Cool 4 Skool</button>
-                                <button class="album" onclick="filter(this.innerHTML)">O!RUL8,2?</button>
-                                <button class="album" onclick="filter(this.innerHTML)">Skool Luv Affair</button>
-                                <button class="album" onclick="filter(this.innerHTML)">Skool Luv Affair (Special Edition)</button>
-                                <button class="album" onclick="filter('Dark & Wild')">Dark & Wild</button>
-                                <button class="album" onclick="filter(this.innerHTML)">The Most Beautiful Moment in Life Pt.1</button>
-                                <button class="album" onclick="filter(this.innerHTML)">The Most Beautiful Moment in Life Pt.2</button>
-                                <button class="album" onclick="filter(this.innerHTML)">The Most Beautiful Moment in Life: Young Forever</button>
-                                <button class="album" onclick="filter(this.innerHTML)">Wings</button>
-                                <button class="album" onclick="filter(this.innerHTML)">You Never Walk Alone</button>
-                                <button class="album" onclick="filter(this.innerHTML)">LOVE YOURSELF 承 'Her'</button>
-                                <button class="album" onclick="filter(this.innerHTML)">LOVE YOURSELF 轉 'Tear'</button>
-                                <button class="album" onclick="filter(this.innerHTML)">LOVE YOURSELF 結 'Answer'</button>
-                                <button class="album" onclick="filter(this.innerHTML)">MAP OF THE SOUL: PERSONA</button>
-                                <button class="album" onclick="filter(this.innerHTML)">RM</button>
-                                <button class="album" onclick="filter(this.innerHTML)">mono.</button>
-                                <button class="album" onclick="filter(this.innerHTML)">Agust D</button>
-                                <button class="album" onclick="filter(this.innerHTML)">Hope World</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2 Cool 4 Skool</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">O!RUL8,2?</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Skool Luv Affair</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Skool Luv Affair (Special Edition)</button>
+                                <button class="album" onclick="filter('Dark & Wild'),replaceButtonText('filter-button', 'Dark & Wild')">Dark & Wild</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">The Most Beautiful Moment in Life Pt.1</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">The Most Beautiful Moment in Life Pt.2</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">The Most Beautiful Moment in Life: Young Forever</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Wings</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">You Never Walk Alone</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">LOVE YOURSELF 承 'Her'</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">LOVE YOURSELF 轉 'Tear'</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">LOVE YOURSELF 結 'Answer'</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">MAP OF THE SOUL: PERSONA</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">RM</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">mono.</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Agust D</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Hope World</button>
                             </div>
                         </div>
 
@@ -132,34 +132,34 @@
                         <div class="genre-container">
                             <button id="genre-button">Genre</button>
                             <div class="genre-hidden">
-                                <button class="genre" onclick="filter(this.innerHTML)">Ambient</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Ballad</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Blues</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Dance</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">EDM</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Electropop</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Emo Hip-Hop</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Funk</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Future-Bass</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">G-Funk</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Hip-Hop</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">House</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Indie</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Jazz</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Latin-Pop</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Moombahton</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">None</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Neo-Soul</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Nu-disco</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Pop</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Punk-Rock</button>
-                                <button class="genre" onclick="filter('R&B')">R&B</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Reggaeton</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Rock</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Samul-nori</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Trap</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Tropical-House</button>
-                                <button class="genre" onclick="filter(this.innerHTML)">Turntablism Hip-Hop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Ambient</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Ballad</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Blues</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Dance</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">EDM</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Electropop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Emo Hip-Hop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Funk</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Future-Bass</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">G-Funk</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Hip-Hop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">House</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Indie</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Jazz</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Latin-Pop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Moombahton</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">None</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Neo-Soul</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Nu-disco</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Pop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Punk-Rock</button>
+                                <button class="genre" onclick="filter('R&B'),replaceButtonText('filter-button', 'R&B')">R&B</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Reggaeton</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Rock</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Samul-nori</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Trap</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Tropical-House</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Turntablism Hip-Hop</button>
 
                             </div>
                         </div>
@@ -167,23 +167,23 @@
                         <div class="year-container">
                             <button id="year-button">Year of Release</button>
                             <div class="year-hidden">
-                                <button class="year" onclick="filter(this.innerHTML)">2013</button>
-                                <button class="year" onclick="filter(this.innerHTML)">2014</button>
-                                <button class="year" onclick="filter(this.innerHTML)">2015</button>
-                                <button class="year" onclick="filter(this.innerHTML)">2016</button>
-                                <button class="year" onclick="filter(this.innerHTML)">2017</button>
-                                <button class="year" onclick="filter(this.innerHTML)">2018</button>
-                                <button class="year" onclick="filter(this.innerHTML)">2019</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2013</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2014</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2015</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2016</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2017</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2018</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2019</button>
                             </div>
                         </div>
 
                         <div class="contribution-container">
                             <button id="contribution-button">Contribution</button>
                             <div class="contribution-hidden">
-                                <button class="contribution" onclick="filter(this.innerHTML)">25%</button>
-                                <button class="contribution" onclick="filter(this.innerHTML)">50%</button>
-                                <button class="contribution" onclick="filter(this.innerHTML)">75%</button>
-                                <button class="contribution" onclick="filter(this.innerHTML)">100%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">25%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">50%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">75%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">100%</button>
                             </div>
                         </div>
                     </div>
@@ -192,12 +192,12 @@
                 <span class="sort">
                     <button id="sort-button">Select a Sort</button>
                     <div class="sort-hidden">
-                        <button onclick="btssort(this.innerHTML)">▲ Alphabetically</button>
-                        <button onclick="btssort(this.innerHTML)">▲ Year of Release</button>
-                        <button onclick="btssort(this.innerHTML)">▲ Contribution %</button>
-                        <button onclick="btssort(this.innerHTML)">▼ Alphabetically</button>
-                        <button onclick="btssort(this.innerHTML)">▼ Year of Release</button>
-                        <button onclick="btssort(this.innerHTML)">▼ Contribution %</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▲ Alphabetically</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▲ Year of Release</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▲ Contribution %</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Alphabetically</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Year of Release</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Contribution %</button>
                     </div>
                 </span>
 
