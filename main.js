@@ -597,6 +597,41 @@ function btssort(value) {
     renderBars(finalData, member);
 }
 
+function genereFilter(genere_type) {
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+            
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+    
+        if (sum > 0 && (gener1 == filter_Type || genre2 == filter_Type || genere3 == filter_Type)){
+            filter_data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                    }
+                )
+            }
+    })
+    return
+}
+
 function filter(value) {
     //array to hold 
     let filter_data = [];
@@ -624,7 +659,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)){
                     filter_data.push(
                         {
                             "member": member,
@@ -656,7 +691,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -688,7 +723,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -720,7 +755,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -752,7 +787,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -784,7 +819,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -816,7 +851,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -848,7 +883,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -864,7 +899,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Future-Bass'){
+        }else if (filter_Type == 'Future Bass'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -880,7 +915,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -912,7 +947,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -944,7 +979,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -976,7 +1011,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1008,7 +1043,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1040,7 +1075,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1056,7 +1091,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Latin-Pop'){
+        }else if (filter_Type == 'Latin Pop'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1072,7 +1107,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1104,7 +1139,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1120,7 +1155,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'none'){
+        }else if (filter_Type == 'NONE'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1136,7 +1171,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1168,7 +1203,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1200,7 +1235,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1232,7 +1267,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1248,7 +1283,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Punk-Rock'){
+        }else if (filter_Type == 'Punk Rock'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1264,7 +1299,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1296,7 +1331,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1328,7 +1363,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1360,7 +1395,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1376,7 +1411,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Samul-nori'){
+        }else if (filter_Type == 'Samul nori'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1392,7 +1427,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1424,7 +1459,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1440,7 +1475,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Tropical-House'){
+        }else if (filter_Type == 'Tropical House'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1456,7 +1491,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
@@ -1472,7 +1507,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'Turntablism'){
+        }else if (filter_Type == 'Turntablism Hip-Hop'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
@@ -1488,7 +1523,7 @@ function filter(value) {
                     sum += contribution;
                 }
             
-                if (sum > 0 && genre1 == filter_Type) {
+                if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)) {
                     filter_data.push(
                         {
                             "member": member,
