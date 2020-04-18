@@ -36,17 +36,12 @@ function renderBars(data, member) {
 
     // Append p for each song name, class them to reference later
     var pEnter = enter.append('p')
-        .attr('class', 'song-name')
-        .attr('class', function(d, i) {
-            if (i == 0) {
-                return "first";
-            }
-        });
-
-    // let testPicture = enter.append('div')
-    //     .text('test')
-    //     .style('position', 'relative')
-    //     .style('left', '0px');
+        .attr('class', 'song-name');
+//        .attr('class', function(d, i) {
+//            if (i == 0) {
+//                return "first";
+//            }
+//        });
 
     // Append a div to create the contribution-bar structure
     var fillEnter = enter.append('div')
