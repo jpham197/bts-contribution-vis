@@ -236,8 +236,8 @@ img:hover {
 
 @media screen and (min-width: 720px) {
     .bts-contribution {
-        width: 35%; /* Two blocks on one row */
-        margin: 10px 15px 16px 15px;
+        width: 30%; /* Two blocks on one row */
+/*        margin: 10px 15px 16px 15px;*/
     }
 }
 
@@ -263,9 +263,9 @@ img:hover {
 .bts-contribution {
     /*    font-family: "Open Sans";*/
     display: inline-block;
-    margin-left: 220px;
+    margin-left: 230px;
     margin-right: 0px;
-    margin-top: 5pxl
+    margin-top: 5px;
         /*    font: 12px sans-serif;*/
 }
 
