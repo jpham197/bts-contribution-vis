@@ -459,8 +459,6 @@ function colorBox(member, flag) {
     return colorChosen;
 }
 
-
-
 /**
  * CURRENTLY UNUSED
  * 
@@ -504,6 +502,62 @@ function calculateMax(song) {
     }
 
     return possibleContribution;
+}
+
+//Search Functionality
+search(selectedMember);
+d3.select('#search-Input').on('input', function() {
+    search(selectedMember);
+});
+
+
+/**
+ * Function for Searching through the interface. 
+ * Users define an input that can search 
+ * either a song or album name.
+ * 
+ * @param {String} value the text in the input that was typed by the user
+ */
+function search(member) {
+    let data = [];
+    let filteredData = [];
+    
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+        
+        if (sum != 0) {
+            data.push({
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "album": album 
+                });
+        } 
+    });
+    
+    console.log(data);
+    var filterText = d3.select('#search-Input').property('value');
+    console.log(filterText);
+    if (filterText !== "") {
+        filteredData = data.filter(function(d){
+             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
+         });
+        console.log(member);
+    }
+    console.log(filteredData);
+    d3.select('.search-hidden').html(filteredData.map(function(a){
+        return a.song + "," + a.album;
+    }).join("<br/>"));
+    renderBars(filteredData, member);
 }
 
 
