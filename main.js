@@ -1155,7 +1155,7 @@ function filter(value) {
                         )
                     }
                 })
-        }else if (filter_Type == 'NONE'){
+        }else if (filter_Type == 'None'){
             new_bts_object.forEach(dataRow => {
                 let song = dataRow.Song;
                 let album = dataRow.Album;
