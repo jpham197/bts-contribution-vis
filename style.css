@@ -171,18 +171,25 @@ img:hover {
 .bts-contribution {
     font-family: "Open Sans";
     display: inline-block;
+<<<<<<< Updated upstream
     margin-left: 100px;
+=======
+    margin-left: 140px;
+    margin-bottom: 40px;
+/*    font: 12px sans-serif;*/
+>>>>>>> Stashed changes
 }
 
 .contribution-bar {
     display: block;
     position: relative;
 /*    background-color: #c8dfff;*/
-    height: 70px;
+    height: 50px;
+    width: 300px;
     border-radius: 15px;
     margin-top: 8px;
     margin-bottom: 8px;
-    margin-left: 16px;
+    margin-left: 120px;
 }
 
 .contribution-bar-fill {
@@ -358,11 +365,16 @@ img:hover {
 }
 
 .search-hidden {
-    display: none;
+    display: block;
     position: absolute;
     min-width: 160px;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    text-align: center;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    background-color: #F8E0EC;
+    font-size: 11.5px;
     z-index: 3;
+    
 }
 
 .search:focus .search-hidden {

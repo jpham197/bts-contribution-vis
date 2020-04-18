@@ -484,8 +484,6 @@ function colorBox(member, flag) {
     return colorChosen;
 }
 
-
-
 /**
  * CURRENTLY UNUSED
  * 
@@ -531,6 +529,64 @@ function calculateMax(song) {
     return possibleContribution;
 }
 
+<<<<<<< HEAD
+//Search Functionality
+search(selectedMember);
+d3.select('#search-Input').on('input', function() {
+    search(selectedMember);
+});
+
+
+/**
+ * Function for Searching through the interface. 
+ * Users define an input that can search 
+ * either a song or album name.
+ * 
+ * @param {String} value the text in the input that was typed by the user
+ */
+function search(member) {
+    let data = [];
+    let filteredData = [];
+    
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+        
+        if (sum != 0) {
+            data.push({
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "album": album 
+                });
+        } 
+    });
+    
+    console.log(data);
+    var filterText = d3.select('#search-Input').property('value');
+    console.log(filterText);
+    if (filterText !== "") {
+        filteredData = data.filter(function(d){
+             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
+         });
+        console.log(member);
+    }
+    console.log(filteredData);
+    d3.select('.search-hidden').html(filteredData.map(function(a){
+        return a.song + "," + a.album;
+    }).join("<br/>"));
+    renderBars(filteredData, member);
+}
+
+
 /**
  * Function that handles the filtering.
  * This is the function that is called when the element is clicked in the UI
@@ -540,6 +596,8 @@ function calculateMax(song) {
 function filter(value) {
     console.log(value);
 }
+=======
+>>>>>>> 1e7a7a108340b93945489c2d96c6ceb9ba9e6859
 
 /**
  * Function that handles the sorting.
@@ -594,9 +652,318 @@ function search(member) {
          });
         console.log(member);
     }
+<<<<<<< Updated upstream
     console.log(filteredData);
 //    d3.select('search-hidden').html(filteredData.map(function(d){
 //        return d.song;
 //    }).join("<br/>"));
     
+=======
+    console.log(finalData);
+    renderBars(finalData, member);
+}
+
+/**
+ * Helper Function that handles the genre filtering.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked
+ */
+function genreFilter(value) {
+    let filter_data = [];
+    let filter_Type = value;
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+            
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+    
+        if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)){
+            filter_data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                    }
+                )
+            }
+    })
+    return filter_data;
+}
+/**
+ * Helper Function that handles the year filtering.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked
+ */
+
+function yearFilter(value) {
+    let filter_data = [];
+    let filter_Type = value;
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+            
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+    
+        if (sum > 0 && year == filter_Type){
+            filter_data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                    }
+                )
+            }
+    })
+    return filter_data;
+}
+
+/**
+ * Helper Function that handles the percent filtering.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked
+ */
+function percentFilter(value) {
+    let filter_data = [];
+    let filter_Type = value;
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+            
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+    
+        if (sum > 0 && sum == filter_Type){
+            filter_data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                    }
+                )
+            }
+    })
+    return filter_data;
+}
+/**
+ * Helper Function that handles the album filtering.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked
+ */
+function albumFilter(value) {
+    let filter_data = [];
+    let filter_Type = value;
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+            
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+    
+        if (sum > 0 && album == filter_Type){
+            filter_data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                    }
+                )
+            }
+    })
+    return filter_data;
+}
+/**
+ * Function that handles the filtering.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {String} value the text in the button that was clicked
+ */
+function filter(value) {
+    //array to hold 
+    let filter_data = [];
+    let filter_Type = value;
+    member = selectedMember;
+    /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+
+    if (filter_Type == 'Ambient'){
+            filter_data = genreFilter("Ambient");
+        }else if (filter_Type == 'Ballad'){
+            filter_data = genreFilter("Ballad");
+        }else if (filter_Type == 'Blues'){
+            filter_data = genreFilter("Blues");
+        }else if (filter_Type == 'Dance'){
+            filter_data = genreFilter("Dance");
+        }else if (filter_Type == 'EDM'){
+            filter_data = genreFilter("EDM");
+        }else if (filter_Type == 'Electropop'){
+            filter_data = genreFilter("Electropop");
+        }else if (filter_Type == 'Emo Hip-Hop'){
+            filter_data = genreFilter("Emo Hip-Hop");
+        }else if (filter_Type == 'Funk'){
+            filter_data = genreFilter("Funk");
+        }else if (filter_Type == 'Future-Bass'){
+            filter_data = genreFilter("Future-Bass");
+        }else if (filter_Type == 'G-Funk'){
+            filter_data = genreFilter("G-Funk");
+        }else if (filter_Type == 'Hip-Hop'){
+            filter_data = genreFilter("Hip-Hop");
+        }else if (filter_Type == 'House'){
+            filter_data = genreFilter("House");
+        }else if (filter_Type == 'Indie'){
+            filter_data = genreFilter("Indie");
+        }else if (filter_Type == 'Jazz'){
+            filter_data = genreFilter("Jazz");
+        }else if (filter_Type == 'Latin-Pop'){
+            filter_data = genreFilter('Latin-Pop');
+        }else if (filter_Type == 'Moombahton'){
+            filter_data = genreFilter("Moombahton");
+        }else if (filter_Type == 'None'){
+            filter_data = genreFilter("None");
+        }else if (filter_Type == 'Neo-Soul'){
+            filter_data = genreFilter("Neo-Soul");
+        }else if (filter_Type == 'Nu-disco'){
+            filter_data = genreFilter("Nu-disco");
+        }else if (filter_Type == 'Pop'){
+            filter_data = genreFilter("Pop");
+        }else if (filter_Type == 'Punk-Rock'){
+            filter_data = genreFilter("Punk-Rock");
+        }else if (filter_Type == 'R&B'){
+            filter_data = genreFilter("R&B");
+        }else if (filter_Type == 'Reggaeton'){
+            filter_data = genreFilter('Reggaeton');
+        }else if (filter_Type == 'Rock'){
+            filter_data = genreFilter("Rock");
+        }else if (filter_Type == 'Samul-nori'){
+            filter_data = genreFilter("Samul-nori");
+        }else if (filter_Type == 'Trap'){
+            filter_data = genreFilter("Trap");
+        }else if (filter_Type == 'Tropical-House'){
+            filter_data = genreFilter('Tropical-House');
+        }else if (filter_Type == 'Turntablism Hip-Hop'){
+            filter_data = genreFilter('Tropical-House');
+        }else if (filter_Type == '2013'){
+            filter_data = yearFilter('2013');
+        }else if (filter_Type == '2014'){
+            filter_data = yearFilter('2014');
+        }else if (filter_Type == '2015'){
+            filter_data = yearFilter('2015');
+        }else if (filter_Type == '2016'){
+            filter_data = yearFilter('2016');
+        }else if (filter_Type == '2017'){
+            filter_data = yearFilter('2017');
+        }else if (filter_Type == '2018'){
+            filter_data = yearFilter('2018');
+        }else if (filter_Type == '2019'){
+            filter_data = yearFilter('2019');
+        }else if (filter_Type == '25%'){
+            filter_data = percentFilter('1');
+        }else if (filter_Type == '50%'){
+            filter_data = percentFilter('2');
+        }else if (filter_Type == '75%'){
+            filter_data = percentFilter('3');
+        }else if (filter_Type == '100%'){
+            filter_data = percentFilter('4');
+        }else if (filter_Type == '2 Cool 4 Skool'){
+            filter_data = albumFilter('2 Cool 4 Skool');
+        }else if (filter_Type == 'O!RUL8,2?'){
+            filter_data = albumFilter('O!RUL8,2?');
+        }else if (filter_Type == 'Skool Luv Affair'){
+            filter_data = albumFilter('Skool Luv Affair');
+        }else if (filter_Type == 'Skool Luv Affair (Special Edition)'){
+            filter_data = albumFilter('Skool Luv Affair (Special Edition)');
+        }else if (filter_Type == 'Dark & Wild'){
+            filter_data = albumFilter('Dark & Wild');
+        }else if (filter_Type == 'The Most Beautiful Moment in Life Pt.1'){
+            filter_data = albumFilter('The Most Beautiful Moment in Life Pt.1');
+        }else if (filter_Type == 'The Most Beautiful Moment in Life Pt.2'){
+            filter_data = albumFilter('The Most Beautiful Moment in Life Pt.2');
+        }else if (filter_Type == 'The Most Beautiful Moment in Life: Young Forever'){
+            filter_data = albumFilter('The Most Beautiful Moment in Life: Young Forever');
+        }else if (filter_Type == 'Wings'){
+            filter_data = albumFilter('Wings');
+        }else if (filter_Type == 'You Never Walk Alone'){
+            filter_data = albumFilter('You Never Walk Alone')
+        }else if (filter_Type == "LOVE YOURSELF 承 'Her'"){
+            filter_data = albumFilter("LOVE YOURSELF 承 'Her'")
+        }else if (filter_Type == "LOVE YOURSELF 轉 'Tear'"){
+            filter_data = albumFilter("LOVE YOURSELF 轉 'Tear'")
+        }else if (filter_Type == "LOVE YOURSELF 結 'Answer'"){
+            filter_data = albumFilter("LOVE YOURSELF 結 'Answer'")
+        }else if (filter_Type == 'MAP OF THE SOUL: PERSONA'){
+            filter_data = albumFilter('MAP OF THE SOUL: PERSONA')
+        }else if (filter_Type == 'RM'){
+            filter_data = albumFilter('RM')
+        }else if (filter_Type == 'mono.'){
+            filter_data = albumFilter('mono.')
+        }else if (filter_Type == 'Agust D'){
+            filter_data = albumFilter('Agust D')
+        }else if (filter_Type == 'Hope World'){
+            filter_data = albumFilter('Hope World')
+        }
+    renderBars(filter_data, member);
+>>>>>>> Stashed changes
 }
