@@ -1,4 +1,5 @@
 var selectedMember = '';
+let finalData = [];
 
 //Hides detail bar at beginning
 let detailBar = d3.select('.hide-detail-bar');
@@ -530,11 +531,15 @@ d3.select('#search-Input').on('input', function() {
  */
 function search(member) {
     let data = [];
-    let filteredData = [];
+    //let finalData = [];
     
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
         let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
 
         let member_contribution = calculateContribution(member, dataRow);
         let albumPath = connectAlbumPath(album);
@@ -556,14 +561,14 @@ function search(member) {
     
     var filterText = d3.select('#search-Input').property('value');
     if (filterText !== "") {
-        filteredData = data.filter(function(d){
+        finalData = data.filter(function(d){
             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
         });
     }
-//    d3.select('.search-hidden').html(filteredData.map(function(a){
+//    d3.select('.search-hidden').html(finalData.map(function(a){
 //        return a.song + "," + a.album;
 //    }).join("<br/>"));
-    renderBars(filteredData, member);
+    renderBars(finalData, member);
 }
 
 
@@ -617,7 +622,7 @@ function btssort(value) {
         }
     });
 
-    let finalData = [];
+    //let finalData = [];
     console.log(sortType);
     if (sortType == 'Alphabetically') {
         finalData = data.sort(function(a, b) {
