@@ -93,12 +93,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, vocal_flag))
-                    .text(member + " contributed Vocally to the song");
+                    .text(member + " contributed Vocally to this song");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in writing this song");
+                    .text(member + " didn't contribute Vocally to this song");
             }
         })
         .on('mouseout', function(d){
@@ -135,12 +135,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, write_flag))
-                    .text(member + " contributed in writing this song");
+                    .text(member + " contributed in Writing this song");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in writing this song");
+                    .text(member + " didn't contribute in Writing this song");
             }
         })
         .on('mouseout', function(d){
@@ -176,12 +176,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, compose_flag))
-                    .text(member + " contributed in composing this song");
+                    .text(member + " contributed in Composing this song");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in composing this song");
+                    .text(member + " didn't contribute in Composing this song");
             }
         })
         .on('mouseout', function(d){
@@ -217,12 +217,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, produce_flag))
-                    .text(member + " contributed in producing this song");
+                    .text(member + " contributed in Producing this song");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in producing this song");
+                    .text(member + " didn't contribute in Producing this song");
             }
         })
         .on('mouseout', function(d){
@@ -549,9 +549,9 @@ function search(member) {
             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
         });
     }
-    d3.select('.search-hidden').html(filteredData.map(function(a){
-        return a.song + "," + a.album;
-    }).join("<br/>"));
+//    d3.select('.search-hidden').html(filteredData.map(function(a){
+//        return a.song + "," + a.album;
+//    }).join("<br/>"));
     renderBars(filteredData, member);
 }
 
