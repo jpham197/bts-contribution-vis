@@ -183,6 +183,15 @@ img:hover {
     }
 }
 
+#filter-button {
+    background-color: #F8E0EC;
+}
+#sort-button {
+    background-color: #F8E0EC;
+}
+.album {
+    background-color: #F8E0EC;
+}
 
 .song-name {
     margin: 2px 6px;
@@ -300,7 +309,8 @@ img:hover {
 .sort-hidden > button {
     display: block;
     min-width: 160px;
-    background-color: #fff;
+/*    background-color: #fff;*/
+    background-color: #F8E0EC;
     border: none;
     padding: 6px 0;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
@@ -343,7 +353,7 @@ img:hover {
 #genre-button:hover,
 #year-button:hover,
 #contribution-button:hover {
-    color: red;
+    color: lightcoral;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 /*    font-family: cursive;*/
 }
@@ -363,7 +373,7 @@ img:hover {
 .year,
 .contribution {
     min-width: 160px;
-    background-color: #fff;
+    background-color: #FBEFF5;
     border: none;
     padding: 6px 0;
     
@@ -374,7 +384,7 @@ img:hover {
 .year:hover,
 .contribution:hover {
     min-width: 160px;
-    color:red;
+    color: lightcoral;
 }
 
 .search > input {
@@ -383,7 +393,7 @@ img:hover {
 }
 
 .sort-hidden > button:hover {
-    color: red;
+    color: lightcoral;
 }
 
 .box-hover-text {
