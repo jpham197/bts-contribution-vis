@@ -4,11 +4,11 @@
     z-index: 2;
     border: 2px solid black; */
 
-    width: 80px;
-    height: 80px;
+    width: 62px;
+    height: 62px;
     position: absolute;
     left: -6.5em;
-    top: -0.5em;
+    top: -1;
     background-size: cover;
     border: 2px solid black;
 }
@@ -26,7 +26,7 @@
     padding: 2px;	
     width: 150px;
     position: relative;
-    top: -50px;
+    top: -70px;
     background: lightsteelblue;			
     border-radius: 8px;	
     background: lightcoral;
@@ -195,14 +195,20 @@ img:hover {
 }
 
 .song-name {
+/*
     margin: 2px 6px;
     font-size: 12px;
+*/
+    width: 300px;
+    margin-left: 70px
 }
 
 .bts-contribution {
 /*    font-family: "Open Sans";*/
     display: inline-block;
-    margin-left: 180px;
+    margin-left: 220px;
+    margin-right: 0px;
+    margin-top: 5pxl
 /*    font: 12px sans-serif;*/
 }
 
@@ -274,6 +280,7 @@ img:hover {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+    margin-bottom: 30px;
 }
 
 .detail-bar > span > button {
