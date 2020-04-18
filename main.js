@@ -85,7 +85,7 @@ function renderBars(data, member) {
     //.transition().duration(1000)
     let vocal_box = fillEnter.append('span')
         .attr('class', 'vocal')
-        .style('background-color', 'none')  // set background-color to none as first state
+        .style('background-color', 'white')  // set background-color to white as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('text', true);
@@ -127,7 +127,7 @@ function renderBars(data, member) {
     // Write box
     let write_box = fillEnter.append('span')
         .attr('class', 'write')
-        .style('background-color', 'none')  // set background-color to none as first state
+        .style('background-color', 'white')  // set background-color to white as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -168,7 +168,7 @@ function renderBars(data, member) {
     // Compose box
     let compose_box = fillEnter.append('span')
         .attr('class', 'compose')
-        .style('background-color', 'none')  // set background-color to none as first state
+        .style('background-color', 'white')  // set background-color to white as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -209,7 +209,7 @@ function renderBars(data, member) {
     // Produce box
     let produce_box = fillEnter.append('span')
         .attr('class', 'produce')
-        .style('background-color', 'none')  // set background-color to none as first state
+        .style('background-color', 'white')  // set background-color to white as first state
         .on('mouseover', function(d){
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
