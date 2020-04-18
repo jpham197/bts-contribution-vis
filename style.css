@@ -1,9 +1,57 @@
-.picture {
-    /* position: absolute;
-    left: -5.5em;
-    z-index: 2;
-    border: 2px solid black; */
+.intro-page {
+    /*    align-content: left;*/
+}
+.welcome-text {
+    font-size: 40px;
+    color: #F1A2B4;
+/*    border-style: dotted;*/
+    text-shadow: 2px 2px #ff0000;
+}
 
+.headers {
+    font-size:27px;
+    text-align:center;
+    margin-top: 40px;
+    color:#F1A2B4;
+    text-decoration: underline dotted pink;
+}
+.main-sections p, li{
+    margin-left: 120px;
+    margin-right: 120px;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    text-align: left;
+}
+.group-pic {
+    width: 650px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+/* unvisited link */
+a:link {
+  color: brown;
+}
+
+/* visited link */
+a:visited {
+  color: brown;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: fuchsia;
+}
+
+
+.picture {
     width: 62px;
     height: 62px;
     position: absolute;
@@ -16,7 +64,7 @@
 .detail-text {
     display: block;
     color:black;
-/*    white-space: nowrap;*/
+    /*    white-space: nowrap;*/
     position: relative;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
     font-size: 13px;
@@ -41,7 +89,7 @@
 }
 
 body {
-/*    font-family: Arial, Helvetica, sans-serif;*/
+    /*    font-family: Arial, Helvetica, sans-serif;*/
     margin: 0;
     background-color: #FBF2F2;
 }
@@ -52,10 +100,10 @@ body {
     right: 50%;
     margin-right: -6.5em;
     font-size: 30px;
-/*
+    /*
     transition-duration: 500ms;
-transition-property: margin-right;
-*/
+    transition-property: margin-right;
+    */
 
 }
 
@@ -63,16 +111,12 @@ transition-property: margin-right;
     display: none;
 }
 
-img {
-    width: 70px;
-    border-radius: 50%;
-}
 
 p {
     margin-top: 10px;
     text-align: center;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-/*    font-family: cursive;*/
+    /*    font-family: cursive;*/
 }
 
 #bts-header {
@@ -104,7 +148,8 @@ p {
     margin-left: 25px;
     margin-right: 25px;
     position: relative;
-/*    font: 30 sans-serif;*/
+    /*    font: 30 sans-serif;*/
+
 }
 
 /* Aligns the name tags under the images*/
@@ -121,37 +166,49 @@ p {
 #rm-tab {
     background-image    : url(./img/member-rm.jpg);
     border: 3px solid red;
+    width: 70px;
+    border-radius: 50%;
 }
 #jin-tab {
     background-image    : url(./img/member-jin.jpg);
     border: 3px solid orange;
+    width: 70px;
+    border-radius: 50%;
 }
 #suga-tab {
     background-image    : url(./img/member-suga.jpg);
     border: 3px solid yellow;
+    width: 70px;
+    border-radius: 50%;
 }
 #jhope-tab {
     background-image    : url(./img/member-j-hope.jpg);
     border: 3px solid green;
+    width: 70px;
+    border-radius: 50%;
 }
 #jimin-tab {
     background-image    : url(./img/member-jimin.jpg);
     border: 3px solid pink;
+    width: 70px;
+    border-radius: 50%;
 }
 #v-tab {
     background-image    : url(./img/member-v.jpg);
     border: 3px solid purple;
+    width: 70px;
+    border-radius: 50%;
 }
 #jungkook-tab {
     background-image    : url(./img/member-jungkook.jpg);
     border: 3px solid blue;
+    width: 70px;
+    border-radius: 50%;
 }
-/*
 #group-tab {
-background-image    : url(./img/group-photo.png);
+background-image    : url(./img/group-pic.png);
 border: 3px solid;
 }
-*/
 
 
 .bts-tab:hover {
@@ -195,27 +252,27 @@ img:hover {
 }
 
 .song-name {
-/*
+    /*
     margin: 2px 6px;
     font-size: 12px;
-*/
+    */
     width: 300px;
     margin-left: 70px
 }
 
 .bts-contribution {
-/*    font-family: "Open Sans";*/
+    /*    font-family: "Open Sans";*/
     display: inline-block;
     margin-left: 220px;
     margin-right: 0px;
     margin-top: 5pxl
-/*    font: 12px sans-serif;*/
+        /*    font: 12px sans-serif;*/
 }
 
 .contribution-bar {
     display: block;
     position: relative;
-/*    background-color: #c8dfff;*/
+    /*    background-color: #c8dfff;*/
     height: 70px;
     width: 400px;
     border-radius: 15px;
@@ -265,11 +322,11 @@ img:hover {
     height: 60px;
     left: 75%;
     top: 0px;
-    
+
 }
 .box_text {
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-/*    font-family: cursive;*/
+    /*    font-family: cursive;*/
     text-align: center;
 }
 
@@ -291,7 +348,7 @@ img:hover {
     font-size: 14px;
     border: 2px solid #000;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-/*    font-family: cursive;*/
+    /*    font-family: cursive;*/
 }
 
 .filter-hidden, .sort-hidden {
@@ -317,12 +374,12 @@ img:hover {
 .sort-hidden > button {
     display: block;
     min-width: 160px;
-/*    background-color: #fff;*/
+    /*    background-color: #fff;*/
     background-color: #F8E0EC;
     border: none;
     padding: 6px 0;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-/*    font-family: cursive;*/
+    /*    font-family: cursive;*/
 }
 
 .album-hidden {
@@ -363,7 +420,7 @@ img:hover {
 #contribution-button:hover {
     color: lightcoral;
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-/*    font-family: cursive;*/
+    /*    font-family: cursive;*/
 }
 
 .album-container:hover
@@ -384,7 +441,7 @@ img:hover {
     background-color: #FBEFF5;
     border: none;
     padding: 6px 0;
-    
+
 }
 
 .album:hover,
@@ -429,7 +486,7 @@ img:hover {
 
 .box-hover-text {
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-/*    font-family: cursive;*/
+    /*    font-family: cursive;*/
     font-size: 13px;
     white-space: nowrap;
     vertical-align: top;

@@ -4,6 +4,10 @@ var selectedMember = '';
 let detailBar = d3.select('.hide-detail-bar');
 detailBar.style('display', 'none');
 
+// Show the Intro page in the begining
+let introPage = d3.select('.intro-page');
+introPage.style('display', 'block');
+
 //Handles highlighting selected Member and showing detail bar
 d3.selectAll('.bts-tab')
     .on('click', function(){
@@ -15,8 +19,15 @@ d3.selectAll('.bts-tab')
     let member = clickedTab.attr('data-member');
     selectedMember = member;
     updateBars(member);
-
+    // Hide the intro page once a member is selected and display the bars
+    if (selectedMember == "BTS") {
+        introPage.style('display', 'block');
+        detailBar.style('display', 'none');
+    } else {
+        introPage.style('display', 'none');
     detailBar.style('display', 'block');
+    }
+    
 });
 
 /*
