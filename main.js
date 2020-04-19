@@ -1,5 +1,6 @@
 var selectedMember = '';
 let finalData = [];
+let processedData;
 
 //Hides detail bar at beginning
 let detailBar = d3.select('.hide-detail-bar');
@@ -29,6 +30,8 @@ d3.selectAll('.bts-tab')
     detailBar.style('display', 'block');
     }
     
+    processedData = processData(member);
+    renderBars(processedData, member);
 });
 
 /*
@@ -111,6 +114,7 @@ function renderBars(data, member) {
         
     // transition animation for box fill
     vocal_box.transition().duration(1000).style('background-color', function(d) {
+        console.log(d);
         if (d.contribution[0] == 1) {
             let vocal_flag = 'vocal';
             return colorBox(member, vocal_flag);
@@ -450,7 +454,7 @@ function colorBox(member, flag) {
 
 
 //Search Functionality
-search(selectedMember);
+// search(selectedMember);
 d3.select('#search-Input').on('input', function() {
     search(selectedMember);
 });
@@ -465,44 +469,22 @@ d3.select('#search-Input').on('input', function() {
  */
 function search(member) {
     let data = [];
-    //let finalData = [];
-    
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
-        
-        if (sum != 0) {
-            data.push({
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "album": album 
-                });
-        } 
-    });
     
     var filterText = d3.select('#search-Input').property('value');
     if (filterText !== "") {
-        finalData = data.filter(function(d){
+        finalData = processedData.filter(function(d){
             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
         });
     }
-//    d3.select('.search-hidden').html(finalData.map(function(a){
-//        return a.song + "," + a.album;
-//    }).join("<br/>"));
-    renderBars(finalData, member);
+    // d3.select('.search-hidden').html(finalData.map(function(a){
+    //     return a.song + "," + a.album;
+    // }).join("<br/>"));
+    processedData = finalData;
+
+    // console.log(processedData);
+    // console.log(finalData);
+
+    renderBars(processedData, member);
 }
 
 
@@ -516,50 +498,13 @@ function btssort(value) {
     let sortAscending = value[0] == '▲' ? true : false;
     let sortType = value.substring(2, value.length);
 
-    //array to hold 
-    let data = [];
     member = selectedMember;
-    /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-        
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-        
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
-
-        if (sum > 0) {
-            data.push(
-                {
-                    "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                }
-            )
-        }
-    });
-
+    
+    console.log(processedData);
+    
     //let finalData = [];
-    console.log(sortType);
     if (sortType == 'Alphabetically') {
-        finalData = data.sort(function(a, b) {
+        finalData = processedData.sort(function(a, b) {
             a = a.song.toString().toUpperCase();
             b = b.song.toString().toUpperCase();
     
@@ -567,12 +512,12 @@ function btssort(value) {
             return sortAscending ? comparison : -comparison;
         });
     } else if (sortType == 'Year of Release') {
-        finalData = data.sort(function(a, b) {    
+        finalData = processedData.sort(function(a, b) {    
             let comparison = a.year - b.year;
             return sortAscending ? comparison : -comparison;
         });
     } else if (sortType == 'Contribution %') {
-        finalData = data.sort(function(a, b) {
+        finalData = processedData.sort(function(a, b) {
             let aScore = 0;
             let bScore = 0;
             for (let i = 0; i < 4; i++) {
@@ -583,8 +528,10 @@ function btssort(value) {
             return sortAscending ? comparison : -comparison;
         });
     }
-    console.log(finalData);
-    renderBars(finalData, member);
+
+    processedData = finalData;
+
+    renderBars(processedData, member);
 }
 
 /**
@@ -596,38 +543,32 @@ function btssort(value) {
 function genreFilter(value) {
     let filter_data = [];
     let filter_Type = value;
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-            
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
-    
-        if (sum > 0 && (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type)){
+    let member = selectedMember;
+
+    processedData.forEach(element => {
+        genre1 = element.genre1;
+        genre2 = element.genre2;
+        genre3 = element.genre3;
+
+        if (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type){
             filter_data.push(
                 {
                     "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                    }
-                )
-            }
-    })
-    return filter_data;
+                    "song": element.song,
+                    "contribution": element.contribution,
+                    "albumPath": element.albumPath,
+                    "year": element.year,
+                    "genre1": element.genre1,
+                    "genre2": element.genre2,
+                    "genre3": element.genre3,
+                    "album": element.album
+                }
+            )
+        }
+    });
+
+    processedData = filter_data;
+    return processedData;
 }
 /**
  * Helper Function that handles the year filtering.
@@ -639,38 +580,29 @@ function genreFilter(value) {
 function yearFilter(value) {
     let filter_data = [];
     let filter_Type = value;
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-            
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
-    
-        if (sum > 0 && year == filter_Type){
+    let member = selectedMember;
+
+    processedData.forEach(element => {
+
+        if (element.year == filter_Type){
             filter_data.push(
                 {
                     "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                    }
-                )
-            }
-    })
-    return filter_data;
+                    "song": element.song,
+                    "contribution": element.contribution,
+                    "albumPath": element.albumPath,
+                    "year": element.year,
+                    "genre1": element.genre1,
+                    "genre2": element.genre2,
+                    "genre3": element.genre3,
+                    "album": element.album
+                }
+            )
+        }
+    });
+
+    processedData = filter_data;
+    return processedData;
 }
 
 /**
@@ -682,38 +614,34 @@ function yearFilter(value) {
 function percentFilter(value) {
     let filter_data = [];
     let filter_Type = value;
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-            
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
+    let member = selectedMember;
+
+    processedData.forEach(element => {
+
         let sum = 0;
-        for (let contribution of member_contribution) {
+        for (let contribution of element.contribution) {
             sum += contribution;
         }
     
-        if (sum > 0 && sum == filter_Type){
+        if (sum == filter_Type){
             filter_data.push(
                 {
-                    "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                    }
-                )
-            }
-    })
-    return filter_data;
+                "member": member,
+                "song": element.song,
+                "contribution": element.contribution,
+                "albumPath": element.albumPath,
+                "year": element.year,
+                "genre1": element.genre1,
+                "genre2": element.genre2,
+                "genre3": element.genre3,
+                "album": element.album
+                }
+            )
+        }
+    });
+
+    processedData = filter_data;
+    return processedData;
 }
 /**
  * Helper Function that handles the album filtering.
@@ -724,38 +652,29 @@ function percentFilter(value) {
 function albumFilter(value) {
     let filter_data = [];
     let filter_Type = value;
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-            
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
+    let member = selectedMember;
+
+    processedData.forEach(element => {
     
-        if (sum > 0 && album == filter_Type){
+        if (element.album == filter_Type){
             filter_data.push(
                 {
                     "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                    }
-                )
-            }
-    })
-    return filter_data;
+                    "song": element.song,
+                    "contribution": element.contribution,
+                    "albumPath": element.albumPath,
+                    "year": element.year,
+                    "genre1": element.genre1,
+                    "genre2": element.genre2,
+                    "genre3": element.genre3,
+                    "album": element.album
+                }
+            )
+        }
+    });
+
+    processedData = filter_data;
+    return processedData;
 }
 /**
  * Function that handles the filtering.
@@ -768,10 +687,6 @@ function filter(value) {
     let filter_data = [];
     let filter_Type = value;
     member = selectedMember;
-    /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
 
     if (filter_Type == 'Ambient'){
             filter_data = genreFilter("Ambient");
@@ -888,6 +803,8 @@ function filter(value) {
         }else if (filter_Type == 'Hope World'){
             filter_data = albumFilter('Hope World')
         }
+
+    
     renderBars(filter_data, member);
 }
 function replaceButtonText(buttonId, text)
@@ -960,3 +877,45 @@ function resetAll() {
     renderBars(data, member);
 }
 
+/**
+ * Converts data into the same format that filter sort and search 
+ */
+function processData(member) {
+    console.log(member);
+    let data = [];
+        /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+
+        data.push(
+            {
+                "member": member,
+                "song": song,
+                "contribution": member_contribution,
+                "albumPath": albumPath,
+                "year": year,
+                "genre1": genre1,
+                "genre2": genre2,
+                "genre3": genre3,
+                "album": album
+            }
+        )
+    });
+
+    return data;
+}
