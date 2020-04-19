@@ -20,7 +20,7 @@ d3.selectAll('.bts-tab')
     let member = clickedTab.attr('data-member');
     selectedMember = member;
     updateBars(member);
-    // Hide the intro page once a member is selected and display the bars
+    // Hide the intro page once a member is selected and display the bars, then show intro page if BTS orbit is selected again
     if (selectedMember == "BTS") {
         introPage.style('display', 'block');
         detailBar.style('display', 'none');
@@ -49,11 +49,6 @@ function renderBars(data, member) {
     // Append p for each song name, class them to reference later
     var pEnter = enter.append('p')
         .attr('class', 'song-name');
-//        .attr('class', function(d, i) {
-//            if (i == 0) {
-//                return "first";
-//            }
-//        });
 
     // Append a div to create the contribution-bar structure
     var fillEnter = enter.append('div')
@@ -85,15 +80,10 @@ function renderBars(data, member) {
             var hovered = d3.select(this);
             hovered.classed('text', false);
             hovered.select('.popup').remove();
-//            hovered.select('text').remove();
-//            hovered.select('text').remove();
-//            hovered.select('text').remove();
         });
 
     // ***************Create the 4 rectangles
     // Vocal box
-    // how to make color animates only
-    //.transition().duration(1000)
     let vocal_box = fillEnter.append('span')
         .attr('class', 'vocal')
         .style('background-color', 'white')  // set background-color to white as first state
@@ -105,12 +95,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, vocal_flag))
-                    .text(member + " contributed Vocally to this song");
+                    .text(member + " contributed in Vocals");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute Vocally to this song");
+                    .text(member + " didn't contribute in Vocals");
             }
         })
         .on('mouseout', function(d){
@@ -147,12 +137,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, write_flag))
-                    .text(member + " contributed in Writing this song");
+                    .text(member + " contributed in Writing");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in Writing this song");
+                    .text(member + " didn't contribute in Writing");
             }
         })
         .on('mouseout', function(d){
@@ -188,12 +178,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, compose_flag))
-                    .text(member + " contributed in Composing this song");
+                    .text(member + " contributed in Composing");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in Composing this song");
+                    .text(member + " didn't contribute in Composing");
             }
         })
         .on('mouseout', function(d){
@@ -229,12 +219,12 @@ function renderBars(data, member) {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, produce_flag))
-                    .text(member + " contributed in Producing this song");
+                    .text(member + " contributed in Producing");
             }else{
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
-                    .text(member + " didn't contribute in Producing this song");
+                    .text(member + " didn't contribute in Producing");
             }
         })
         .on('mouseout', function(d){
@@ -279,18 +269,6 @@ function renderBars(data, member) {
 //                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
 //                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
 //                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
-//        });
-
-// This code shows the percentage. Currently this displays it inside of block, needs to be moved to the end of the block
-//    select.select('.contribution-bar-value').merge(valEnter)
-//        .text(function(d){
-//            return d['contribution'] + '%';
-//        })
-//        .style('padding-left',function(d){
-//            return d['contribution'] > 5 ? 0 : '30px';
-//        })
-//        .style('color',function(d){
-//            return d['contribution'] > 5 ? '#222' : '#fff';
 //        });
 
     select.exit().remove();
@@ -470,50 +448,6 @@ function colorBox(member, flag) {
     return colorChosen;
 }
 
-/**
- * CURRENTLY UNUSED
- * 
- * Contribution max, total member contribution of a song
- * @param {*} song
- * @returns {Integer} total possible contribution to song
- */
-function calculateMax(song) {
-    
-    let possibleContribution = parseInt(song["RM_Voice"]) +
-        + parseInt(song["RM_Write"])
-        + parseInt(song["RM_Compose"])
-        + parseInt(song["RM_Produce"])
-        + parseInt(song["SUGA_Voice"])
-        + parseInt(song["SUGA_Write"])
-        + parseInt(song["SUGA_Compose"])
-        + parseInt(song["SUGA_Produce"])
-        + parseInt(song["J-Hope_Voice"])
-        + parseInt(song["J-Hope_Write"])
-        + parseInt(song["J-Hope_Compose"])
-        + parseInt(song["J-Hope_Produce"])
-        + parseInt(song["Jin_Voice"])
-        + parseInt(song["Jin_Write"])
-        + parseInt(song["Jin_Compose"])
-        + parseInt(song["Jin_Produce"])
-        + parseInt(song["Jimin_Voice"])
-        + parseInt(song["Jimin_Write"])
-        + parseInt(song["Jimin_Compose"])
-        + parseInt(song["Jimin_Produce"])
-        + parseInt(song["V_Voice"])
-        + parseInt(song["V_Write"])
-        + parseInt(song["V_Compose"])
-        + parseInt(song["V_Produce"])
-        + parseInt(song["Jungkook_Voice"])
-        + parseInt(song["Jungkook_Write"])
-        + parseInt(song["Jungkook_Compose"])
-        + parseInt(song["Jungkook_Produce"]);
-
-    if (possibleContribution <= 0) {
-        possibleContribution = 1;
-    }
-
-    return possibleContribution;
-}
 
 //Search Functionality
 search(selectedMember);
@@ -978,3 +912,93 @@ function replaceButtonText(buttonId, text)
     }
   }
 }
+
+function resetFilter() {
+    //array to hold 
+    let data = [];
+        /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+        
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+
+        if (sum > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                }
+            )
+        }
+    });
+
+    renderBars(data, member);
+    
+}
+
+/**
+ * Function that handles the resetting filter and sort together
+ * This is the function that is called when the element is clicked in the UI
+ */
+function resetAll() {
+    //array to hold 
+    let data = [];
+        /*
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
+    new_bts_object.forEach(dataRow => {
+        let song = dataRow.Song;
+        let album = dataRow.Album;
+        let year = dataRow.Year_of_Release;
+        let genre1 = dataRow.Genre1;
+        let genre2 = dataRow.Genre2;
+        let genre3 = dataRow.Genre3;
+        
+        let member_contribution = calculateContribution(member, dataRow);
+        let albumPath = connectAlbumPath(album);
+        let sum = 0;
+        for (let contribution of member_contribution) {
+            sum += contribution;
+        }
+
+        if (sum > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                }
+            )
+        }
+    });
+
+    renderBars(data, member);
+}
+
