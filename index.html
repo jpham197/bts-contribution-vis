@@ -206,13 +206,13 @@
                         <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Contribution %</button>
                     </div>
                 </span>
-                <span>
-                    <button id="reset-all-button" onclick="resetAll(), replaceButtonText('sort-button', 'Select a Sort'), replaceButtonText('filter-button', 'Select a Filter')">Reset Filter & Sort</button>
-                </span>
                 <span class="search">
                     <input type="text" id="search-Input" placeholder="Search by song/album">
                     <div class="search-hidden">
                     </div>
+                </span>
+                <span>
+                    <button id="reset-all-button" onclick="resetAll(), replaceButtonText('sort-button', 'Select a Sort'), replaceButtonText('filter-button', 'Select a Filter'), replaceButtonText('search-Input', 'Search by song/album')">Reset All</button>
                 </span>
             </div>
         </div>
