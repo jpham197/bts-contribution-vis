@@ -20,7 +20,8 @@ The type of contribution considered is relative to how much a member himself can
 ## How to Run Code
 To run the project locally:
 1. Download the project or clone it onto your machine
-2. Start up a local server either by using a text editor extension or a simple python server
+2. ```cd``` into the project folder
+3. Start up a local server either by using a text editor extension or a simple python server
 
 To view the project live: [Click here](https://sandraalsayar.github.io/bts-contribution-vis/)
 
@@ -41,3 +42,7 @@ d3.selectAll('.bts-tab')
         //Operations here
     });
 ```
+
+Member selection and searching was detected via D3's ```on()``` while sort and filter used ```onclick```.
+
+Data was converted from ```.csv``` into ```.json``` via an online converter. Both files are still included in the project regardless.
