@@ -36,6 +36,9 @@ d3.selectAll('.bts-tab')
         prefilteredData = processData(member);
         presearchData = processData(member);
         renderBars(processedData, member);
+        replaceButtonText('filter-button', 'Select a Filter');
+        replaceButtonText('sort-button', 'Select a Sort');
+        console.log();
     });
 
 /*
@@ -462,7 +465,6 @@ d3.select('#search-Input').on('input', function () {
     search(selectedMember);
 });
 
-
 /**
  * Function for Searching through the interface. 
  * Users define an input that can search 
@@ -476,6 +478,10 @@ function search(member) {
         finalData = presearchData.filter(function (d) {
             return (d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
         });
+    }
+
+    if (filterText == "") {
+        finalData = presearchData;
     }
 
     processedData = finalData;
@@ -528,6 +534,7 @@ function btssort(value) {
 
     processedData = finalData;
     prefilteredData = finalData;
+    presearchData = finalData;
 
     renderBars(processedData, member);
 }
@@ -566,6 +573,7 @@ function genreFilter(value) {
     });
 
     processedData = filter_data;
+    presearchData = filter_data;
     return processedData;
 }
 /**
@@ -600,6 +608,7 @@ function yearFilter(value) {
     });
 
     processedData = filter_data;
+    presearchData = filter_data;
     return processedData;
 }
 
@@ -639,6 +648,7 @@ function percentFilter(value) {
     });
 
     processedData = filter_data;
+    presearchData = filter_data;
     return processedData;
 }
 /**
@@ -672,6 +682,7 @@ function albumFilter(value) {
     });
 
     processedData = filter_data;
+    presearchData = filter_data;
     return processedData;
 }
 /**
@@ -833,6 +844,7 @@ function resetAll() {
     processedData = processData(member);
     console.log(processedData)
     renderBars(processedData, member);
+    document.getElementById('search-Input').value = '';
 }
 
 /**
