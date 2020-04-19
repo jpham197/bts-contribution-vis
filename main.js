@@ -859,19 +859,21 @@ dataRow is each actual row from the excel spreadsheet
             sum += contribution;
         }
 
-        data.push(
-            {
-                "member": member,
-                "song": song,
-                "contribution": member_contribution,
-                "albumPath": albumPath,
-                "year": year,
-                "genre1": genre1,
-                "genre2": genre2,
-                "genre3": genre3,
-                "album": album
-            }
-        )
+        if (sum > 0) {
+            data.push(
+                {
+                    "member": member,
+                    "song": song,
+                    "contribution": member_contribution,
+                    "albumPath": albumPath,
+                    "year": year,
+                    "genre1": genre1,
+                    "genre2": genre2,
+                    "genre3": genre3,
+                    "album": album
+                }
+            )
+        }
     });
 
     return data;
