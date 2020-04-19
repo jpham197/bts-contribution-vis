@@ -2,6 +2,7 @@ var selectedMember = '';
 let finalData = [];
 let processedData;
 let prefilteredData;
+let presearchData;
 
 //Hides detail bar at beginning
 let detailBar = d3.select('.hide-detail-bar');
@@ -13,28 +14,29 @@ introPage.style('display', 'block');
 
 //Handles highlighting selected Member and showing detail bar
 d3.selectAll('.bts-tab')
-    .on('click', function(){
-    let clickedTab = d3.select(this);
+    .on('click', function () {
+        let clickedTab = d3.select(this);
 
-    d3.select('.bts-tab.active').classed('active',false);
-    clickedTab.classed('active', true);
-    
-    let member = clickedTab.attr('data-member');
-    selectedMember = member;
-    updateBars(member);
-    // Hide the intro page once a member is selected and display the bars, then show intro page if BTS orbit is selected again
-    if (selectedMember == "BTS") {
-        introPage.style('display', 'block');
-        detailBar.style('display', 'none');
-    } else {
-        introPage.style('display', 'none');
-    detailBar.style('display', 'block');
-    }
-    
-    processedData = processData(member);
-    prefilteredData = processData(member);
-    renderBars(processedData, member);
-});
+        d3.select('.bts-tab.active').classed('active', false);
+        clickedTab.classed('active', true);
+
+        let member = clickedTab.attr('data-member');
+        selectedMember = member;
+        updateBars(member);
+        // Hide the intro page once a member is selected and display the bars, then show intro page if BTS orbit is selected again
+        if (selectedMember == "BTS") {
+            introPage.style('display', 'block');
+            detailBar.style('display', 'none');
+        } else {
+            introPage.style('display', 'none');
+            detailBar.style('display', 'block');
+        }
+
+        processedData = processData(member);
+        prefilteredData = processData(member);
+        presearchData = processData(member);
+        renderBars(processedData, member);
+    });
 
 /*
     Create the contribution bars
@@ -43,13 +45,13 @@ function renderBars(data, member) {
 
     // Delete everything to reload new info - this is a hacky way to do it instead of merging old page and new page
     d3.selectAll('.bts-contribution').remove();
-    
+
     var select = d3.selectAll('.bts-contribution')
         .data(data);
 
     // Append divs for each song, class them to reference later
     var enter = select.enter().append('div')
-        .attr('class','bts-contribution');
+        .attr('class', 'bts-contribution');
 
     // Append p for each song name, class them to reference later
     var pEnter = enter.append('p')
@@ -58,18 +60,18 @@ function renderBars(data, member) {
     // Append a div to create the contribution-bar structure
     var fillEnter = enter.append('div')
         .attr('class', 'contribution-bar');
-    
+
     let album_box = fillEnter.append('div')
-        .style('background-image', function(d) {
+        .style('background-image', function (d) {
             return `url('${d.albumPath}')`;
         })
         .attr('class', 'picture')
-        .on('mouseover', function(d){
+        .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('text', true);
-            
+
             var group = hovered.append('div')
-            .attr('class', 'popup');
+                .attr('class', 'popup');
 
             group.append('text')
                 .attr('class', 'detail-text')
@@ -81,7 +83,7 @@ function renderBars(data, member) {
                 .attr('class', 'detail-text')
                 .text(`Year Released: ${d.year}`);
         })
-        .on('mouseout', function(d){
+        .on('mouseout', function (d) {
             var hovered = d3.select(this);
             hovered.classed('text', false);
             hovered.select('.popup').remove();
@@ -92,7 +94,7 @@ function renderBars(data, member) {
     let vocal_box = fillEnter.append('span')
         .attr('class', 'vocal')
         .style('background-color', 'white')  // set background-color to white as first state
-        .on('mouseover', function(d){
+        .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('text', true);
             if (d.contribution[0] == 1) {
@@ -101,21 +103,21 @@ function renderBars(data, member) {
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, vocal_flag))
                     .text(member + " contributed in Vocals");
-            }else{
+            } else {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
                     .text(member + " didn't contribute in Vocals");
             }
         })
-        .on('mouseout', function(d){
+        .on('mouseout', function (d) {
             var hovered = d3.select(this);
             hovered.classed('text', false);
             hovered.select('text').remove();
         });
-        
+
     // transition animation for box fill
-    vocal_box.transition().duration(1000).style('background-color', function(d) {
+    vocal_box.transition().duration(1000).style('background-color', function (d) {
         if (d.contribution[0] == 1) {
             let vocal_flag = 'vocal';
             return colorBox(member, vocal_flag);
@@ -123,18 +125,18 @@ function renderBars(data, member) {
             return 'white' //none
         }
     })
-        
-    
+
+
     // The V text
     vocal_box.append('p')
         .text('V')
         .attr('class', 'box_text');
-    
+
     // Write box
     let write_box = fillEnter.append('span')
         .attr('class', 'write')
         .style('background-color', 'white')  // set background-color to white as first state
-        .on('mouseover', function(d){
+        .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
             if (d.contribution[1] == 1) {
@@ -143,39 +145,39 @@ function renderBars(data, member) {
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, write_flag))
                     .text(member + " contributed in Writing");
-            }else{
+            } else {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
                     .text(member + " didn't contribute in Writing");
             }
         })
-        .on('mouseout', function(d){
+        .on('mouseout', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', false);
             hovered.select('text').remove();
         });
-    
+
     // transition animation for box fill
-    write_box.transition().duration(1000).style('background-color', function(d) {
-            if (d.contribution[1] == 1) {
-                let write_flag = 'write';
-                return colorBox(member, write_flag);
-            } else {
-                return 'white'
-            }
-        });
-    
+    write_box.transition().duration(1000).style('background-color', function (d) {
+        if (d.contribution[1] == 1) {
+            let write_flag = 'write';
+            return colorBox(member, write_flag);
+        } else {
+            return 'white'
+        }
+    });
+
     // The W text
     write_box.append('p')
         .text('W')
         .attr('class', 'box_text');
-    
+
     // Compose box
     let compose_box = fillEnter.append('span')
         .attr('class', 'compose')
         .style('background-color', 'white')  // set background-color to white as first state
-        .on('mouseover', function(d){
+        .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
             if (d.contribution[2] == 1) {
@@ -184,39 +186,39 @@ function renderBars(data, member) {
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, compose_flag))
                     .text(member + " contributed in Composing");
-            }else{
+            } else {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
                     .text(member + " didn't contribute in Composing");
             }
         })
-        .on('mouseout', function(d){
+        .on('mouseout', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', false);
             hovered.select('text').remove();
         });
-    
+
     // transition animation for box fill
-    compose_box.transition().duration(1000).style('background-color', function(d) {
-            if (d.contribution[2] == 1) {
-                let compose_flag = 'compose';
-                return colorBox(member, compose_flag);
-            } else {
-                return 'white'
-            }
-        });
-    
+    compose_box.transition().duration(1000).style('background-color', function (d) {
+        if (d.contribution[2] == 1) {
+            let compose_flag = 'compose';
+            return colorBox(member, compose_flag);
+        } else {
+            return 'white'
+        }
+    });
+
     // The C text
     compose_box.append('p')
         .text('C')
         .attr('class', 'box_text');
-    
+
     // Produce box
     let produce_box = fillEnter.append('span')
         .attr('class', 'produce')
         .style('background-color', 'white')  // set background-color to white as first state
-        .on('mouseover', function(d){
+        .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
             if (d.contribution[3] == 1) {
@@ -225,21 +227,21 @@ function renderBars(data, member) {
                     .attr('class', 'box-hover-text')
                     .style('color', colorBox(member, produce_flag))
                     .text(member + " contributed in Producing");
-            }else{
+            } else {
                 hovered.append('text')
                     .attr('class', 'box-hover-text')
                     .style('color', 'black')
                     .text(member + " didn't contribute in Producing");
             }
         })
-        .on('mouseout', function(d){
+        .on('mouseout', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', false);
             hovered.select('text').remove();
         });
-    
+
     // transition animation for box fill
-    produce_box.transition().duration(1000).style('background-color', function(d) {
+    produce_box.transition().duration(1000).style('background-color', function (d) {
         if (d.contribution[3] == 1) {
             let produce_flag = 'produce';
             return colorBox(member, produce_flag);
@@ -247,34 +249,34 @@ function renderBars(data, member) {
             return 'white';
         }
     });
-    
+
     // The P text
     produce_box.append('p')
         .text('P')
         .attr('class', 'box_text');
-    
+
     // Merge the .song-name on screen elements with the newly created ones, and update song name
     select.select('.song-name').merge(pEnter)
-        .text(function(d){
+        .text(function (d) {
             return d['song'];
         });
 
 
-    
+
     // Merge the .contribution-bar-fill on screen elements with the newly created ones, and update width
-//    select.select('.contribution-bar-fill').merge(fillEnter)
-//        .style('width', function(d){
-//            return 'calc(' + d['contribution'] + '% - 10px)';
-//        })
-//        .style('background-image', function(d){ if (member == 'RM') {return 'linear-gradient(to right, #B40404, #FE2E2E)';}
-//                            else if (member == 'Jin') {return 'linear-gradient(to right, #B43104, #FE642E)';}
-//                            else if (member == 'SUGA') {return 'linear-gradient(to right, #868A08, #F7D358)';}
-//                            else if (member == 'J-Hope') {return 'linear-gradient(to right, #088A08, #00FF00)';}
-//                            else if (member == 'Jimin') {return 'linear-gradient(to right, #B4045F, #FE2E9A)';}
-//                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
-//                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
-//                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
-//        });
+    //    select.select('.contribution-bar-fill').merge(fillEnter)
+    //        .style('width', function(d){
+    //            return 'calc(' + d['contribution'] + '% - 10px)';
+    //        })
+    //        .style('background-image', function(d){ if (member == 'RM') {return 'linear-gradient(to right, #B40404, #FE2E2E)';}
+    //                            else if (member == 'Jin') {return 'linear-gradient(to right, #B43104, #FE642E)';}
+    //                            else if (member == 'SUGA') {return 'linear-gradient(to right, #868A08, #F7D358)';}
+    //                            else if (member == 'J-Hope') {return 'linear-gradient(to right, #088A08, #00FF00)';}
+    //                            else if (member == 'Jimin') {return 'linear-gradient(to right, #B4045F, #FE2E9A)';}
+    //                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
+    //                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
+    //                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
+    //        });
 
     select.exit().remove();
 }
@@ -302,7 +304,7 @@ function updateBars(member) {
         let genre1 = dataRow.Genre1;
         let genre2 = dataRow.Genre2;
         let genre3 = dataRow.Genre3;
-        
+
         let member_contribution = calculateContribution(member, dataRow);
         let albumPath = connectAlbumPath(album);
         let sum = 0;
@@ -338,7 +340,7 @@ function updateBars(member) {
  * @returns {String} the path to the album image
  */
 function connectAlbumPath(album) {
-    switch(album) {
+    switch (album) {
         case "2 Cool 4 Skool":
             return 'img/album pics/2Cool4Skool_albumcover.jpg';
         case "Agust D":
@@ -404,13 +406,13 @@ function calculateContribution(member, song) {
 */
 function colorBox(member, flag) {
 
-    var colorsArray =  [["#B40404", "#DF0101", "#FF0000", "#FE2E2E"],
-                        ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81"],
-                        ["#DBA901", "#FFBF00", "#FACC2E", "#F7D358"],
-                        ["#088A08", "#04B404", "#01DF01", "#00FF00"],
-                        ["#B4045F", "#DF0174", "#FF0080", "#FE2E9A"],
-                        ["#6A0888", "#8904B1", "#A901DB", "#BF00FF"],
-                        ["#08298A", "#0431B4", "#013ADF", "#0040FF"]];
+    var colorsArray = [["#B40404", "#DF0101", "#FF0000", "#FE2E2E"],
+    ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81"],
+    ["#DBA901", "#FFBF00", "#FACC2E", "#F7D358"],
+    ["#088A08", "#04B404", "#01DF01", "#00FF00"],
+    ["#B4045F", "#DF0174", "#FF0080", "#FE2E9A"],
+    ["#6A0888", "#8904B1", "#A901DB", "#BF00FF"],
+    ["#08298A", "#0431B4", "#013ADF", "#0040FF"]];
     var colorChosen;
 
     if (member == 'RM') {
@@ -456,7 +458,7 @@ function colorBox(member, flag) {
 
 //Search Functionality
 // search(selectedMember);
-d3.select('#search-Input').on('input', function() {
+d3.select('#search-Input').on('input', function () {
     search(selectedMember);
 });
 
@@ -469,11 +471,10 @@ d3.select('#search-Input').on('input', function() {
  * @param {String} value the text in the input that was typed by the user
  */
 function search(member) {
-    
     var filterText = d3.select('#search-Input').property('value');
     if (filterText !== "") {
-        finalData = processedData.filter(function(d){
-            return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
+        finalData = presearchData.filter(function (d) {
+            return (d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
         });
     }
 
@@ -495,25 +496,25 @@ function btssort(value) {
     let sortType = value.substring(2, value.length);
 
     member = selectedMember;
-    
+
     console.log(processedData);
-    
+
     //let finalData = [];
     if (sortType == 'Alphabetically') {
-        finalData = processedData.sort(function(a, b) {
+        finalData = processedData.sort(function (a, b) {
             a = a.song.toString().toUpperCase();
             b = b.song.toString().toUpperCase();
-    
+
             let comparison = a > b ? 1 : -1;
             return sortAscending ? comparison : -comparison;
         });
     } else if (sortType == 'Year of Release') {
-        finalData = processedData.sort(function(a, b) {    
+        finalData = processedData.sort(function (a, b) {
             let comparison = a.year - b.year;
             return sortAscending ? comparison : -comparison;
         });
     } else if (sortType == 'Contribution %') {
-        finalData = processedData.sort(function(a, b) {
+        finalData = processedData.sort(function (a, b) {
             let aScore = 0;
             let bScore = 0;
             for (let i = 0; i < 4; i++) {
@@ -547,7 +548,7 @@ function genreFilter(value) {
         genre2 = element.genre2;
         genre3 = element.genre3;
 
-        if (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type){
+        if (genre1 == filter_Type || genre2 == filter_Type || genre3 == filter_Type) {
             filter_data.push(
                 {
                     "member": member,
@@ -581,7 +582,7 @@ function yearFilter(value) {
 
     prefilteredData.forEach(element => {
 
-        if (element.year == filter_Type){
+        if (element.year == filter_Type) {
             filter_data.push(
                 {
                     "member": member,
@@ -619,19 +620,19 @@ function percentFilter(value) {
         for (let contribution of element.contribution) {
             sum += contribution;
         }
-    
-        if (sum == filter_Type){
+
+        if (sum == filter_Type) {
             filter_data.push(
                 {
-                "member": member,
-                "song": element.song,
-                "contribution": element.contribution,
-                "albumPath": element.albumPath,
-                "year": element.year,
-                "genre1": element.genre1,
-                "genre2": element.genre2,
-                "genre3": element.genre3,
-                "album": element.album
+                    "member": member,
+                    "song": element.song,
+                    "contribution": element.contribution,
+                    "albumPath": element.albumPath,
+                    "year": element.year,
+                    "genre1": element.genre1,
+                    "genre2": element.genre2,
+                    "genre3": element.genre3,
+                    "album": element.album
                 }
             )
         }
@@ -652,8 +653,8 @@ function albumFilter(value) {
     let member = selectedMember;
 
     prefilteredData.forEach(element => {
-    
-        if (element.album == filter_Type){
+
+        if (element.album == filter_Type) {
             filter_data.push(
                 {
                     "member": member,
@@ -685,146 +686,141 @@ function filter(value) {
     let filter_Type = value;
     member = selectedMember;
 
-    if (filter_Type == 'Ambient'){
-            filter_data = genreFilter("Ambient");
-        }else if (filter_Type == 'Ballad'){
-            filter_data = genreFilter("Ballad");
-        }else if (filter_Type == 'Blues'){
-            filter_data = genreFilter("Blues");
-        }else if (filter_Type == 'Dance'){
-            filter_data = genreFilter("Dance");
-        }else if (filter_Type == 'EDM'){
-            filter_data = genreFilter("EDM");
-        }else if (filter_Type == 'Electropop'){
-            filter_data = genreFilter("Electropop");
-        }else if (filter_Type == 'Emo Hip-Hop'){
-            filter_data = genreFilter("Emo Hip-Hop");
-        }else if (filter_Type == 'Funk'){
-            filter_data = genreFilter("Funk");
-        }else if (filter_Type == 'Future-Bass'){
-            filter_data = genreFilter("Future-Bass");
-        }else if (filter_Type == 'G-Funk'){
-            filter_data = genreFilter("G-Funk");
-        }else if (filter_Type == 'Hip-Hop'){
-            filter_data = genreFilter("Hip-Hop");
-        }else if (filter_Type == 'House'){
-            filter_data = genreFilter("House");
-        }else if (filter_Type == 'Indie'){
-            filter_data = genreFilter("Indie");
-        }else if (filter_Type == 'Jazz'){
-            filter_data = genreFilter("Jazz");
-        }else if (filter_Type == 'Latin-Pop'){
-            filter_data = genreFilter('Latin-Pop');
-        }else if (filter_Type == 'Moombahton'){
-            filter_data = genreFilter("Moombahton");
-        }else if (filter_Type == 'None'){
-            filter_data = genreFilter("None");
-        }else if (filter_Type == 'Neo-Soul'){
-            filter_data = genreFilter("Neo-Soul");
-        }else if (filter_Type == 'Nu-disco'){
-            filter_data = genreFilter("Nu-disco");
-        }else if (filter_Type == 'Pop'){
-            filter_data = genreFilter("Pop");
-        }else if (filter_Type == 'Punk-Rock'){
-            filter_data = genreFilter("Punk-Rock");
-        }else if (filter_Type == 'R&B'){
-            filter_data = genreFilter("R&B");
-        }else if (filter_Type == 'Reggaeton'){
-            filter_data = genreFilter('Reggaeton');
-        }else if (filter_Type == 'Rock'){
-            filter_data = genreFilter("Rock");
-        }else if (filter_Type == 'Samul-nori'){
-            filter_data = genreFilter("Samul-nori");
-        }else if (filter_Type == 'Trap'){
-            filter_data = genreFilter("Trap");
-        }else if (filter_Type == 'Tropical-House'){
-            filter_data = genreFilter('Tropical-House');
-        }else if (filter_Type == 'Turntablism Hip-Hop'){
-            filter_data = genreFilter('Tropical-House');
-        }else if (filter_Type == '2013'){
-            filter_data = yearFilter('2013');
-        }else if (filter_Type == '2014'){
-            filter_data = yearFilter('2014');
-        }else if (filter_Type == '2015'){
-            filter_data = yearFilter('2015');
-        }else if (filter_Type == '2016'){
-            filter_data = yearFilter('2016');
-        }else if (filter_Type == '2017'){
-            filter_data = yearFilter('2017');
-        }else if (filter_Type == '2018'){
-            filter_data = yearFilter('2018');
-        }else if (filter_Type == '2019'){
-            filter_data = yearFilter('2019');
-        }else if (filter_Type == '25%'){
-            filter_data = percentFilter('1');
-        }else if (filter_Type == '50%'){
-            filter_data = percentFilter('2');
-        }else if (filter_Type == '75%'){
-            filter_data = percentFilter('3');
-        }else if (filter_Type == '100%'){
-            filter_data = percentFilter('4');
-        }else if (filter_Type == '2 Cool 4 Skool'){
-            filter_data = albumFilter('2 Cool 4 Skool');
-        }else if (filter_Type == 'O!RUL8,2?'){
-            filter_data = albumFilter('O!RUL8,2?');
-        }else if (filter_Type == 'Skool Luv Affair'){
-            filter_data = albumFilter('Skool Luv Affair');
-        }else if (filter_Type == 'Skool Luv Affair (Special Edition)'){
-            filter_data = albumFilter('Skool Luv Affair (Special Edition)');
-        }else if (filter_Type == 'Dark & Wild'){
-            filter_data = albumFilter('Dark & Wild');
-        }else if (filter_Type == 'The Most Beautiful Moment in Life Pt.1'){
-            filter_data = albumFilter('The Most Beautiful Moment in Life Pt.1');
-        }else if (filter_Type == 'The Most Beautiful Moment in Life Pt.2'){
-            filter_data = albumFilter('The Most Beautiful Moment in Life Pt.2');
-        }else if (filter_Type == 'The Most Beautiful Moment in Life: Young Forever'){
-            filter_data = albumFilter('The Most Beautiful Moment in Life: Young Forever');
-        }else if (filter_Type == 'Wings'){
-            filter_data = albumFilter('Wings');
-        }else if (filter_Type == 'You Never Walk Alone'){
-            filter_data = albumFilter('You Never Walk Alone')
-        }else if (filter_Type == "LOVE YOURSELF 承 'Her'"){
-            filter_data = albumFilter("LOVE YOURSELF 承 'Her'")
-        }else if (filter_Type == "LOVE YOURSELF 轉 'Tear'"){
-            filter_data = albumFilter("LOVE YOURSELF 轉 'Tear'")
-        }else if (filter_Type == "LOVE YOURSELF 結 'Answer'"){
-            filter_data = albumFilter("LOVE YOURSELF 結 'Answer'")
-        }else if (filter_Type == 'MAP OF THE SOUL: PERSONA'){
-            filter_data = albumFilter('MAP OF THE SOUL: PERSONA')
-        }else if (filter_Type == 'RM'){
-            filter_data = albumFilter('RM')
-        }else if (filter_Type == 'mono.'){
-            filter_data = albumFilter('mono.')
-        }else if (filter_Type == 'Agust D'){
-            filter_data = albumFilter('Agust D')
-        }else if (filter_Type == 'Hope World'){
-            filter_data = albumFilter('Hope World')
-        }
+    if (filter_Type == 'Ambient') {
+        filter_data = genreFilter("Ambient");
+    } else if (filter_Type == 'Ballad') {
+        filter_data = genreFilter("Ballad");
+    } else if (filter_Type == 'Blues') {
+        filter_data = genreFilter("Blues");
+    } else if (filter_Type == 'Dance') {
+        filter_data = genreFilter("Dance");
+    } else if (filter_Type == 'EDM') {
+        filter_data = genreFilter("EDM");
+    } else if (filter_Type == 'Electropop') {
+        filter_data = genreFilter("Electropop");
+    } else if (filter_Type == 'Emo Hip-Hop') {
+        filter_data = genreFilter("Emo Hip-Hop");
+    } else if (filter_Type == 'Funk') {
+        filter_data = genreFilter("Funk");
+    } else if (filter_Type == 'Future-Bass') {
+        filter_data = genreFilter("Future-Bass");
+    } else if (filter_Type == 'G-Funk') {
+        filter_data = genreFilter("G-Funk");
+    } else if (filter_Type == 'Hip-Hop') {
+        filter_data = genreFilter("Hip-Hop");
+    } else if (filter_Type == 'House') {
+        filter_data = genreFilter("House");
+    } else if (filter_Type == 'Indie') {
+        filter_data = genreFilter("Indie");
+    } else if (filter_Type == 'Jazz') {
+        filter_data = genreFilter("Jazz");
+    } else if (filter_Type == 'Latin-Pop') {
+        filter_data = genreFilter('Latin-Pop');
+    } else if (filter_Type == 'Moombahton') {
+        filter_data = genreFilter("Moombahton");
+    } else if (filter_Type == 'None') {
+        filter_data = genreFilter("None");
+    } else if (filter_Type == 'Neo-Soul') {
+        filter_data = genreFilter("Neo-Soul");
+    } else if (filter_Type == 'Nu-disco') {
+        filter_data = genreFilter("Nu-disco");
+    } else if (filter_Type == 'Pop') {
+        filter_data = genreFilter("Pop");
+    } else if (filter_Type == 'Punk-Rock') {
+        filter_data = genreFilter("Punk-Rock");
+    } else if (filter_Type == 'R&B') {
+        filter_data = genreFilter("R&B");
+    } else if (filter_Type == 'Reggaeton') {
+        filter_data = genreFilter('Reggaeton');
+    } else if (filter_Type == 'Rock') {
+        filter_data = genreFilter("Rock");
+    } else if (filter_Type == 'Samul-nori') {
+        filter_data = genreFilter("Samul-nori");
+    } else if (filter_Type == 'Trap') {
+        filter_data = genreFilter("Trap");
+    } else if (filter_Type == 'Tropical-House') {
+        filter_data = genreFilter('Tropical-House');
+    } else if (filter_Type == 'Turntablism Hip-Hop') {
+        filter_data = genreFilter('Tropical-House');
+    } else if (filter_Type == '2013') {
+        filter_data = yearFilter('2013');
+    } else if (filter_Type == '2014') {
+        filter_data = yearFilter('2014');
+    } else if (filter_Type == '2015') {
+        filter_data = yearFilter('2015');
+    } else if (filter_Type == '2016') {
+        filter_data = yearFilter('2016');
+    } else if (filter_Type == '2017') {
+        filter_data = yearFilter('2017');
+    } else if (filter_Type == '2018') {
+        filter_data = yearFilter('2018');
+    } else if (filter_Type == '2019') {
+        filter_data = yearFilter('2019');
+    } else if (filter_Type == '25%') {
+        filter_data = percentFilter('1');
+    } else if (filter_Type == '50%') {
+        filter_data = percentFilter('2');
+    } else if (filter_Type == '75%') {
+        filter_data = percentFilter('3');
+    } else if (filter_Type == '100%') {
+        filter_data = percentFilter('4');
+    } else if (filter_Type == '2 Cool 4 Skool') {
+        filter_data = albumFilter('2 Cool 4 Skool');
+    } else if (filter_Type == 'O!RUL8,2?') {
+        filter_data = albumFilter('O!RUL8,2?');
+    } else if (filter_Type == 'Skool Luv Affair') {
+        filter_data = albumFilter('Skool Luv Affair');
+    } else if (filter_Type == 'Skool Luv Affair (Special Edition)') {
+        filter_data = albumFilter('Skool Luv Affair (Special Edition)');
+    } else if (filter_Type == 'Dark & Wild') {
+        filter_data = albumFilter('Dark & Wild');
+    } else if (filter_Type == 'The Most Beautiful Moment in Life Pt.1') {
+        filter_data = albumFilter('The Most Beautiful Moment in Life Pt.1');
+    } else if (filter_Type == 'The Most Beautiful Moment in Life Pt.2') {
+        filter_data = albumFilter('The Most Beautiful Moment in Life Pt.2');
+    } else if (filter_Type == 'The Most Beautiful Moment in Life: Young Forever') {
+        filter_data = albumFilter('The Most Beautiful Moment in Life: Young Forever');
+    } else if (filter_Type == 'Wings') {
+        filter_data = albumFilter('Wings');
+    } else if (filter_Type == 'You Never Walk Alone') {
+        filter_data = albumFilter('You Never Walk Alone')
+    } else if (filter_Type == "LOVE YOURSELF 承 'Her'") {
+        filter_data = albumFilter("LOVE YOURSELF 承 'Her'")
+    } else if (filter_Type == "LOVE YOURSELF 轉 'Tear'") {
+        filter_data = albumFilter("LOVE YOURSELF 轉 'Tear'")
+    } else if (filter_Type == "LOVE YOURSELF 結 'Answer'") {
+        filter_data = albumFilter("LOVE YOURSELF 結 'Answer'")
+    } else if (filter_Type == 'MAP OF THE SOUL: PERSONA') {
+        filter_data = albumFilter('MAP OF THE SOUL: PERSONA')
+    } else if (filter_Type == 'RM') {
+        filter_data = albumFilter('RM')
+    } else if (filter_Type == 'mono.') {
+        filter_data = albumFilter('mono.')
+    } else if (filter_Type == 'Agust D') {
+        filter_data = albumFilter('Agust D')
+    } else if (filter_Type == 'Hope World') {
+        filter_data = albumFilter('Hope World')
+    }
 
-    
+
     renderBars(filter_data, member);
 }
-function replaceButtonText(buttonId, text)
-{
-  if (document.getElementById)
-  {
-    var button=document.getElementById(buttonId);
-    if (button)
-    {
-      if (button.childNodes[0])
-      {
-        button.childNodes[0].nodeValue=text;
-      }
-      else if (button.value)
-      {
-        button.value=text;
-      }
-      else //if (button.innerHTML)
-      {
-        button.innerHTML=text;
-      }
+function replaceButtonText(buttonId, text) {
+    if (document.getElementById) {
+        var button = document.getElementById(buttonId);
+        if (button) {
+            if (button.childNodes[0]) {
+                button.childNodes[0].nodeValue = text;
+            }
+            else if (button.value) {
+                button.value = text;
+            }
+            else //if (button.innerHTML)
+            {
+                button.innerHTML = text;
+            }
+        }
     }
-  }
 }
 
 
@@ -844,10 +840,10 @@ function resetAll() {
  */
 function processData(member) {
     let data = [];
-        /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
+    /*
+new_bts_object is from new_data.js, which is the revised data set
+dataRow is each actual row from the excel spreadsheet
+*/
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
         let album = dataRow.Album;
