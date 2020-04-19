@@ -913,48 +913,6 @@ function replaceButtonText(buttonId, text)
   }
 }
 
-function resetFilter() {
-    //array to hold 
-    let data = [];
-        /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-        
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
-
-        if (sum > 0) {
-            data.push(
-                {
-                    "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                }
-            )
-        }
-    });
-
-    renderBars(data, member);
-    
-}
 
 /**
  * Function that handles the resetting filter and sort together
