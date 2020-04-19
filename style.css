@@ -481,7 +481,7 @@ img:hover {
     font-family: 'Comic Sans MS', 'Comic Sans', cursive;
     min-width: 160px;
     font-size: 14px;
-    border: 2px solid #000;
+    border: 1.5px solid #000;
 }
 
 .search-hidden {
