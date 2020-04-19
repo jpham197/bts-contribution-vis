@@ -1,6 +1,7 @@
 var selectedMember = '';
 let finalData = [];
 let processedData;
+let prefilteredData;
 
 //Hides detail bar at beginning
 let detailBar = d3.select('.hide-detail-bar');
@@ -31,6 +32,7 @@ d3.selectAll('.bts-tab')
     }
     
     processedData = processData(member);
+    prefilteredData = processData(member);
     renderBars(processedData, member);
 });
 
@@ -114,7 +116,6 @@ function renderBars(data, member) {
         
     // transition animation for box fill
     vocal_box.transition().duration(1000).style('background-color', function(d) {
-        console.log(d);
         if (d.contribution[0] == 1) {
             let vocal_flag = 'vocal';
             return colorBox(member, vocal_flag);
@@ -468,7 +469,6 @@ d3.select('#search-Input').on('input', function() {
  * @param {String} value the text in the input that was typed by the user
  */
 function search(member) {
-    let data = [];
     
     var filterText = d3.select('#search-Input').property('value');
     if (filterText !== "") {
@@ -476,13 +476,9 @@ function search(member) {
             return(d.song.toString().toLowerCase().includes(filterText.toLowerCase()) || d.album.toString().toLowerCase().includes(filterText.toLowerCase()));
         });
     }
-    // d3.select('.search-hidden').html(finalData.map(function(a){
-    //     return a.song + "," + a.album;
-    // }).join("<br/>"));
-    processedData = finalData;
 
-    // console.log(processedData);
-    // console.log(finalData);
+    processedData = finalData;
+    prefilteredData = finalData;
 
     renderBars(processedData, member);
 }
@@ -530,6 +526,7 @@ function btssort(value) {
     }
 
     processedData = finalData;
+    prefilteredData = finalData;
 
     renderBars(processedData, member);
 }
@@ -545,7 +542,7 @@ function genreFilter(value) {
     let filter_Type = value;
     let member = selectedMember;
 
-    processedData.forEach(element => {
+    prefilteredData.forEach(element => {
         genre1 = element.genre1;
         genre2 = element.genre2;
         genre3 = element.genre3;
@@ -582,7 +579,7 @@ function yearFilter(value) {
     let filter_Type = value;
     let member = selectedMember;
 
-    processedData.forEach(element => {
+    prefilteredData.forEach(element => {
 
         if (element.year == filter_Type){
             filter_data.push(
@@ -616,7 +613,7 @@ function percentFilter(value) {
     let filter_Type = value;
     let member = selectedMember;
 
-    processedData.forEach(element => {
+    prefilteredData.forEach(element => {
 
         let sum = 0;
         for (let contribution of element.contribution) {
@@ -654,7 +651,7 @@ function albumFilter(value) {
     let filter_Type = value;
     let member = selectedMember;
 
-    processedData.forEach(element => {
+    prefilteredData.forEach(element => {
     
         if (element.album == filter_Type){
             filter_data.push(
@@ -836,52 +833,16 @@ function replaceButtonText(buttonId, text)
  * This is the function that is called when the element is clicked in the UI
  */
 function resetAll() {
-    //array to hold 
-    let data = [];
-        /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
-    new_bts_object.forEach(dataRow => {
-        let song = dataRow.Song;
-        let album = dataRow.Album;
-        let year = dataRow.Year_of_Release;
-        let genre1 = dataRow.Genre1;
-        let genre2 = dataRow.Genre2;
-        let genre3 = dataRow.Genre3;
-        
-        let member_contribution = calculateContribution(member, dataRow);
-        let albumPath = connectAlbumPath(album);
-        let sum = 0;
-        for (let contribution of member_contribution) {
-            sum += contribution;
-        }
-
-        if (sum > 0) {
-            data.push(
-                {
-                    "member": member,
-                    "song": song,
-                    "contribution": member_contribution,
-                    "albumPath": albumPath,
-                    "year": year,
-                    "genre1": genre1,
-                    "genre2": genre2,
-                    "genre3": genre3,
-                    "album": album
-                }
-            )
-        }
-    });
-
-    renderBars(data, member);
+    let member = selectedMember;
+    processedData = processData(member);
+    console.log(processedData)
+    renderBars(processedData, member);
 }
 
 /**
  * Converts data into the same format that filter sort and search 
  */
 function processData(member) {
-    console.log(member);
     let data = [];
         /*
     new_bts_object is from new_data.js, which is the revised data set
