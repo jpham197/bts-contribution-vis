@@ -242,18 +242,7 @@ img:hover {
 }
 
 
-@media screen and (min-width: 10px) {
-    .bts-contribution {
-        width: 80%;
-    }
-}
 
-@media screen and (min-width: 720px) {
-    .bts-contribution {
-        width: 30%; /* Two blocks on one row */
-        /*        margin: 10px 15px 16px 15px;*/
-    }
-}
 
 #filter-button {
     background-color: #F8E0EC;
@@ -286,6 +275,26 @@ img:hover {
     margin-right: 0px;
     margin-top: 8px;
     /*    font: 12px sans-serif;*/
+}
+
+@media screen and (min-width: 10px) {
+    .bts-contribution {
+        margin-left: 14.5em;
+        /* overflow:hidden; */
+    }
+}
+
+@media screen and (min-width: 1660px) {
+    .bts-contribution {
+        margin-left: 18em;
+        /* overflow:hidden; */
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .bts-contribution {
+        margin-left: 23.5em;
+    }
 }
 
 .contribution-bar {
