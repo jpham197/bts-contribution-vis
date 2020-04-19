@@ -17,6 +17,27 @@ Contribution within this visualization is classified into four categories:
 
 The type of contribution considered is relative to how much a member himself can contribute. If a member contributes to a song only by voice, that member has 25% contribution.
 
-### TODO:
-* Describe design of program
-* How to run code
+## How to Run Code
+To run the project locally:
+1. Download the project or clone it onto your machine
+2. Start up a local server either by using a text editor extension or a simple python server
+
+To view the project live: [Click here](https://sandraalsayar.github.io/bts-contribution-vis/)
+
+## Design of Program
+Our project was designed using:
+* HTML
+* CSS
+* Plain JavaScript
+* D3.js
+
+Our visualization is based on functional programming. Functions are hooked up into HTML elements through both the html ```onclick``` attribute and D3's ```on()``` function. Clicking elements that were wired up with these methods activated its respective JavaScript function.
+
+For example, the BTS members at the top of the page are connected as such:
+
+```javascript
+d3.selectAll('.bts-tab')
+    .on('click', function() {
+        //Operations here
+    });
+```
