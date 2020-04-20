@@ -1,51 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS Contribution</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BTS Contribution</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="bts-header">
+            <div id="rm-tab" class="bts-tab" data-member="RM">
+                <p>RM</p>
+            </div>
+            <div id="jin-tab" class="bts-tab" data-member="Jin">
+                <p>Jin</p>
+            </div>
+            <div id="suga-tab" class="bts-tab" data-member="SUGA">
+                <p>SUGA</p>
+            </div>
+            <div id="jhope-tab" class="bts-tab" data-member="J-Hope">
+                <p>J-Hope</p>
+            </div>
+            <div id="jimin-tab" class="bts-tab" data-member="Jimin">
+                <p>Jimin</p>
+            </div>
+            <div id="v-tab" class="bts-tab" data-member="V">
+                <p>V</p>
+            </div>
+            <div id="jungkook-tab" class="bts-tab" data-member="Jungkook">
+                <p>Jungkook</p>
+            </div>
+            <div id="group-tab" class="bts-tab" data-member="BTS">
+                <p>BTS</p>
+            </div>
 
-    <div id="bts-header">
-        <div id="rm-tab" class="bts-tab" data-member="RM">
-            <img src="./img/member-rm.jpg">
-            <p>RM</p>
         </div>
-        <div id="jin-tab" class="bts-tab" data-member="Jin">
-            <img src="./img/member-jin.jpg">
-            <p>Jin</p>
-        </div>
-        <div id="suga-tab" class="bts-tab" data-member="SUGA">
-            <img src="./img/member-suga.jpg">
-            <p>SUGA</p>
-        </div>
-        <div id="j-hope-tab" class="bts-tab" data-member="J-Hope">
-            <img src="./img/member-j-hope.jpg">
-            <p>J-Hope</p>
-        </div>
-        <div id="jimin-tab" class="bts-tab" data-member="Jimin">
-            <img src="./img/member-jimin.jpg">
-            <p>Jimin</p>
-        </div>
-        <div id="v-tab" class="bts-tab" data-member="V">
-            <img src="./img/member-v.jpg">
-            <p>V</p>
-        </div>
-        <div id="jungkook-tab" class="bts-tab" data-member="Jungkook">
-            <img src="./img/member-jungkook.jpg">
-            <p>Jungkook</p>
-        </div>
-    </div>
-    <div id="main">
-    </div>
 
-    <span id="hide-me">Choose a member to begin!</span>
+        <div class="hide-intro-page">
+            <div class="intro-page">
+                <p class="welcome-text">Welcome to BTS Contribution to Music Visualization!</p>
+                <img class="group-pic" src="./img/group-pic1.jpg" alt="BTS Group Photo">
+                <p>From left to right: Jungkook, RM, V, J-Hope, Jin, SUGA, Jimin</p>
+                <div class="main-sections">
+                    <p class="headers"><b>Who is BTS?</b></p>
+                    <p>BTS (Korean: 방탄소년단) is a 7 member boy group from South Korea, made up of 3 rappers (RM, SUGA, & J-HOPE) and 4 vocalists (JIN, JIMIN, V, & JUNGKOOK).<br>Gaining recognition from their authentic, self-produced music and top-notch performances, the group has established themselves as global superstars breaking countless world records.</p>
 
-</body>
+                    <p style="text-shadow: 1px 1px 3px #88C1D5"><i>Some of their top achievements include:</i></p>
+                    <ul>
+                        <li>Giving their '<a href="https://www.youtube.com/watch?v=ZhJ-LAQ6e_Y" target="_blank">Speak Yourself</a>' speech at the United Nations in 2019.</li>
+                        <li>Raising over $2 millions with their <a href="https://www.love-myself.org/eng/home/" target="_blank">UNICEF LOVE MYSELF</a> campaign.</li>
+                        <li>Worldwide sold-out stadium tours.</li>
+                        <li>Named as one of <a href="https://time.com/collection/100-most-influential-people-2019/5567876/bts/" target="_blank">TIME 100: The Most Influential People of 2019</a>.</li>
+                        <li>Gaining <a href="https://www.nytimes.com/2019/04/22/arts/music/bts-map-of-the-soul-persona-billboard-chart.html" target="_blank">three No. 1s</a> on the Billboards Album Chart in less than a year.</li>
+                    </ul>
+                    <p style=" text-shadow: 1px 1px 3px #88C1D5">Purchase their albums!</p>
+                    <p>BTS' albums are available at many major retailer in the USA. Here are some online options:</p>
+                    <ul>
+                        <li><a href="https://bighitshop.us/collections/album_bts_grand-opening">BTS Official USA Shop</a></li>
+                        <li><a href="https://www.amazon.com/slp/bts-albums/c7psy6o35tz763z">Amazon</a></li>
+                        <li><a href="https://www.target.com/s?searchTerm=bts+albums">Target</a></li>
+                    </ul>
+
+
+                    <p class="headers"><b>What is the purpose of our project?</b></p>
+                    <p>Our project explores BTS’ contribution to the creation of their own music in 4 areas: Vocally (singing or rapping), Writing (lyrics), Composing, and Producing.<br> We want to help both fans and non-fans alike to better appreciate BTS’ work and understand the authenticity of BTS’ music, by breaking down their contributions in the song-making process of their albums.<br></p>
+                    <div class="fun-box">
+                        <p  style="margin-left: 50px" ><i>Fun facts:</i></p>
+                        <ul style="padding-left: 0px">
+                            <li>Over 95% of the songs in our dataset are written by one or more of the BTS members.</li>
+                            <li>Over 78% of the songs in our dataset are composed by one or more of the BTS members.</li>
+                            <li>Over 21% of the songs in our dataset are produced by one or more of the BTS members.</li>
+                        </ul>
+                    </div>
+
+                    <p class="headers"><b>What can you do on our page?</b></p>
+                    <p>First, <b>chose one of the members</b> you want to explore their contribution<b> by clicking on one of the orbits at the top of the page!</b><br>After choosing a member to explore, a list of songs will be displayed with the following info available to view:</p>
+                    <ul>
+                        <li>VWCP boxes: hovering will explain to you whether the member contributed in each of the 4 categories - <b>V</b>ocally, <b>W</b>riting, <b>C</b>omposing, and <b>P</b>roducing. </li>
+                        <li>Album cover of each song: Hovering over the album cover displays the <b>Album</b> name, the applicable <b>Genre(s)</b>, and <b>Year of Release</b> for the specific song in the album.</li>
+                    </ul>
+                    <p style="font-size:20px; text-shadow: 2px 2px 3px #88C1D5">You can Filter songs by:</p>
+                    <ul>
+                        <li><b><i>Album:</i></b> chose one album from the available list</li>
+                        <li><b><i>Genre:</i></b> chose one genre from the available list</li>
+                        <li><b><i>Year of Release:</i></b> chose one year from the available list</li>
+                        <li><b><i>Contribution %</i>:</b> chose one of the percentages (25%, 50%, 75%, 100%). Each percentage means one type of contribution. So one percentage means that specific member only contributed in one of the 4 areas, while 100% means they contributed in all 4 parts of song creation!</li>
+                    </ul>
+                    <p style="font-size:20px; text-shadow: 2px 2px 3px #88C1D5">You can Sort songs by:</p>
+                    <ul>
+                        <li><b><i>Alphabetically</i></b> for song names (ascending or descending)</li>
+                        <li><b><i>Year of Release</i></b> for songs (ascending or descending)</li>
+                        <li><b><i>Contribution %</i></b>  (ascending or descending)</li>
+                    </ul>
+                    <p style="font-size:20px; text-shadow: 2px 2px 3px #88C1D5">You can Search for songs and albums:</p>
+                    <ul>
+                        <li>Just type the name of a song , and the screen will display every song with a match. </li>
+                        <li>Or type the name of an album, and it will display all songs in that album.</li>
+                        <li>If a song/album doesn’t display, it either means it’s not in our dataset or it is not a valid BTS song/album.</li>
+                    </ul>
+                    <p style="font-size:20px; text-shadow: 2px 2px 3px #88C1D5">Return to this helpful page:</p>
+                    <ul>
+                        <li>Just click on the BTS tab at the top menu!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="hide-detail-bar">
+            <div class="detail-bar">
+                <span class="filter">
+                    <button id = "filter-button">Select a Filter</button>
+                    <div class="filter-hidden">
+                        <div class="album-container">
+                            <button id="album-button">Album</button>
+                            <div class="album-hidden">
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2 Cool 4 Skool</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">O!RUL8,2?</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Skool Luv Affair</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Skool Luv Affair (Special Edition)</button>
+                                <button class="album" onclick="filter('Dark & Wild'),replaceButtonText('filter-button', 'Dark & Wild')">Dark & Wild</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">The Most Beautiful Moment in Life Pt.1</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">The Most Beautiful Moment in Life Pt.2</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">The Most Beautiful Moment in Life: Young Forever</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Wings</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">You Never Walk Alone</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">LOVE YOURSELF 承 'Her'</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">LOVE YOURSELF 轉 'Tear'</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">LOVE YOURSELF 結 'Answer'</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">MAP OF THE SOUL: PERSONA</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">RM</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">mono.</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Agust D</button>
+                                <button class="album" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Hope World</button>
+                            </div>
+                        </div>
+
+
+                        <div class="genre-container">
+                            <button id="genre-button">Genre</button>
+                            <div class="genre-hidden">
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Ambient</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Ballad</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Blues</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Dance</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">EDM</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Electropop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Emo Hip-Hop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Funk</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Future-Bass</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">G-Funk</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Hip-Hop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">House</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Indie</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Jazz</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Latin-Pop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Moombahton</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">None</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Neo-Soul</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Nu-disco</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Pop</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Punk-Rock</button>
+                                <button class="genre" onclick="filter('R&B'),replaceButtonText('filter-button', 'R&B')">R&B</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Reggaeton</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Rock</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Samul-nori</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Trap</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Tropical-House</button>
+                                <button class="genre" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">Turntablism Hip-Hop</button>
+
+                            </div>
+                        </div>
+
+                        <div class="year-container">
+                            <button id="year-button">Year of Release</button>
+                            <div class="year-hidden">
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2013</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2014</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2015</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2016</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2017</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2018</button>
+                                <button class="year" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">2019</button>
+                            </div>
+                        </div>
+
+                        <div class="contribution-container">
+                            <button id="contribution-button">Contribution</button>
+                            <div class="contribution-hidden">
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">25%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">50%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">75%</button>
+                                <button class="contribution" onclick="filter(this.innerHTML),replaceButtonText('filter-button', this.innerHTML)">100%</button>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+                <span class="sort">
+                    <button id="sort-button">Select a Sort</button>
+                    <div class="sort-hidden">
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▲ Alphabetically</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▲ Year of Release</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▲ Contribution %</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Alphabetically</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Year of Release</button>
+                        <button onclick="btssort(this.innerHTML),replaceButtonText('sort-button', this.innerHTML)">▼ Contribution %</button>
+                    </div>
+                </span>
+                <span class="search">
+                    <input type="text" id="search-Input" placeholder="Search by song/album">
+                    <div class="search-hidden">
+                    </div>
+                </span>
+                <span>
+                    <button id="reset-all-button" onclick="resetAll(), replaceButtonText('sort-button', 'Select a Sort'), replaceButtonText('filter-button', 'Select a Filter')">Reset All</button>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- <span id="hide-me">Choose a member to begin!</span> -->
+
+    </body>
     <script src="./data.js"></script>
-    <script src="./new_data.js"></script>
+    <script src="./data/new_data.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="main.js"></script>
 </html>

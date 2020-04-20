@@ -1,3 +1,90 @@
+.welcome-text {
+    font-size: 40px;
+    color: #F1A2B4;
+    text-shadow: 2px 2px #ff0000;
+}
+
+.headers {
+    font-size:27px;
+    text-align:center;
+    margin-top: 40px;
+    color:#F1A2B4;
+    text-decoration: underline dotted pink;
+}
+.main-sections p, li{
+    margin-left: 120px;
+    margin-right: 120px;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    text-align: left;
+}
+.group-pic {
+    width: 650px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-width: 654px;
+    border-style: dotted;
+    border: 3px bold;
+    border-color: mediumvioletred;
+}
+
+a:link {
+    color: brown;
+}
+
+a:visited {
+    color: brown;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+a:active {
+    color: fuchsia;
+}
+
+.picture {
+    width: 62px;
+    height: 62px;
+    position: absolute;
+    left: -6.5em;
+    top: -1;
+    background-size: cover;
+    border: 1.5px solid black;
+}
+
+.fun-box{
+    border-radius: 8px;	
+    background: lightcoral;
+    border-style: dotted;
+    width: 1000px;
+    margin-left: 200px;
+
+}
+
+.detail-text {
+    display: block;
+    color:black;
+    position: relative;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 13px;
+}
+
+.popup {
+    padding: 2px;	
+    width: 150px;
+    position: relative;
+    top: -70px;
+    background: lightsteelblue;			
+    border-radius: 8px;	
+    background: lightcoral;
+    border-style: dotted;
+    z-index: 9; 
+}
+
 .axis-label {
     text-anchor: middle;
     font-size: 12px;
@@ -5,15 +92,11 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    background-color: #FBF2F2;
 }
 
-#main {
-    /* margin: 20px; */
-}
-
-span {
+.vocal, .write, .compose, .produce {
     position: absolute;
     top: 50%;
     right: 50%;
@@ -25,17 +108,11 @@ span {
     display: none;
 }
 
-img {
-    width: 70px;
-    border-radius: 50%;
-}
 
 p {
     margin-top: 10px;
-}
-
-.first {
-    margin-top: 130px;
+    text-align: center;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
 #bts-header {
@@ -45,17 +122,88 @@ p {
     overflow-y: hidden;
     display: block;
     text-align: center;
-    background-color: #fdfaf7;
-    position: fixed;
+    background-color: #FBF2F2;
+    position: relative;
     z-index: 99;
 }
 
+/* This code pushes the picture to the back and creates a circular window for the pics to show through*/
 .bts-tab {
     width: 10em;
     display: inline-block;
     vertical-align: top;
     opacity: 0.6;
+    background-color    : #000;
+    background-repeat   : no-repeat;
+    background-position : 50% 50%;
+    background-size     : 100% auto;
+    background-size     : contain;
+    width               : 70px;
+    height              : 70px;
+    border-radius       : 100%;
+    margin-left: 25px;
+    margin-right: 25px;
+    position: relative;
 }
+
+/* Aligns the name tags under the images*/
+.bts-tab p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 80px;
+}
+
+
+/* This code adds in the pictures and creates the border around the image*/
+#rm-tab {
+    background-image    : url(./img/member-rm.jpg);
+    border: 3px solid red;
+    width: 70px;
+    border-radius: 50%;
+}
+#jin-tab {
+    background-image    : url(./img/member-jin.jpg);
+    border: 3px solid orange;
+    width: 70px;
+    border-radius: 50%;
+}
+#suga-tab {
+    background-image    : url(./img/member-suga.jpg);
+    border: 3px solid yellow;
+    width: 70px;
+    border-radius: 50%;
+}
+#jhope-tab {
+    background-image    : url(./img/member-j-hope.jpg);
+    border: 3px solid green;
+    width: 70px;
+    border-radius: 50%;
+}
+#jimin-tab {
+    background-image    : url(./img/member-jimin.jpg);
+    border: 3px solid pink;
+    width: 70px;
+    border-radius: 50%;
+}
+#v-tab {
+    background-image    : url(./img/member-v.jpg);
+    border: 3px solid purple;
+    width: 70px;
+    border-radius: 50%;
+}
+#jungkook-tab {
+    background-image    : url(./img/member-jungkook.jpg);
+    border: 3px solid blue;
+    width: 70px;
+    border-radius: 50%;
+}
+#group-tab {
+    background-image    : url(./img/group-pic.png);
+    border: 3px solid;
+}
+
 
 .bts-tab:hover {
     transition: 0.2s;
@@ -67,63 +215,271 @@ p {
 }
 
 img:hover {
-    /* width: 60px; */
     transition: 0.2s;
     opacity: 1;
     cursor: pointer;
 }
 
-@media screen and (min-width: 10px) {
-    .bts-contribution {
-        width: 80%;
-    }
+
+
+#filter-button {
+    background-color: #F8E0EC;
+}
+#sort-button {
+    background-color: #F8E0EC;
 }
 
-@media screen and (min-width: 720px) {
-    .bts-contribution {
-        width: 30%;
-        margin: 10px 15px 16px 15px;
-    }
+#reset-all-button {
+    background-color: #F8E0EC;
+}
+
+.album {
+    background-color: #F8E0EC;
 }
 
 .song-name {
-    margin: 2px 6px;
-    font-size: 12px;
+    width: 300px;
+    margin-left: 70px
 }
 
 .bts-contribution {
-    font-family: "Open Sans";
     display: inline-block;
+    margin-left: 230px;
+    margin-right: 0px;
+    margin-top: 8px;
+}
+
+@media screen and (min-width: 10px) {
+    .bts-contribution {
+        margin-left: 14.5em;
+    }
+}
+
+@media screen and (min-width: 1660px) {
+    .bts-contribution {
+        margin-left: 18em;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .bts-contribution {
+        margin-left: 23.5em;
+    }
 }
 
 .contribution-bar {
     display: block;
     position: relative;
-    background-color: #c8dfff;
-    height: 20px;
+    height: 70px;
+    width: 400px;
     border-radius: 15px;
     margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 16px;
 }
 
 .contribution-bar-fill {
     display: block;
     position: absolute;
-    height: 14px;
-    top: 3px;
-    left: 3px;
+    height: 60px;
     width: 50%;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
     border-radius: 8px;
-    background-color: rgb(224, 193, 224);
     transition: all 0.2s ease-in 0s;
+    background-color: black;
 }
 
-.contribution-bar-value {
+.vocal{
+    border: 1.9px solid;
+    width: 25%;
+    height: 60px;
+    left: 0px;
+    top: 0px;
+}
+.write{
+    border: 1.9px solid;
+    width: 25%;
+    height: 60px;
+    left: 25%;
+    top: 0px;
+}
+.compose{
+    border: 1.9px solid;
+    width: 25%;
+    height: 60px;
+    left: 50%;
+    top: 0px;
+}
+.produce{
+    border: 1.9px solid;
+    width: 25%;
+    height: 60px;
+    left: 75%;
+    top: 0px;
+
+}
+.box_text {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* DETAIL BAR STUFF START */
+.detail-bar {
+    width: 55em;
+    margin: 1em auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    margin-bottom: 30px;
+}
+
+.detail-bar > span > button {
+    background-color: #fff;
+    color: black;
+    min-width: 160px;
+    font-size: 14px;
+    border: 1.5px solid #000;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.filter-hidden, .sort-hidden {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    z-index: 3;
+}
+
+.filter:hover .filter-hidden {
+    display: block;
+}
+
+.sort:hover .sort-hidden {
+    display: block;
+}
+
+.album-container > button,
+.genre-container > button,
+.year-container > button,
+.contribution-container > button,
+.sort-hidden > button {
+    display: block;
+    min-width: 160px;
+    background-color: #F8E0EC;
+    border: none;
+    padding: 6px 0;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.album-hidden {
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 0px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.genre-hidden {
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 29px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.year-hidden{
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 58px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.contribution-hidden {
+    display: none;
+    position: absolute;
+    left: 160px;
+    top: 87px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+#album-button:hover,
+#genre-button:hover,
+#year-button:hover,
+#contribution-button:hover {
+    color: lightcoral;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.album-container:hover
+.album-hidden,
+.genre-container:hover
+.genre-hidden,
+.year-container:hover .year-hidden,
+.contribution-container:hover .contribution-hidden {
+    display: block;
+    z-index: 2;
+}
+
+.album,
+.genre,
+.year,
+.contribution {
+    min-width: 160px;
+    background-color: #FBEFF5;
+    border: none;
+    padding: 6px 0;
+
+}
+
+.album:hover,
+.genre:hover,
+.year:hover,
+.contribution:hover {
+    min-width: 160px;
+    color: lightcoral;
+}
+
+#search-Input {
+    min-width: 160px;
+    height: 18px;
+    background-color: #F8E0EC;
+    color: black;
+    text-align: center;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    min-width: 160px;
+    font-size: 14px;
+    border: 1.5px solid #000;
+}
+
+.search-hidden {
     display: block;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 10px;
-    font-weight: 600;
-    color: #222;
-    margin: 0;
+    min-width: 160px;
+    background-color: #F8E0EC;
+    text-align: center;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 11px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    z-index: 3;
 }
+
+.search:focus .search-hidden {
+    display: focus;
+}
+
+.sort-hidden > button:hover {
+    color: lightcoral;
+}
+
+.box-hover-text {
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-size: 13px;
+    white-space: nowrap;
+    vertical-align: top;
+}
+/* DETAIL BAR STUFF END */
