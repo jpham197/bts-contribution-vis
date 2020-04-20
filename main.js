@@ -853,9 +853,9 @@ function resetAll() {
 function processData(member) {
     let data = [];
     /*
-new_bts_object is from new_data.js, which is the revised data set
-dataRow is each actual row from the excel spreadsheet
-*/
+    new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet
+    */
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
         let album = dataRow.Album;

@@ -24,16 +24,6 @@ Contribution within this visualization is classified into four categories:
 
 The type of contribution considered is relative to how much a member himself can contribute. For example, if a member contributes to a song only by voice, that member has 25% contribution. Each additional contribution adds a 25% for a total of 100%.
 
-<<<<<<< HEAD
-## How to Run Code
-To run the project locally:
-1. Download the project or clone it onto your machine
-2. ```cd``` into the project folder
-3. Start up a local server either by using a text editor extension or a simple python server
-=======
->>>>>>> 707f643d17305274fb4b621b4613b5342c7aaa12
-
-
 # Design of Program
 Our project was designed using:
 * HTML
