@@ -1,5 +1,5 @@
 var selectedMember = '';
-let finalData = [];
+// let finalData = [];
 let processedData;
 let prefilteredData;
 let presearchData;
@@ -38,7 +38,6 @@ d3.selectAll('.bts-tab')
         renderBars(processedData, member);
         replaceButtonText('filter-button', 'Select a Filter');
         replaceButtonText('sort-button', 'Select a Sort');
-        console.log();
     });
 
 /*
@@ -842,7 +841,8 @@ function replaceButtonText(buttonId, text) {
 function resetAll() {
     let member = selectedMember;
     processedData = processData(member);
-    console.log(processedData)
+    prefilteredData = processData(member);
+    presearchData = processData(member);
     renderBars(processedData, member);
     document.getElementById('search-Input').value = '';
 }
