@@ -1,5 +1,4 @@
 var selectedMember = '';
-// let finalData = [];
 let processedData;
 let prefilteredData;
 let presearchData;
@@ -460,7 +459,7 @@ function colorBox(member, flag) {
  * @param {String} memeber the string from the input that was typed by the user
  */
 function search(member) {
-    //let finalData = [];
+    let finalData = [];
     var filterText = d3.select('#search-Input').property('value');
     if (filterText !== "") {
         finalData = presearchData.filter(function (d) {
@@ -494,7 +493,7 @@ function btssort(value) {
 
     console.log(processedData);
 
-    //let finalData = [];
+    let finalData = [];
     if (sortType == 'Alphabetically') {
         finalData = processedData.sort(function (a, b) {
             a = a.song.toString().toUpperCase();
