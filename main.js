@@ -8,7 +8,7 @@ let presearchData;
 let detailBar = d3.select('.hide-detail-bar');
 detailBar.style('display', 'none');
 
-// Show the Intro page in the begining
+// Show the Intro page in the beginning
 let introPage = d3.select('.intro-page');
 introPage.style('display', 'block');
 
@@ -40,12 +40,23 @@ d3.selectAll('.bts-tab')
         replaceButtonText('sort-button', 'Select a Sort');
     });
 
-/*
-    Create the contribution bars
-*/
+
+//Search functionality call
+d3.select('#search-Input').on('input', function () {
+    search(selectedMember);
+});
+
+
+/**
+ * Function that creates the contribution bars.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @param {*} data being passed in
+ * @param {*} member BTS member name passed in
+ */
 function renderBars(data, member) {
 
-    // Delete everything to reload new info - this is a hacky way to do it instead of merging old page and new page
+    // Deletes everything to reload new info 
     d3.selectAll('.bts-contribution').remove();
 
     var select = d3.selectAll('.bts-contribution')
@@ -91,11 +102,12 @@ function renderBars(data, member) {
             hovered.select('.popup').remove();
         });
 
-    // ***************Create the 4 rectangles
+    // ***************Creating the 4 rectangles
+    
     // Vocal box
     let vocal_box = fillEnter.append('span')
         .attr('class', 'vocal')
-        .style('background-color', 'white')  // set background-color to white as first state
+        .style('background-color', 'white')
         .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('text', true);
@@ -124,7 +136,7 @@ function renderBars(data, member) {
             let vocal_flag = 'vocal';
             return colorBox(member, vocal_flag);
         } else {
-            return 'white' //none
+            return 'white'
         }
     })
 
@@ -137,7 +149,7 @@ function renderBars(data, member) {
     // Write box
     let write_box = fillEnter.append('span')
         .attr('class', 'write')
-        .style('background-color', 'white')  // set background-color to white as first state
+        .style('background-color', 'white')
         .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -160,7 +172,7 @@ function renderBars(data, member) {
             hovered.select('text').remove();
         });
 
-    // transition animation for box fill
+    // transition animation for box fill for write
     write_box.transition().duration(1000).style('background-color', function (d) {
         if (d.contribution[1] == 1) {
             let write_flag = 'write';
@@ -178,7 +190,7 @@ function renderBars(data, member) {
     // Compose box
     let compose_box = fillEnter.append('span')
         .attr('class', 'compose')
-        .style('background-color', 'white')  // set background-color to white as first state
+        .style('background-color', 'white') 
         .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -201,7 +213,7 @@ function renderBars(data, member) {
             hovered.select('text').remove();
         });
 
-    // transition animation for box fill
+    // transition animation for box fill for compose
     compose_box.transition().duration(1000).style('background-color', function (d) {
         if (d.contribution[2] == 1) {
             let compose_flag = 'compose';
@@ -219,7 +231,7 @@ function renderBars(data, member) {
     // Produce box
     let produce_box = fillEnter.append('span')
         .attr('class', 'produce')
-        .style('background-color', 'white')  // set background-color to white as first state
+        .style('background-color', 'white') 
         .on('mouseover', function (d) {
             var hovered = d3.select(this);
             hovered.classed('hovered', true);
@@ -242,7 +254,7 @@ function renderBars(data, member) {
             hovered.select('text').remove();
         });
 
-    // transition animation for box fill
+    // transition animation for box fill for produce
     produce_box.transition().duration(1000).style('background-color', function (d) {
         if (d.contribution[3] == 1) {
             let produce_flag = 'produce';
@@ -263,42 +275,22 @@ function renderBars(data, member) {
             return d['song'];
         });
 
-
-
-    // Merge the .contribution-bar-fill on screen elements with the newly created ones, and update width
-    //    select.select('.contribution-bar-fill').merge(fillEnter)
-    //        .style('width', function(d){
-    //            return 'calc(' + d['contribution'] + '% - 10px)';
-    //        })
-    //        .style('background-image', function(d){ if (member == 'RM') {return 'linear-gradient(to right, #B40404, #FE2E2E)';}
-    //                            else if (member == 'Jin') {return 'linear-gradient(to right, #B43104, #FE642E)';}
-    //                            else if (member == 'SUGA') {return 'linear-gradient(to right, #868A08, #F7D358)';}
-    //                            else if (member == 'J-Hope') {return 'linear-gradient(to right, #088A08, #00FF00)';}
-    //                            else if (member == 'Jimin') {return 'linear-gradient(to right, #B4045F, #FE2E9A)';}
-    //                            else if (member == 'V') {return 'linear-gradient(to right, #6A0888, #BF00FF)';}
-    //                            else if (member == 'Jungkook') {return 'linear-gradient(to right, #08298A, #0040FF)';}
-    //                            else if (member == 'BTS') {return 'linear-gradient(to right, red, yellow)';}
-    //        });
-
     select.exit().remove();
 }
 
 
 /** Iterates over all BTS songs and calculates contribution of member for a given song and stores it into a JavaScript object.
  * 
- *  Logic of function: Loops through each item in the new_bts_object. Each item in this object is a row within the excel spreadsheet.
- *  Each property is a column. It extracts the song name and uses the calculateContriubtion().
+ * Function Logic: Loops through each item in the new_bts_object. Each item in this object is a row within the excel spreadsheet.
+ * Each property is a column. It extracts the song name and uses the calculateContriubtion().
  * 
- * @param {*} member BTS member passed into to calculate contribution for
+ * @param {*} member BTS member passed into to calculate contribution for a song.
  */
 function updateBars(member) {
-    //array to hold 
     let data = [];
-
-    /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
+    
+    /* new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet */
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
         let album = dataRow.Album;
@@ -335,10 +327,9 @@ function updateBars(member) {
 }
 
 /**
- * Function to connect album path
+ * Function to connect album path to album image
  * 
  * @param {String} album the album name
- * 
  * @returns {String} the path to the album image
  */
 function connectAlbumPath(album) {
@@ -383,7 +374,7 @@ function connectAlbumPath(album) {
 }
 
 /**
- * Calculates contribution of a member in a song.
+ * Function that calculates member contribution to a song.
  * 
  *  Ex: voice: 1, write: 0, compose: 0, produce: 0, will return 1.
  * 
@@ -394,16 +385,19 @@ function connectAlbumPath(album) {
 function calculateContribution(member, song) {
     let contribution = [];
 
-    contribution[0] = parseInt(song[member + "_Voice"] == -1 ? 0 : song[member + "_Voice"]);  // 0 is vocal
-    contribution[1] = parseInt(song[member + "_Write"] == -1 ? 0 : song[member + "_Write"]);  // 1 is write
-    contribution[2] = parseInt(song[member + "_Compose"] == -1 ? 0 : song[member + "_Compose"]); // 2 is compose
-    contribution[3] = parseInt(song[member + "_Produce"] == -1 ? 0 : song[member + "_Produce"]); // 3 is produce
+    contribution[0] = parseInt(song[member + "_Voice"] == -1 ? 0 : song[member + "_Voice"]);  
+    contribution[1] = parseInt(song[member + "_Write"] == -1 ? 0 : song[member + "_Write"]);  
+    contribution[2] = parseInt(song[member + "_Compose"] == -1 ? 0 : song[member + "_Compose"]);
+    contribution[3] = parseInt(song[member + "_Produce"] == -1 ? 0 : song[member + "_Produce"]);
 
     return contribution;
 }
 
 /**
- * Choses the correct color associated with the member to fill the boxes
+ * Function that choses the correct color associated with the member to fill the boxes
+ *
+ * @param {*} member data used for boxes
+ * @param {Number} flag checker variable to confirm if a condition is true or not.
  * @returns {String} color name
 */
 function colorBox(member, flag) {
@@ -458,20 +452,15 @@ function colorBox(member, flag) {
 }
 
 
-//Search Functionality
-// search(selectedMember);
-d3.select('#search-Input').on('input', function () {
-    search(selectedMember);
-});
-
 /**
  * Function for Searching through the interface. 
- * Users define an input that can search 
- * either a song or album name.
- * 
- * @param {String} value the text in the input that was typed by the user
+ * Users define an input that can search either a song or album name.
+ * This is the function that is called when the user inputs text in the UI.
+ *
+ * @param {String} memeber the string from the input that was typed by the user
  */
 function search(member) {
+    //let finalData = [];
     var filterText = d3.select('#search-Input').property('value');
     if (filterText !== "") {
         finalData = presearchData.filter(function (d) {
@@ -495,6 +484,7 @@ function search(member) {
  * This is the function that is called when the element is clicked in the UI
  * 
  * @param {String} value the type of sort to perform
+ * @returns {Integer} value comparison calculations.
  */
 function btssort(value) {
     let sortAscending = value[0] == '▲' ? true : false;
@@ -543,6 +533,7 @@ function btssort(value) {
  * This is the function that is called when the element is clicked in the UI
  * 
  * @param {String} value the text in the button that was clicked
+ * @returns {*} data attached to the genre filters chosen
  */
 function genreFilter(value) {
     let filter_data = [];
@@ -575,13 +566,14 @@ function genreFilter(value) {
     presearchData = filter_data;
     return processedData;
 }
+
 /**
  * Helper Function that handles the year filtering.
  * This is the function that is called when the element is clicked in the UI
  * 
  * @param {String} value the text in the button that was clicked
+ * @returns {*} data attached to the year filter chosen
  */
-
 function yearFilter(value) {
     let filter_data = [];
     let filter_Type = value;
@@ -616,6 +608,7 @@ function yearFilter(value) {
  * This is the function that is called when the element is clicked in the UI
  * 
  * @param {String} value the text in the button that was clicked
+ * @returns {*} data attached to the percent filter chosen in the UI
  */
 function percentFilter(value) {
     let filter_data = [];
@@ -650,11 +643,13 @@ function percentFilter(value) {
     presearchData = filter_data;
     return processedData;
 }
+
 /**
  * Helper Function that handles the album filtering.
  * This is the function that is called when the element is clicked in the UI
  * 
  * @param {String} value the text in the button that was clicked
+ * @returns {*} data attached to the album options filter chosen by the user
  */
 function albumFilter(value) {
     let filter_data = [];
@@ -684,6 +679,7 @@ function albumFilter(value) {
     presearchData = filter_data;
     return processedData;
 }
+
 /**
  * Function that handles the filtering.
  * This is the function that is called when the element is clicked in the UI
@@ -811,10 +807,16 @@ function filter(value) {
     } else if (filter_Type == 'Hope World') {
         filter_data = albumFilter('Hope World')
     }
-
-
     renderBars(filter_data, member);
 }
+
+/**
+ * Function that handles the replace Button.
+ * This is the function that is called when the element is clicked in the UI
+ * 
+ * @params {String} buttonId associated with the button that was clicked
+ * @params {String} text on the button that was clicked
+ */
 function replaceButtonText(buttonId, text) {
     if (document.getElementById) {
         var button = document.getElementById(buttonId);
@@ -825,7 +827,7 @@ function replaceButtonText(buttonId, text) {
             else if (button.value) {
                 button.value = text;
             }
-            else //if (button.innerHTML)
+            else
             {
                 button.innerHTML = text;
             }
@@ -835,8 +837,9 @@ function replaceButtonText(buttonId, text) {
 
 
 /**
- * Function that handles the resetting filter and sort together
+ * Function that handles the resetting filter, search, and sort elements.
  * This is the function that is called when the element is clicked in the UI
+ *
  */
 function resetAll() {
     let member = selectedMember;
@@ -848,14 +851,15 @@ function resetAll() {
 }
 
 /**
- * Converts data into the same format that filter sort and search 
+ * Function that converts data into the same format that filter sort and search  
+ *
+ * @param {String} memeber the data being used for contribution calculation
+ * @returns {*} data that's being processed through the filter functions
  */
 function processData(member) {
     let data = [];
-    /*
-    new_bts_object is from new_data.js, which is the revised data set
-    dataRow is each actual row from the excel spreadsheet
-    */
+    /* new_bts_object is from new_data.js, which is the revised data set
+    dataRow is each actual row from the excel spreadsheet */
     new_bts_object.forEach(dataRow => {
         let song = dataRow.Song;
         let album = dataRow.Album;
