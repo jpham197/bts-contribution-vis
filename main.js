@@ -37,6 +37,7 @@ d3.selectAll('.bts-tab')
         renderBars(processedData, member);
         replaceButtonText('filter-button', 'Select a Filter');
         replaceButtonText('sort-button', 'Select a Sort');
+        document.getElementById('search-Input').value = '';
     });
 
 
