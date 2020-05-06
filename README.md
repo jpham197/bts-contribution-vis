@@ -1,7 +1,10 @@
 # Note
 This is a group project for Information Visualization class taught at Georgia Institute of Technology in the Spring of 2020.
+
 Team lead and project idea by Sandra Alsayar.
+
 This Project is now Archived and will no longer be changed or maintained. A newer and more accurate version will be published later.
+
 Dataset was collected manually by Sandra Alsayar. Do not use without giving credit by name to Sandra.
 
 # BTS Contribution Visualization
