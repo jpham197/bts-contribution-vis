@@ -1,9 +1,15 @@
+# Note
+This is a group project for Information Visualization class taught at Georgia Institute of Technology in the Spring of 2020.
+Team lead and project idea by Sandra Alsayar.
+This Project is now Archived and will no longer be changed or maintained. A newer and more accurate version will be published later.
+Dataset was collected manually by Sandra Alsayar. Do not use without giving credit by name to Sandra.
+
 # BTS Contribution Visualization
 A visualization of each BTS member's contribution to the group's music.
 
 [Viewable by clicking here](https://sandraalsayar.github.io/bts-contribution-vis/)
 
-## How to Run Code
+# How to Run Code
 To run the project locally:
 1. Download the project or clone it onto your machine
 2. Start up a local server either by using a text editor extension or a simple python server
